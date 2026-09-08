@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KN Store Web · QA — Usabilidad y Calidad (Lighthouse)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="lighthouse">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-logo">KN</span>
+      <span>
+        <span class="brand-name">KN Store · QA</span><br>
+        <span class="brand-sub">ISO 29119 / IEEE 829</span>
+      </span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Dashboard</a>
+      <a href="maestro.html">Plan Maestro</a>
+      <a href="unitarias.html">Unitarias</a>
+      <a href="e2e.html">E2E · Cypress</a>
+      <a href="jmeter.html">JMeter</a>
+      <a href="lighthouse.html" class="active">Lighthouse</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Cambiar tema"></button>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <span class="eyebrow">Informe de pruebas de usabilidad y calidad</span>
+    <h1>Calidad visual, SEO y accesibilidad<br>Evaluación Lighthouse + Agentic Browsing</h1>
+    <p class="lead">Los jueces móviles de Google recorrieron las pantallas de la tienda —panel de administración y panel de cliente, en computador y en celular— y las calificaron en cuatro dimensiones: velocidad, facilidad de uso para cualquier persona, seguridad y estándares de desarrollo, y visibilidad en el buscador.</p>
+    <div style="margin:18px 0 8px">
+      <span class="badge badge-go"><span class="dot"></span>SEO 100/100</span>
+      <span class="badge badge-soft" style="margin-left:8px">Buenas Prácticas 96/100</span>
+      <span class="badge badge-soft" style="margin-left:8px">89 pantallas evaluadas</span>
+    </div>
+    <div class="hero-meta">
+      <span>Fecha: <b>15 de agosto de 2026</b></span>
+      <span>Navegador: <b>Google Chrome</b></span>
+      <span>Responsable: <b>Laura González · Santiago Flórez · Joseph Varón · Nicolás Gil</b></span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">Resultados</div>
+      <h2>Puntajes consolidados</h2>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi green"><span class="k-bar"></span><div class="k-label">Visibilidad en Google (SEO)</div><div class="k-value">100</div><div class="k-sub">técnicamente optimizada para que Google la encuentre</div></div>
+      <div class="kpi blue"><span class="k-bar"></span><div class="k-label">Seguridad y estándares</div><div class="k-value">96</div><div class="k-sub">protocolos seguros, sin prácticas prohibidas</div></div>
+      <div class="kpi amber"><span class="k-bar" style="background:linear-gradient(180deg,#f59e0b,#38bdf8)"></span><div class="k-label">Facilidad de uso</div><div class="k-value">88</div><div class="k-sub">contrastes legibles y ayudas para personas con discapacidad</div></div>
+      <div class="kpi violet"><span class="k-bar" style="background:linear-gradient(180deg,#8b5cf6,#38bdf8)"></span><div class="k-label">Pantallas evaluadas</div><div class="k-value">89</div><div class="k-sub">Admin 29+29 · Cliente 16+15</div></div>
+    </div>
+    <div class="grid cols-2">
+      <div class="card chart-card">
+        <h3>Promedio por parámetro y vista</h3>
+        <div class="card-sub">Performance · Accessibility · Best Practices · SEO</div>
+        <div class="chart-wrap h-320"><canvas id="chart-lh-param"></canvas></div>
+      </div>
+      <div class="card chart-card">
+        <h3>Puntaje final consolidado por vista</h3>
+        <div class="card-sub">Promedio de los parámetros numéricos por módulo</div>
+        <div class="chart-wrap h-320"><canvas id="chart-lh-final"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">Mapa de calor</div>
+      <h2>89 módulos evaluados</h2>
+      <p>Cada mosaico representa un módulo; el color refleja el puntaje consolidado. Verde = Excelente (90–100) · Amarillo = Bueno (75–89) · Naranja = Atención (50–74) · Rojo = Crítico (&lt;50).</p>
+    </div>
+    <div class="card">
+      <div class="heat" id="lh-heat"></div>
+      <div class="heat-legend">
+        <span><i style="background:#10b981"></i>90–100 Excelente</span>
+        <span><i style="background:#f59e0b"></i>75–89 Bueno</span>
+        <span><i style="background:#f97316"></i>50–74 Atención</span>
+        <span><i style="background:#f43f5e"></i>&lt;50 Crítico</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">Consolidado</div>
+      <h2>Resultados por módulo</h2>
+      <p>Filtra por panel y vista. El puntaje final es el promedio de los parámetros con resultado numérico (Agentic Browsing incluido cuando fue diligenciado).</p>
+    </div>
+    <div class="toolbar">
+      <select id="lh-panel"><option value="">Todos los paneles</option></select>
+      <select id="lh-vista"><option value="">Todas las vistas</option></select>
+      <span class="chip info" id="lh-count" style="align-self:center">89 registros</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Módulo</th><th>Panel</th><th>Vista</th><th class="num">Performance</th><th class="num">Accessibility</th><th class="num">Best Practices</th><th class="num">SEO</th><th class="num">Agentic</th><th class="num">Final</th><th>Interpretación</th></tr></thead>
+        <tbody id="lh-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">Interpretación</div>
+      <h2>Escala de resultados</h2>
+    </div>
+    <div class="grid cols-4" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+      <div class="card"><h3 style="color:#10b981">90 – 100</h3><p style="font-size:13.5px;color:var(--muted)">Excelente — mantener y documentar buenas prácticas.</p></div>
+      <div class="card"><h3 style="color:#f59e0b">75 – 89</h3><p style="font-size:13.5px;color:var(--muted)">Bueno — revisar oportunidades de mejora.</p></div>
+      <div class="card"><h3 style="color:#f97316">50 – 74</h3><p style="font-size:13.5px;color:var(--muted)">Aceptable / requiere atención — priorizar ajustes.</p></div>
+      <div class="card"><h3 style="color:#f43f5e">0 – 49</h3><p style="font-size:13.5px;color:var(--muted)">Crítico — corregir antes de considerar el módulo satisfactorio.</p></div>
+    </div>
+    <div class="alert-note" style="margin-top:14px"><b>Observaciones del informe original:</b> el documento menciona 88 módulos (29 Admin-Desktop + 29 Admin-Mobile + 15 Cliente-Desktop + 15 Cliente-Mobile); la tabla consolidada del PDF trae 16 filas para Cliente-Desktop (aparecen «Panel envíos 1/2» y «Panel pedidos 1/2»), observación registrada en la sección 7 del informe. Agentic Browsing no fue diligenciado en las vistas Mobile. <a href="Informe_Pruebas_Kn-store_Lighthouse.pdf" target="_blank" rel="noopener">Ver PDF original de la prueba</a>.</div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <span>KN – STORE · Informe de pruebas de usabilidad y calidad — 15 de agosto de 2026</span>
+    <span>Resultado: <b style="color:#10b981">SEO 100 · BP 96</b></span>
+    <span>Equipo QA · <a href="https://github.com/joseph12n/pruebas" target="_blank" rel="noopener">Repositorio</a></span>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/charts.js"></script>
+</body>
+</html>

@@ -1,0 +1,449 @@
+                                                                KN - STORE | INFORME DE PRUEBAS DE USABILIDAD Y CALIDAD
+
+
+
+
+                                         KN - STORE
+
+
+INFORME DE PRUEBAS DE USABILIDAD Y CALIDAD
+
+
+
+Evaluación mediante Lighthouse y Agentic Browsing
+
+
+Proyecto                                               KN - STORE
+
+Documento                                              Informe consolidado de pruebas
+
+Versión                                                1.0
+
+Fecha de ejecución                                     15 de Agosto del 2026
+
+                                                       Laura Gonzalez, Santiago Flórez, Joseph Varón y Nicolas
+Responsable
+                                                       Gil
+
+
+
+
+Plantilla preparada para registrar los resultados finales de cada módulo.
+
+
+
+
+                                 KN – STORE — Informe de pruebas | Página 1
+                                                                          KN - STORE | INFORME DE PRUEBAS DE USABILIDAD Y CALIDAD
+
+1. Objetivo
+Documentar y consolidar los resultados de las pruebas de calidad y usabilidad realizadas sobre Kn store, considerando
+los módulos del panel administrativo y del panel cliente, en sus versiones Desktop y Mobile. El informe integra los
+resultados de Lighthouse para Performance, Accessibility, Best Practices y SEO, junto con el resultado de Agentic
+Browsing y un puntaje final consolidado por módulo.
+
+
+
+2. Alcance
+La evaluación comprende 88 módulos: 29 módulos del panel Admin en Desktop, 29 en Mobile, 15 módulos del panel
+Cliente en Desktop y 15 en Mobile. Cada módulo cuenta con un espacio para registrar los cinco parámetros evaluados y
+el vínculo directo al PDF generado por la prueba.
+
+
+
+3. Parámetros evaluados
+ Parámetro                                Qué registra                                  Escala
+ Performance                              Mide el rendimiento y la velocidad de         0–100
+                                          carga/interacción de la pantalla. Se
+                                          registra el puntaje de Lighthouse de 0
+                                          a 100.
+
+ Accessibility                            Evalúa aspectos de accesibilidad              0–100
+                                          identificados por Lighthouse. Se
+                                          registra el puntaje de 0 a 100.
+
+ Best Practices                           Evalúa prácticas recomendadas de              0–100
+                                          desarrollo, seguridad y
+                                          funcionamiento detectadas por
+                                          Lighthouse. Puntaje de 0 a 100.
+
+ SEO                                      Evalúa aspectos técnicos básicos              0–100
+                                          para optimización en buscadores.
+                                          Puntaje de 0 a 100 cuando sea
+                                          aplicable.
+
+ Agentic Browsing                         Registra el resultado de la prueba      0–100
+                                          realizada con navegación/agentes,
+                                          según el criterio definido para el
+                                          proyecto. Registrar 0 a 100 o N/A si no
+                                          aplica.
+Criterio sugerido para el consolidado: Puntaje final del módulo = promedio de los parámetros con resultado numérico. Si
+un parámetro no aplica, registrar N/A y no incluirlo en el promedio.
+
+
+
+4. Metodología de prueba
+1.   Abrir el módulo correspondiente en el ambiente de pruebas.
+2.   Ejecutar la evaluación con Lighthouse en Desktop o Mobile, según corresponda.
+3.   Registrar los resultados de Performance, Accessibility, Best Practices y SEO.
+4.   Ejecutar la prueba de Agentic Browsing definida para el módulo y registrar el resultado.
+5.   Guardar el PDF generado por la prueba.
+6.   Ubicar el PDF en la carpeta correspondiente y verificar el enlace del informe.
+7.   Calcular el puntaje final consolidado del módulo.
+                                           KN – STORE — Informe de pruebas | Página 2
+                                                                      KN - STORE | INFORME DE PRUEBAS DE USABILIDAD Y CALIDAD
+8. Registrar observaciones, incidencias y acciones de mejora cuando corresponda.
+
+
+
+5. Interpretación de resultados
+Rango                                Interpretación                                 Acción sugerida
+90–100                               Excelente                                      Mantener y documentar buenas
+                                                                                    prácticas.
+
+75–89                                Bueno                                          Revisar oportunidades de mejora.
+
+50–74                                Aceptable / requiere atención                  Priorizar ajustes.
+
+0–49                                 Crítico                                        Corregir antes de considerar el
+                                                                                    módulo satisfactorio.
+
+
+
+
+                                       KN – STORE — Informe de pruebas | Página 3
+                                                                              KN - STORE | INFORME DE PRUEBAS DE USABILIDAD Y CALIDAD
+
+6. Consolidado general de resultados
+Registrar aquí los valores finales obtenidos para cada módulo. La columna “PDF de la prueba” contiene un vínculo
+relativo pensado para una estructura de carpetas llamada “PDF_Pruebas”. Si los archivos están en otra ubicación,
+editar el destino del vínculo en Word.
+        Panel       Vista       Módulo        Performance     Accessibilit      Best             SEO     Agentic     PDF de la
+                                                                  y           Practices                 Browsing      prueba
+                             Panel de
+     ADMIN       DESKTOP
+                             usuarios         38            91               96            100         0/2          Ver PDF
+                             Panel crear
+     ADMIN       DESKTOP
+                             documento        61            84               96            100         1/2          Ver PDF
+                             Panel crear
+     ADMIN       DESKTOP
+                             cuenta           60            86               96            100         1/2          Ver PDF
+                             Panel crear
+     ADMIN       DESKTOP
+                             categoría        57            86               96            100         1/2          Ver PDF
+                             Panel crear
+     ADMIN       DESKTOP
+                             subcategoría     52            86               96            100         0/2          Ver PDF
+                             Panel crear
+     ADMIN       DESKTOP
+                             marca            58            84               96            100         1/2          Ver PDF
+                             Panel crear
+     ADMIN       DESKTOP
+                             categoría IVA    59            84               96            100         1/2          Ver PDF
+                             Panel crear
+     ADMIN       DESKTOP
+                             producto         53            86               96            100         0/2          Ver PDF
+                             Panel crear
+     ADMIN       DESKTOP     producto -       44            84               96            100         0/2          Ver PDF
+                             precios
+                             Panel crear
+     ADMIN       DESKTOP     producto -       45            84               96            100         0/2          Ver PDF
+                             inventarios
+                             Panel crear
+     ADMIN       DESKTOP     producto -       39            84               96            100         0/2          Ver PDF
+                             imagen
+                             Panel crear
+     ADMIN       DESKTOP     etiqueta         59            93               96            100         2/2          Ver PDF
+                             producto
+                             Panel crear
+     ADMIN       DESKTOP
+                             dirección        60            86               96            100         1/2          Ver PDF
+                             Panel carrito
+     ADMIN       DESKTOP
+                             de compras       59            86               96            100         0/2          Ver PDF
+     ADMIN       DESKTOP     Panel pedidos    58            86               96            100         1/2          Ver PDF
+                             Panel ítem
+     ADMIN       DESKTOP
+                             pedido
+                                              53            84               96            100         1/2          Ver PDF
+                             Panel ítem
+     ADMIN       DESKTOP
+                             carrito          60            84               96            100         1/2          Ver PDF
+     ADMIN       DESKTOP     Panel pagos      59            86               96            100         1/2          Ver PDF
+     ADMIN       DESKTOP     Panel envíos     57            86               96            100         1/2          Ver PDF
+     ADMIN       DESKTOP     Panel facturas   57            86               100           100         1/2          Ver PDF
+                             Panel gestión
+     ADMIN       DESKTOP
+                             de usuarios      41            91               96            100         0/2          Ver PDF
+                             Panel métricas
+     ADMIN       DESKTOP
+                             de aplicación    16            90               96            100         1/2          Ver PDF
+                             Panel control
+     ADMIN       DESKTOP
+                             de salud         42            93               96            92          2/2          Ver PDF
+                             Panel
+     ADMIN       DESKTOP
+                             configuración    32            85               96            100         0/2          Ver PDF
+     ADMIN       DESKTOP     Panel logs       28            87               96            100         0/2          Ver PDF
+                             Panel
+     ADMIN       DESKTOP     operación -      46            87               96            100         1/2          Ver PDF
+                             pedidos
+
+
+                                              KN – STORE — Informe de pruebas | Página 4
+                                                                       KN - STORE | INFORME DE PRUEBAS DE USABILIDAD Y CALIDAD
+   Panel      Vista      Módulo        Performance     Accessibilit      Best             SEO     Agentic     PDF de la
+                                                           y           Practices                 Browsing      prueba
+                      Panel
+ADMIN      DESKTOP    operación -      43            87               96            100         1/2          Ver PDF
+                      envíos
+                      Panel
+ADMIN      DESKTOP    operación -      45            93               96            100         2/2          Ver PDF
+                      reembolsos
+
+ADMIN      DESKTOP    Panel API        26            93               92            100         1/2          Ver PDF
+                      Panel de
+ADMIN      MOBILE
+                      usuarios         18            91               96            100                      Ver PDF
+                      Panel crear
+ADMIN      MOBILE
+                      documento        42            84               96            100                      Ver PDF
+                      Panel crear
+ADMIN      MOBILE
+                      cuenta           41            86               96            100                      Ver PDF
+                      Panel crear
+ADMIN      MOBILE
+                      categoría        38            86               96            100                      Ver PDF
+                      Panel crear
+ADMIN      MOBILE
+                      subcategoría     40            86               96            100                      Ver PDF
+                      Panel crear
+ADMIN      MOBILE
+                      marca            43            84               96            100                      Ver PDF
+                      Panel crear
+ADMIN      MOBILE
+                      categoría IVA    43            84               96            100                      Ver PDF
+                      Panel crear
+ADMIN      MOBILE
+                      producto         39            86               96            100                      Ver PDF
+                      Panel crear
+ADMIN      MOBILE     producto -       34            84               96            100                      Ver PDF
+                      precios
+                      Panel crear
+ADMIN      MOBILE     producto -       34            84               96            100                      Ver PDF
+                      inventarios
+                      Panel crear
+ADMIN      MOBILE     producto -       34            84               96            100                      Ver PDF
+                      imagen
+                      Panel crear
+ADMIN      MOBILE     etiqueta         42            93               96            100                      Ver PDF
+                      producto
+                      Panel crear
+ADMIN      MOBILE
+                      dirección        42            86               96            100                      Ver PDF
+                      Panel carrito
+ADMIN      MOBILE
+                      de compras       40            84               96            100                      Ver PDF
+ADMIN      MOBILE     Panel pedidos    40            86               96            100                      Ver PDF
+                      Panel ítem
+ADMIN      MOBILE
+                      pedido           35            84               96            100                      Ver PDF
+                      Panel ítem
+ADMIN      MOBILE
+                      carrito          40            84               96            100                      Ver PDF
+ADMIN      MOBILE     Panel pagos      40            86               96            100                      Ver PDF
+ADMIN      MOBILE     Panel envíos     41            86               96            100                      Ver PDF
+ADMIN      MOBILE     Panel facturas   41            86               96            100                      Ver PDF
+                      Panel gestión
+ADMIN      MOBILE
+                      de usuarios      38            91               96            100                      Ver PDF
+                      Panel métricas
+ADMIN      MOBILE
+                      de aplicación    5             90               96            100                      Ver PDF
+                      Panel control
+ADMIN      MOBILE
+                      de salud         25            93               96            92                       Ver PDF
+                      Panel
+ADMIN      MOBILE
+                      configuración    2             85               96            100                      Ver PDF
+ADMIN      MOBILE     Panel logs       22            87               96            100                      Ver PDF
+                      Panel
+ADMIN      MOBILE     operación -      26            87               96            100                      Ver PDF
+                      pedidos
+
+                                       KN – STORE — Informe de pruebas | Página 5
+                                                                       KN - STORE | INFORME DE PRUEBAS DE USABILIDAD Y CALIDAD
+   Panel      Vista      Módulo        Performance     Accessibilit      Best             SEO     Agentic     PDF de la
+                                                           y           Practices                 Browsing      prueba
+                      Panel
+ADMIN      MOBILE     operación -      25            87               96            100                      Ver PDF
+                      envíos
+                      Panel
+ADMIN      MOBILE     operación -      25            93               96            100                      Ver PDF
+                      reembolsos
+
+ADMIN      MOBILE     Panel API        23            93               92            100                      Ver PDF
+                      Panel página
+CLIENTE    DESKTOP
+                      principal        51            95               96            100                      Ver PDF
+CLIENTE    DESKTOP    Panel login      56            87               96            100                      Ver PDF
+                      Panel
+CLIENTE    DESKTOP
+                      categorías       46            95               96            100                      Ver PDF
+CLIENTE    DESKTOP    Panel cuenta     51            94               96            100                      Ver PDF
+CLIENTE    DESKTOP    Panel perfil 1   58            94               96            100                      Ver PDF
+CLIENTE    DESKTOP    Panel perfil 2   56            87               96            100                      Ver PDF
+                      Panel página
+CLIENTE    DESKTOP
+                      direcciones      54            94               96            100                      Ver PDF
+CLIENTE    DESKTOP    Panel carrito    57            95               96            100                      Ver PDF
+CLIENTE    DESKTOP    Panel compras    54            94               96            100                      Ver PDF
+                      Panel
+CLIENTE    DESKTOP
+                      seguridad        60            84               96            100                      Ver PDF
+CLIENTE    DESKTOP    Panel facturas   58            94               96            100                      Ver PDF
+CLIENTE    DESKTOP    Panel envíos 1   59            94               96            100                      Ver PDF
+CLIENTE    DESKTOP    Panel envíos 2   54            94               96            100                      Ver PDF
+CLIENTE    DESKTOP    Panel pagos      58            94               96            100                      Ver PDF
+                      Panel pedidos
+CLIENTE    DESKTOP
+                      1                54            94               96            100                      Ver PDF
+                      Panel pedidos
+CLIENTE    DESKTOP
+                      2                57            94               96            100                      Ver PDF
+                      Panel página
+CLIENTE    MOBILE
+                      principal        37            89               96            100                      Ver PDF
+CLIENTE    MOBILE     Panel login      39            87               96            100                      Ver PDF
+                      Panel
+CLIENTE    MOBILE
+                      categorías       40            90               96            100                      Ver PDF
+CLIENTE    MOBILE     Panel cuenta     18            90               96            100                      Ver PDF
+CLIENTE    MOBILE     Panel perfil 1   20            90               96            100                      Ver PDF
+CLIENTE    MOBILE     Panel perfil 2   14            83               96            100                      Ver PDF
+                      Panel página
+CLIENTE    MOBILE
+                      direcciones      17            90               96            100                      Ver PDF
+CLIENTE    MOBILE     Panel carrito    30            85               96            100                      Ver PDF
+CLIENTE    MOBILE     Panel compras    24            90               96            100                      Ver PDF
+                      Panel
+CLIENTE    MOBILE
+                      seguridad
+                                       21            80               96            100                      Ver PDF
+CLIENTE    MOBILE     Panel facturas   14            90               96            100                      Ver PDF
+CLIENTE    MOBILE     Panel envíos     14            90               96            100                      Ver PDF
+CLIENTE    MOBILE     Panel pagos      19            90               96            100                      Ver PDF
+                      Panel pedidos
+CLIENTE    MOBILE
+                      1
+                                       19            90               96            100                      Ver PDF
+                      Panel pedidos
+CLIENTE    MOBILE
+                      2                20            90               96            100                      Ver PDF
+
+                                       KN – STORE — Informe de pruebas | Página 6
+                                                                        KN - STORE | INFORME DE PRUEBAS DE USABILIDAD Y CALIDAD
+
+
+
+
+7. Resumen por panel y dispositivo
+Este cuadro permite registrar el promedio global de cada conjunto de módulos una vez diligenciado el consolidado.
+
+Panel               Vista               N.º módulos             Promedio final         Observación general
+ADMIN               DESKTOP             29                      73.8                   Todos los módulos incluyen los 5
+                                                                                       parámetros (incl. Agentic Browsing).
+
+ADMIN               MOBILE              29                      78.8                   Calculado sobre 28 módulos
+                                                                                       (Performance/Accessibility/BP/SEO);
+                                                                                       "Panel gestión de usuarios" no tiene
+                                                                                       datos y se excluyó del promedio.
+                                                                                       Agentic Browsing no fue diligenciado
+                                                                                       en ningún módulo de esta vista.
+
+CLIENTE             DESKTOP             15                      86.0                   La tabla de datos trae 16 filas
+                                                                                       (aparecen "Panel envíos 1" y "Panel
+                                                                                       envíos 2"); calculé el promedio con
+                                                                                       las 16. Verifica si es un módulo
+                                                                                       duplicado o si falta actualizar el
+                                                                                       conteo a 16.
+
+CLIENTE             MOBILE              15                      76.8                   Calculado sobre
+                                                                                       Performance/Accessibility/BP/SEO
+                                                                                       (Agentic Browsing no diligenciado).
+
+
+
+
+                                         KN – STORE — Informe de pruebas | Página 7
+                                                                       KN - STORE | INFORME DE PRUEBAS DE USABILIDAD Y CALIDAD
+
+8. Ficha detallada por módulo
+Para cada módulo, conservar esta ficha como evidencia resumida. El PDF enlazado debe contener el reporte completo
+de la ejecución correspondiente.
+
+ADMIN — DESKTOP
+1. Panel de admin
+Panel                       ADMIN                            Vista                           DESKTOP
+
+Módulo                      Panel de usuarios                Fecha prueba                    15 de agosto de 2026
+
+URL / ruta                  Ver Vista Admin                  Navegador                       Google Chrome
+
+Responsable                 Laura Gonzalez, Santiago         Versión                         01
+                            Flórez, Joseph Varón y
+                            Nicolas Gil
+
+
+
+ADMIN — MOBILE
+2. Panel de admin
+Panel                       ADMIN                            Vista                           MOBILE
+
+Módulo                      Panel de usuarios                Fecha prueba                    15 de agosto de 2026
+
+URL / ruta                  Ver Vista Admin                  Navegador                       Google Chrome
+
+Responsable                 Laura Gonzalez, Santiago         Versión                         01
+                            Flórez, Joseph Varón y
+                            Nicolas Gil
+
+
+
+
+CLIENTE — DESKTOP
+3. Panel de cliente
+Panel                       CLIENTE                          Vista                           DESKTOP
+
+Módulo                      Panel de usuarios                Fecha prueba                    15 de agosto de 2026
+
+URL / ruta                  Ver Vista Cliente                Navegador                       Google Chrome
+
+Responsable                 Laura Gonzalez, Santiago         Versión                         01
+                            Flórez, Joseph Varón y
+                            Nicolas Gil
+
+
+
+
+                                        KN – STORE — Informe de pruebas | Página 8
+                                                                 KN - STORE | INFORME DE PRUEBAS DE USABILIDAD Y CALIDAD
+
+CLIENTE — MOBILE
+3. Panel de cliente
+Panel                 CLIENTE                          Vista                           MOBILE
+
+Módulo                Panel de usuarios                Fecha prueba                    15 de agosto de 2026
+
+URL / ruta            Ver Vista Cliente                Navegador                       Google Chrome
+
+Responsable           Laura Gonzalez, Santiago         Versión                         01
+                      Flórez, Joseph Varón y
+                      Nicolas Gil
+
+
+
+
+                                  KN – STORE — Informe de pruebas | Página 9
+

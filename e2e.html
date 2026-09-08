@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KN Store Web · QA — Reporte E2E (Cypress)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="e2e">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-logo">KN</span>
+      <span>
+        <span class="brand-name">KN Store · QA</span><br>
+        <span class="brand-sub">ISO 29119 / IEEE 829</span>
+      </span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Dashboard</a>
+      <a href="maestro.html">Plan Maestro</a>
+      <a href="unitarias.html">Unitarias</a>
+      <a href="e2e.html" class="active">E2E · Cypress</a>
+      <a href="jmeter.html">JMeter</a>
+      <a href="lighthouse.html">Lighthouse</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Cambiar tema"></button>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <span class="eyebrow">Reporte de Pruebas Automatizadas</span>
+    <h1>Pruebas E2E con Cypress<br>Plataforma KNSTORE</h1>
+    <p class="lead">Grabaciones de ejecución sobre los módulos Admin y Cliente. Un robot navegador emuló a un comprador de carne y hueso y a un administrador de verdad: creó cuentas, inició sesión, buscó calzado, armó un carrito, registró una dirección en Bogotá, confirmó pedidos; del otro lado creó productos con talla y color, precios, inventarios, imágenes, etiquetas, pedidos, pagos y facturas.</p>
+    <div style="margin:18px 0 8px">
+      <span class="badge badge-go"><span class="dot"></span>42/43 PUNTOS CORRECTOS</span>
+      <span class="badge badge-soft" style="margin-left:8px">24 de agosto de 2026</span>
+      <span class="badge badge-soft" style="margin-left:8px">Cypress E2E · grabaciones JSON</span>
+    </div>
+    <div class="hero-meta">
+      <span>Ambiente: <b>app.knstore.duckdns.org</b></span>
+      <span>Módulos: <b>Cliente y Admin</b></span>
+      <span>Checkpoints: <b>43 (correctos 42 · observación 1)</b></span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">2 · Resultados generales</div>
+      <h2>Los números del recorrido</h2>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi green"><span class="k-bar"></span><div class="k-label">Casos de prueba</div><div class="k-value">4</div><div class="k-sub">2 Cliente · 2 Admin</div></div>
+      <div class="kpi blue"><span class="k-bar"></span><div class="k-label">Pasos ejecutados</div><div class="k-value">756</div><div class="k-sub">grabados y traducidos a pasos legibles</div></div>
+      <div class="kpi amber"><span class="k-bar" style="background:linear-gradient(180deg,#f59e0b,#f43f5e)"></span><div class="k-label">Puntos de control</div><div class="k-value">43</div><div class="k-sub">correctos: 42 · con observación: 1</div></div>
+      <div class="kpi rose"><span class="k-bar" style="background:linear-gradient(180deg,#f43f5e,#f59e0b)"></span><div class="k-label">Bloqueos funcionales</div><div class="k-value">0</div><div class="k-sub">grabaciones completadas sin errores</div></div>
+    </div>
+    <div class="grid cols-2">
+      <div class="card chart-card">
+        <h3>Pasos simulados por caso</h3>
+        <div class="card-sub">25 · 201 · 376 · 154</div>
+        <div class="chart-wrap h-320"><canvas id="chart-e2e-pasos"></canvas></div>
+      </div>
+      <div class="card chart-card">
+        <h3>Puntos de control</h3>
+        <div class="card-sub">42 correctos vs 1 con observación</div>
+        <div class="chart-wrap h-320"><canvas id="chart-e2e-check"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">Resumen</div>
+      <h2>Tabla de resultados del recorrido</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Caso</th><th>Módulo</th><th>Nombre de la prueba</th><th>Evidencia</th><th>Pasos</th><th>Checkouts</th><th>Estado</th></tr></thead>
+        <tbody>
+          <tr><td><b>1</b></td><td>Cliente</td><td>Flujo-registro-knstore</td><td>Registro de usuario anónimo</td><td class="num">25</td><td class="num">5</td><td><span class="chip ok">Correcto</span></td></tr>
+          <tr><td><b>2</b></td><td>Cliente</td><td>PANEL_CLIENTE</td><td>Automatización / testing del panel del cliente</td><td class="num">201</td><td class="num">8</td><td><span class="chip warn">Con observación</span></td></tr>
+          <tr><td><b>3</b></td><td>Admin</td><td>KNSTORE — MOD-ENTIDADES (CRUD)</td><td>Evidencia 1 — Gestión de entidades (catálogo)</td><td class="num">376</td><td class="num">18</td><td><span class="chip ok">Correcto</span></td></tr>
+          <tr><td><b>4</b></td><td>Admin</td><td>KNSTORE — MOD-ADMIN / MOD-CUENTA</td><td>Evidencia 2 — Módulo de administración y cuenta</td><td class="num">154</td><td class="num">12</td><td><span class="chip ok">Correcto</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:10px">Total de pasos ejecutados: <b>756</b> · Total de checkpoints: <b>43</b> (correctos 42, con observación 1). Los archivos de grabación no incluyen marcadores explícitos de fallo; el estado «Correcto» indica que la grabación se completó íntegramente y el sistema respondió a cada acción.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">3 · Detalle caso a caso</div>
+      <h2>Puntos de control por caso</h2>
+    </div>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Caso 1 · Flujo-registro-knstore <span class="chip ok" style="float:right">5/5</span></h3>
+        <div class="card-sub">Cliente · 25 pasos · registro de usuario anónimo</div>
+        <ul class="list" style="font-size:13.5px">
+          <li><span class="chip ok">OK</span> Carga de la página de inicio (título 'knstore', enlace 'Ingresar' accesible)</li>
+          <li><span class="chip ok">OK</span> Acceso al formulario de registro desde 'Crea una cuenta'</li>
+          <li><span class="chip ok">OK</span> Registro del nuevo cliente sin errores de validación</li>
+          <li><span class="chip ok">OK</span> Confirmación y redirección a login</li>
+          <li><span class="chip ok">OK</span> Inicio de sesión post-registro (el_nico / Bgil100111)</li>
+        </ul>
+        <p style="font-size:12.5px;color:var(--muted);margin-top:8px">Observación: tipeo incremental del correo y usuario durante la grabación, sin impacto funcional.</p>
+      </div>
+      <div class="card">
+        <h3>Caso 2 · PANEL_CLIENTE <span class="chip warn" style="float:right">7/8 + 1 obs</span></h3>
+        <div class="card-sub">Cliente · 201 pasos · panel del cliente autenticado</div>
+        <ul class="list" style="font-size:13.5px">
+          <li><span class="chip ok">OK</span> Inicio de sesión</li>
+          <li><span class="chip ok">OK</span> Edición de perfil (1.ª): documento 1001111711, fecha 2000-11-06, celular 3143788592</li>
+          <li><span class="chip ok">OK</span> Edición de perfil (2.ª): persistencia confirmada, selección MASCULINO</li>
+          <li><span class="chip ok">OK</span> Búsqueda de producto 'nike'</li>
+          <li><span class="chip warn">OBS</span> Reintentos de inicio de sesión (5 clics; autenticación final exitosa)</li>
+          <li><span class="chip ok">OK</span> Registro de dirección 'Cl. 139b #112a-39' (Bogotá, Suba)</li>
+          <li><span class="chip ok">OK</span> Edición de dirección a 'Cl. 139b #112a-38'</li>
+          <li><span class="chip ok">OK</span> Cambio de contraseña (Nicolas123 → Britt123)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Caso 3 · MOD-ENTIDADES (CRUD) <span class="chip ok" style="float:right">18/18</span></h3>
+        <div class="card-sub">Admin · 376 pasos · creación de todos los registros del catálogo</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:8px">18 entidades creadas consecutivamente: tipo documento (CC), cuenta (PEDRO GONZALEZ SISABE), categoría, subcategoría, marca, categoría IVA, producto (PRUEBA EE · talla 35 · NEGRO), precio, inventario, imagen, etiqueta, dirección, pedido (46.000 · IVA 12 %), ítem pedido, ítem carrito, pago (68.000), envío (COORDINADORA) y factura (KS/KSF · 1.400.000).</p>
+        <p style="font-size:12.5px;color:var(--muted)">Observación: datos de prueba repetitivos (PRUEBA EE, 11, 12, 22) dificultan la identificación única y pueden generar duplicados; la fecha de factura (2030-03-08) es futura; el guardado del producto se completó en dos fases (comportamiento admisible). Grabación completada sin errores.</p>
+      </div>
+      <div class="card">
+        <h3>Caso 4 · MOD-ADMIN / MOD-CUENTA <span class="chip ok" style="float:right">12/12</span></h3>
+        <div class="card-sub">Admin · 154 pasos · administración del backend y cuenta propia</div>
+        <ul class="list" style="font-size:13.5px">
+          <li><span class="chip ok">OK</span> Gestión de usuarios: pedro.pruebas con ROLE_USER, ROLE_CLIENTE, ROLE_MANAGER</li>
+          <li><span class="chip ok">OK</span> Métricas · Salud (health check) · Configuración · Logs</li>
+          <li><span class="chip ok">OK</span> Operación: pedidos CONFIRMED (×2) · envíos DISPATCHED / IN_TRANSIT / RETURNED · reembolso confirmado</li>
+          <li><span class="chip ok">OK</span> API (documentación) · Mi cuenta (2 ediciones) · Dirección de la cuenta</li>
+        </ul>
+        <p style="font-size:12.5px;color:var(--muted);margin-top:8px">Observación: tipeo erróneo 'èd' por teclado corregido; validar conservación de la asignación múltiple de perfiles; el reembolso se ejecutó sobre datos de prueba. Grabación completada sin errores.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">4 · Conclusiones</div>
+      <h2>Recomendaciones</h2>
+    </div>
+    <div class="grid cols-2">
+      <div class="card"><h3>1 · Datos de prueba únicos</h3><p style="font-size:13.5px;color:var(--muted)">Usar datos de prueba únicos por ejecución para evitar duplicados en el catálogo.</p></div>
+      <div class="card"><h3>2 · Estabilidad de sesión</h3><p style="font-size:13.5px;color:var(--muted)">Revisar la estabilidad de la sesión del cliente tras reintentos de login y el reinicio de sesión en medio del recorrido.</p></div>
+      <div class="card"><h3>3 · Configuración de teclado</h3><p style="font-size:13.5px;color:var(--muted)">Verificar la configuración del teclado del entorno (tipeo 'èd' registrado).</p></div>
+      <div class="card"><h3>4 · Fechas y reembolsos</h3><p style="font-size:13.5px;color:var(--muted)">Validar la tolerancia de fechas futuras en facturas (2030-03-08) y la política de confirmación de reembolsos.</p></div>
+    </div>
+    <p style="font-size:13.5px;color:var(--muted);margin-top:14px">Los 4 casos se ejecutaron de principio a fin; los 43 puntos de control se completaron con 42 correctos y 1 observación no bloqueante. El sistema permite obtener todos los flujos evaluados: registro, panel del cliente, CRUD completo del catálogo y operaciones administrativas (usuarios, métricas, salud, logs, pedidos, envíos, reembolsos y cuenta).</p>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <span>Reporte de Pruebas Automatizadas — KNSTORE · 24 de agosto de 2026</span>
+    <span>Resultado: <b style="color:#10b981">42/43 correctos</b></span>
+    <span>Equipo QA · <a href="https://github.com/joseph12n/pruebas" target="_blank" rel="noopener">Repositorio</a></span>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/charts.js"></script>
+</body>
+</html>

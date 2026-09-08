@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KN Store Web · QA — Dashboard Ejecutivo</title>
+<meta name="description" content="Aseguramiento de Calidad del proyecto KN Store Web — certificado de salida a producción APROBADO / GO.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="index">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-logo">KN</span>
+      <span>
+        <span class="brand-name">KN Store · QA</span><br>
+        <span class="brand-sub">ISO 29119 / IEEE 829</span>
+      </span>
+    </a>
+    <nav class="nav">
+      <a href="index.html" class="active">Dashboard</a>
+      <a href="maestro.html">Plan Maestro</a>
+      <a href="unitarias.html">Unitarias</a>
+      <a href="e2e.html">E2E · Cypress</a>
+      <a href="jmeter.html">JMeter</a>
+      <a href="lighthouse.html">Lighthouse</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Cambiar tema"></button>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <span class="eyebrow">Plan de Pruebas Maestro · ISO 29119 / IEEE 829</span>
+    <h1>KN Store Web<br>Aseguramiento de Calidad</h1>
+    <p class="lead">Plataforma de comercio electrónico de calzado (PWA · React + Next.js, backend Spring Boot, MongoDB). Cuatro baterías de pruebas independientes —unitarias, recorridos E2E, carga masiva y calidad de Google— concluyeron por encima de todos los umbrales de aceptación.</p>
+    <div style="margin:18px 0 8px">
+      <span class="badge badge-go"><span class="dot"></span>CERTIFICADO DE SALIDA A PRODUCCIÓN · APROBADO · GO</span>
+    </div>
+    <div class="hero-meta">
+      <span>Ambiente: <b>app.knstore.duckdns.org</b></span>
+      <span>Ciclo: <b>15 – 29 de agosto de 2026</b></span>
+      <span>Código: <b>MTP-2026-Kn-Store-001</b></span>
+      <span>Versión: <b>1.0</b></span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">Evidencias consolidadas</div>
+      <h2>Los números del ciclo</h2>
+      <p>Resultados de las cuatro tormentas de evaluación que observaron el ecosistema de punta a punta.</p>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi green"><span class="k-bar"></span>
+        <div class="k-label">Pruebas unitarias</div>
+        <div class="k-value">361 <small>/ 100%</small></div>
+        <div class="k-sub">93 suites · 150 nuevas · 0 fallos</div>
+      </div>
+      <div class="kpi blue"><span class="k-bar"></span>
+        <div class="k-label">Pasos E2E</div>
+        <div class="k-value">756</div>
+        <div class="k-sub">43 checkpoints · 42 correctos</div>
+      </div>
+      <div class="kpi violet"><span class="k-bar" style="background:linear-gradient(180deg,#8b5cf6,#38bdf8)"></span>
+        <div class="k-label">Éxito bajo carga</div>
+        <div class="k-value">99.92<small>%</small></div>
+        <div class="k-sub">hasta 547 compradores simultáneos</div>
+      </div>
+      <div class="kpi amber"><span class="k-bar" style="background:linear-gradient(180deg,#f59e0b,#f43f5e)"></span>
+        <div class="k-label">Pantallas evaluadas</div>
+        <div class="k-value">89</div>
+        <div class="k-sub">SEO 100/100 · BP 96/100</div>
+      </div>
+      <div class="kpi blue"><span class="k-bar"></span>
+        <div class="k-label">Casos JMeter</div>
+        <div class="k-value">91 <small>/ 91</small></div>
+        <div class="k-sub">matriz completa en verde</div>
+      </div>
+      <div class="kpi rose"><span class="k-bar" style="background:linear-gradient(180deg,#f43f5e,#f59e0b)"></span>
+        <div class="k-label">Defectos críticos</div>
+        <div class="k-value">0</div>
+        <div class="k-sub">solo observaciones menores</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">Los 4 escudos</div>
+      <h2>Qué observó cada batería</h2>
+      <p>Cada herramienta blindó una dimensión distinta del negocio.</p>
+    </div>
+    <div class="shields">
+      <div class="shield">
+        <div class="s-name">JUnit 5 + Mockito</div>
+        <div class="s-val">361 OK</div>
+        <div class="s-desc">Matemática y privacidad: cobros exactos, cuentas privadas.</div>
+      </div>
+      <div class="shield">
+        <div class="s-name">Cypress E2E</div>
+        <div class="s-val">756 OK</div>
+        <div class="s-desc">Experiencia de compra: clientes y administradores reales.</div>
+      </div>
+      <div class="shield">
+        <div class="s-name">Apache JMeter</div>
+        <div class="s-val">547 OK</div>
+        <div class="s-desc">Resistencia: avalanchas de compradores sin sobreventa.</div>
+      </div>
+      <div class="shield">
+        <div class="s-name">Lighthouse</div>
+        <div class="s-val">88 OK</div>
+        <div class="s-desc">Imagen y posicionamiento: visibilidad en Google.</div>
+      </div>
+    </div>
+    <div class="grid cols-2" style="margin-top:16px">
+      <div class="card chart-card">
+        <h3>Tasas de éxito por batería</h3>
+        <div class="card-sub">Porcentaje de verificaciones correctas sobre los umbrales del plan (&gt;95%)</div>
+        <div class="chart-wrap h-280"><canvas id="chart-baterias"></canvas></div>
+      </div>
+      <div class="card">
+        <h3>Diagrama del ecosistema probado</h3>
+        <div class="card-sub">Los 5 momentos del negocio, de punta a punta, observados por los 4 escudos</div>
+        <div class="flow">
+          <div class="flow-step"><div class="n">1</div><div class="t">Cliente entrando</div><div class="d">Catálogo y búsqueda &lt; 0,2 s</div></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><div class="n">2</div><div class="t">Compra segura</div><div class="d">El monto lo decide SIEMPRE el sistema</div></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><div class="n">3</div><div class="t">Inventario al día</div><div class="d">Ningún par vendido dos veces: 0/15</div></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><div class="n">4</div><div class="t">Factura automática</div><div class="d">IVA y total exactos del pedido real</div></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><div class="n">5</div><div class="t">Despacho entrega</div><div class="d">Guía de envío con seguimiento</div></div>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-top:14px">Flujo en orden estricto: 1 llegada → 2 compra → 3 inventario → 4 facturación → 5 despacho.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">Inversión</div>
+      <h2>Costos del proyecto</h2>
+      <p>Esfuerzo del equipo, infraestructura y servicios asociados — COP.</p>
+    </div>
+    <div class="grid cols-3">
+      <div class="card chart-card">
+        <h3>Inversión acumulada</h3>
+        <div class="card-sub">Año 1 · Año 3 · Año 5</div>
+        <div class="chart-wrap h-280"><canvas id="chart-costos"></canvas></div>
+      </div>
+      <div class="card chart-card">
+        <h3>Distribución CAPEX / OPEX</h3>
+        <div class="card-sub">Desarrollo inicial vs operación anual</div>
+        <div class="chart-wrap h-280"><canvas id="chart-capex"></canvas></div>
+      </div>
+      <div class="card">
+        <h3>Resumen</h3>
+        <div class="card-sub">Detalle de la inversión</div>
+        <ul class="list">
+          <li><b>CAPEX:</b> $19.680.000 — backend, BD, plataforma web, funcionalidades y QA.</li>
+          <li><b>OPEX anual:</b> $5.490.000 — hosting, dominio, mantenimiento, backups y servicios.</li>
+          <li><b>Total año 1:</b> $25.170.000</li>
+          <li><b>Acumulado 3 años:</b> $36.150.000 · <b>5 años:</b> $47.130.000</li>
+          <li><b>Horas totales de desarrollo:</b> 328 h</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">Pulido recomendado</div>
+      <h2>Top 3 recomendaciones para el cliente</h2>
+      <p>Acciones no bloqueantes que elevan la experiencia de compra con costo mínimo frente al beneficio comercial.</p>
+    </div>
+    <div class="grid cols-3">
+      <div class="card">
+        <h3>1 · Comprimir fotos del catálogo</h3>
+        <div class="card-sub">Calidad de imagen progresiva</div>
+        <p style="font-size:13.5px;color:var(--muted)">Lighthouse identificó la velocidad móvil como la única zona entre 75 y 89 puntos (76,8/100 promedio por imágenes pesadas).</p>
+        <p style="font-size:13px"><b style="color:var(--accent)">Impacto:</b> la tienda cargaría el doble de rápido en celular; más clientes con datos móviles completan su compra.</p>
+      </div>
+      <div class="card">
+        <h3>2 · Pruebas automáticas en CI</h3>
+        <div class="card-sub">Integración continua</div>
+        <p style="font-size:13.5px;color:var(--muted)">El ciclo demostró que entre 97,7 % y 100 % de las funciones se verifican automáticamente en minutos, sin esfuerzo manual.</p>
+        <p style="font-size:13px"><b style="color:var(--accent)">Impacto:</b> cada función nueva cierra con su verificación; las regresiones se vuelven casi imposibles.</p>
+      </div>
+      <div class="card">
+        <h3>3 · Revisar expiración de sesión</h3>
+        <div class="card-sub">Comodidad del usuario recurrente</div>
+        <p style="font-size:13.5px;color:var(--muted)">La prueba del panel del cliente registró reintentos de ingreso en la mitad del recorrido (la sesión se reabre).</p>
+        <p style="font-size:13px"><b style="color:var(--accent)">Impacto:</b> menos fricción para volver a comprar; más conversión y lealtad.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">Cumplimiento</div>
+      <h2>Criterios de cierre del Plan Maestro</h2>
+      <p>Sección 5.1 del plan — verificado en las 4 dimensiones.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Criterio de aceptación</th><th>Evidencia</th><th>Cumplido</th></tr></thead>
+        <tbody>
+          <tr><td>100 % de casos bloqueantes o críticos con estado exitoso</td><td>Todos los casos de las 4 baterías ejecutados sin fallos críticos</td><td><span class="chip ok">SI</span></td></tr>
+          <tr><td>Tasa de éxito general superior al 95 %</td><td>JUnit 100 % · Cypress 97,7 % · JMeter 99,92 % · Lighthouse 96 a 100 %</td><td><span class="chip ok">SI</span></td></tr>
+          <tr><td>Cero defectos abiertos de severidad Alta o Crítica</td><td>Únicamente observaciones menores documentadas</td><td><span class="chip ok">SI</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">Documentos del ciclo</div>
+      <h2>Explorar los informes completos</h2>
+    </div>
+    <div class="grid cols-3">
+      <a class="card" href="maestro.html" style="text-decoration:none;color:inherit">
+        <h3>Plan Maestro</h3>
+        <div class="card-sub">ISO 29119 / IEEE 829 · MTP-2026-Kn-Store-001</div>
+        <p style="font-size:13px;color:var(--muted)">Alcance, 12 módulos (RF001–RF069), estrategia, riesgos, costos, cronograma y certificación con firmas.</p>
+        <span class="chip info">12 módulos · 69 RF</span>
+      </a>
+      <a class="card" href="unitarias.html" style="text-decoration:none;color:inherit">
+        <h3>Pruebas Unitarias</h3>
+        <div class="card-sub">JUnit 5 + Mockito · capa de servicios</div>
+        <p style="font-size:13px;color:var(--muted)">93 suites, 361 pruebas, 150 nuevas; 100 % de la capa de servicios cubierta.</p>
+        <span class="chip ok">361 verificaciones</span>
+      </a>
+      <a class="card" href="e2e.html" style="text-decoration:none;color:inherit">
+        <h3>E2E · Cypress</h3>
+        <div class="card-sub">Recorridos de clientes y administradores</div>
+        <p style="font-size:13px;color:var(--muted)">4 casos, 756 pasos grabados, 43 puntos de control.</p>
+        <span class="chip ok">42/43 correctos</span>
+      </a>
+      <a class="card" href="jmeter.html" style="text-decoration:none;color:inherit">
+        <h3>Rendimiento · JMeter</h3>
+        <div class="card-sub">Matriz 91 casos + estrés</div>
+        <p style="font-size:13px;color:var(--muted)">3 rondas de carga creciente, hasta 547 compradores; no-sobreventa demostrada.</p>
+        <span class="chip ok">99,92 % de éxito</span>
+      </a>
+      <a class="card" href="lighthouse.html" style="text-decoration:none;color:inherit">
+        <h3>Usabilidad · Lighthouse</h3>
+        <div class="card-sub">89 pantallas · 4 vistas</div>
+        <p style="font-size:13px;color:var(--muted)">SEO 100/100, buenas prácticas 96/100 y mapas de calor por módulo.</p>
+        <span class="chip warn">Velocidad móvil: zona amarilla</span>
+      </a>
+      <div class="card">
+        <h3>Comité de Calidad</h3>
+        <div class="card-sub">Equipo QA</div>
+        <ul class="list" style="font-size:13px">
+          <li>Joseph Nicolás Varón Vargas</li>
+          <li>Santiago Flórez Moreno</li>
+          <li>Laura González Ortiz</li>
+          <li>Nicolás Gil Rodríguez</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <span>KN Store Web · Informe de Aseguramiento de Calidad — ciclo agosto 2026</span>
+    <span>Veredicto: <b style="color:#10b981">APROBADO · GO</b> — Plan MTP-2026-Kn-Store-001</span>
+    <span>Generado a partir de los reportes del equipo QA · <a href="https://github.com/joseph12n/pruebas" target="_blank" rel="noopener">Repositorio</a></span>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/charts.js"></script>
+</body>
+</html>

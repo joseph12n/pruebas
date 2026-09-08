@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KN Store Web · QA — Rendimiento y Estrés (JMeter)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .guard { display:flex; flex-direction:column; gap:10px; }
+  .g-node {
+    border:1px solid var(--border-strong); border-radius:10px; padding:10px 14px;
+    font-size:13px; background:var(--card-2);
+  }
+  .g-node.ok { border-color:rgba(16,185,129,0.5); background:rgba(16,185,129,0.08); }
+  .g-node.no { border-color:rgba(244,63,94,0.5); background:rgba(244,63,94,0.07); }
+</style>
+</head>
+<body data-page="jmeter">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-logo">KN</span>
+      <span>
+        <span class="brand-name">KN Store · QA</span><br>
+        <span class="brand-sub">ISO 29119 / IEEE 829</span>
+      </span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Dashboard</a>
+      <a href="maestro.html">Plan Maestro</a>
+      <a href="unitarias.html">Unitarias</a>
+      <a href="e2e.html">E2E · Cypress</a>
+      <a href="jmeter.html" class="active">JMeter</a>
+      <a href="lighthouse.html">Lighthouse</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Cambiar tema"></button>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <span class="eyebrow">Pruebas de estrés y rendimiento · Apache JMeter</span>
+    <h1>Resistencia y ventas masivas<br>Plataforma KNSTORE</h1>
+    <p class="lead">La tormenta definitiva: ¿qué pasa cuando cientos de personas intentan comprar a la vez —en promoción, en quincena, cuando un influenciador recomienda la tienda? El sistema nunca vendió más pares de los disponibles, nunca se cayó y, en el único evento externo adverso (7 conexiones cortadas por la red durante la maratón), se recuperó solo en segundos.</p>
+    <div style="margin:18px 0 8px">
+      <span class="badge badge-go"><span class="dot"></span>99,92 % DE ÉXITO</span>
+      <span class="badge badge-soft" style="margin-left:8px">91/91 casos en verde</span>
+      <span class="badge badge-soft" style="margin-left:8px">Sin sobreventa</span>
+    </div>
+    <div class="hero-meta">
+      <span>Ejecución: <b>26 de agosto de 2026</b> · 6.800 muestras</span>
+      <span>Máximo: <b>547 compradores simultáneos</b></span>
+      <span>EC2: <b>25/08/2026</b></span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">Resultados</div>
+      <h2>Los números de la tormenta</h2>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi green"><span class="k-bar"></span><div class="k-label">Casos de la matriz</div><div class="k-value">91 <small>/ 91</small></div><div class="k-sub">en verde · 0 fallos</div></div>
+      <div class="kpi blue"><span class="k-bar"></span><div class="k-label">Muestras (corrida completa)</div><div class="k-value">6.800</div><div class="k-sub">0 errores · 26/08/2026</div></div>
+      <div class="kpi amber"><span class="k-bar" style="background:linear-gradient(180deg,#f59e0b,#f43f5e)"></span><div class="k-label">Rondas de carga</div><div class="k-value">3</div><div class="k-sub">normal · promoción · límite absoluto</div></div>
+      <div class="kpi violet"><span class="k-bar" style="background:linear-gradient(180deg,#8b5cf6,#38bdf8)"></span><div class="k-label">Usuarios máximos</div><div class="k-value">547</div><div class="k-sub">incluye ráfaga de 100 en 2 s</div></div>
+      <div class="kpi rose"><span class="k-bar" style="background:linear-gradient(180deg,#f43f5e,#f59e0b)"></span><div class="k-label">Sobreventa</div><div class="k-value">0</div><div class="k-sub">15 pares · 60 compradores · stock final 0</div></div>
+      <div class="kpi blue"><span class="k-bar"></span><div class="k-label">Escalado estable</div><div class="k-value">150</div><div class="k-sub">hilos · P95 listado ≈ 453 ms</div></div>
+    </div>
+    <div class="grid cols-3">
+      <div class="card chart-card">
+        <h3>Muestras y errores por ronda</h3>
+        <div class="card-sub">EC2 · 25/08/2026</div>
+        <div class="chart-wrap h-280"><canvas id="chart-jmeter-rondas"></canvas></div>
+      </div>
+      <div class="card chart-card">
+        <h3>Tasa de éxito por ronda</h3>
+        <div class="card-sub">1.112 · 7.320 · 8.920 muestras</div>
+        <div class="chart-wrap h-280"><canvas id="chart-jmeter-exito"></canvas></div>
+      </div>
+      <div class="card chart-card">
+        <h3>P95 por escenario (ms)</h3>
+        <div class="card-sub">Objetivo técnico RNF-007: &lt; 500 ms</div>
+        <div class="chart-wrap h-280"><canvas id="chart-jmeter-p95"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">Matriz de casos</div>
+      <h2>91 casos de prueba — CP-001 a CP-091</h2>
+      <p>Corrida completa del 26 de agosto de 2026: 6.800 muestras, 0 errores. Todos los casos en estado <b>PASA</b>.</p>
+    </div>
+    <div class="toolbar">
+      <input type="text" id="jmeter-search" placeholder="Buscar por ID, nombre o requerimiento…">
+      <select id="jmeter-tipo"><option value="">Todos los tipos</option></select>
+      <select id="jmeter-req"><option value="">Todos los requerimientos</option></select>
+      <span class="chip info" id="jmeter-count" style="align-self:center">91 / 91 casos</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>ID</th><th>Nombre del caso</th><th>Tipo</th><th>Req.</th><th class="num">Muestras</th><th class="num">Promedio (ms)</th><th class="num">P95 (ms)</th><th class="num">Máx (ms)</th><th>Estado</th></tr></thead>
+        <tbody id="jmeter-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">Escenarios de estrés</div>
+      <h2>Punto 07 del plan JMeter</h2>
+      <p>Matriz de escenarios incluidos en <code>docs/jmeter/knstore_stress_plan.jmx</code> (integrada también en <code>knstore_test_plan.jmx</code>). Cargas parametrizables con <code>-JN_S1…N_S7</code>, <code>-JS5_DUR</code>, <code>-JES_PAGE</code>.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>ID</th><th>Módulo / objetivo</th><th>Escenario</th><th>Carga (default → ronda 3)</th><th>Resultado esperado</th></tr></thead>
+        <tbody>
+          <tr><td><b>ES-01a…d</b></td><td>Catálogo (RNF-007/022)</td><td>Lectura pública: listado paginado, búsqueda full-text, categorías y detalle por slug</td><td>50 → 100 hilos</td><td>P95 &lt; 500 ms; 0 errores</td></tr>
+          <tr><td><b>ES-02</b></td><td>Autenticación</td><td>Login (coste bcrypt) bajo concurrencia</td><td>40 → 60 hilos</td><td>0 errores; P95 ≈ 0,4–1,4 s</td></tr>
+          <tr><td><b>ES-03</b></td><td>Checkout</td><td>Escritura atómica de pedidos + pago + envío + factura</td><td>40 → 60 hilos</td><td>0 errores; stock sin negativos</td></tr>
+          <tr><td><b>ES-04</b></td><td>Concurrencia (RNF-024)</td><td>30–60 hilos simultáneos sobre stock 15</td><td>50 → 60 hilos</td><td>15 ventas / resto rechazos; stock final 0, <b>sin sobreventa</b></td></tr>
+          <tr><td><b>ES-04v</b></td><td>Verificación RNF-024</td><td>Comprobación de stock final tras concurrencia</td><td>1 consulta</td><td>stock == 0</td></tr>
+          <tr><td><b>ES-05</b></td><td>Resistencia (soak)</td><td>Lectura sostenida durante S5_DUR</td><td>12 hilos · 60–240 s</td><td>Sin degradación progresiva ni errores</td></tr>
+          <tr><td><b>ES-06</b></td><td>Spike</td><td>Ráfaga brusca (ramp 2 s) sobre catálogo</td><td>100 hilos</td><td>Punto de saturación documentado (P95 ≈ 3,8 s)</td></tr>
+          <tr><td><b>ES-07</b></td><td>Escalado</td><td>Rampa gradual (ramp 120 s) a 150 hilos</td><td>150 hilos</td><td>Estabilidad: listado P95 ≈ 453 ms</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">RNF-024 · No sobreventa</div>
+      <h2>El guardián de inventario</h2>
+      <p>Escenario real: 60 checkouts simultáneos sobre stock de 15 → 15 ventas, 45 rechazos automáticos, stock final 0. Versión de escuela: 5 agentes con stock de 2 → 2 ventas, stock 0.</p>
+    </div>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Flujo del guardián</h3>
+        <div class="guard" style="margin-top:10px">
+          <div class="g-node">COMPRA-01 … COMPRA-60 — 60 clientes intentan comprar a la vez</div>
+          <div class="g-node" style="border-color:rgba(56,189,248,0.5);background:rgba(56,189,248,0.07)"><b>GUARDIÁN DE INVENTARIO</b> (solo hay 15 pares) — cadena: comprobación → reserva → descuento → factura</div>
+          <div class="g-node ok"><b>[SI]</b> 15 compras exitosas — quedan registradas OK → <b>STOCK FINAL = 0</b> · ningún par vendido dos veces</div>
+          <div class="g-node no"><b>[NO]</b> 45 cancelaciones automáticas — mensaje claro al comprador · devolución inmediata del dinero no descontado</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Ejecuciones de referencia (EC2 · 25/08/2026)</h3>
+        <div class="table-wrap" style="margin-top:10px">
+          <table>
+            <thead><tr><th>Ronda</th><th>Carga</th><th class="num">Muestras</th><th class="num">Errores</th><th>Observación</th></tr></thead>
+            <tbody>
+              <tr><td><b>1 · Base</b></td><td>25/25/20/30 hilos · soak 60 s</td><td class="num">1.112</td><td class="num">0</td><td><span class="chip ok">Todo verde</span></td></tr>
+              <tr><td><b>2 · Carga alta</b></td><td>60/40/40/50 hilos · soak 300 s</td><td class="num">7.320</td><td class="num">0</td><td><span class="chip ok">Estable, 21,5 req/s</span></td></tr>
+              <tr><td><b>3 · Límite</b></td><td>100/60/60/60 · spike 100 (2 s) · escalado 150 · soak 240 s</td><td class="num">8.920</td><td class="num">7 (0,08 %)</td><td><span class="chip warn">99,92 % éxito; 7 conexiones cortadas con recuperación inmediata; spike P95 3,8 s</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:13.5px;color:var(--muted);margin-top:14px"><b>Conclusión de durabilidad:</b> el aplicativo se mantiene funcional hasta 150 hilos concurrentes con degradación suave; el punto de saturación se observa en ráfagas súbitas de 100+ hilos (P95 ≈ 3,8 s) y el servicio se recupera sin intervención. El ciclo completo del negocio bajo carga fue validado: registro, catálogo, carrito, pedido, pago, factura, envío y devolución, con montos siempre calculados por el sistema. La seguridad por rol se sostuvo: acceso sin sesión restringido, orígenes externos rechazados, reembolso solo para administradores. Facturas generadas automáticamente con referencia única (prefijo + consecutivo) y PDF electrónico. Cumplimiento de RNF-007 (P95 &lt; 500 ms) y RNF-024 (sin sobreventa).</p>
+    <div class="alert-note"><b>Comandos de referencia:</b><br>
+      <code>jmeter -n -t docs/jmeter/knstore_stress_plan.jmx -l docs/jmeter/stress/resultados_stress.jtl -e -o docs/jmeter/stress/informe-html</code><br>
+      <code>jmeter -n -t docs/jmeter/knstore_stress_plan.jmx -l resultados.jtl -JN_S1=150 -JN_S2=80 -JN_S3=80 -JN_S4=80 -JN_S6=150 -JN_S7=200 -JS5_DUR=600</code>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <span>Pruebas de estrés y rendimiento — KNSTORE · 26 de agosto de 2026</span>
+    <span>Resultado: <b style="color:#10b981">99,92 % · 0 sobreventa</b></span>
+    <span>Equipo QA · <a href="https://github.com/joseph12n/pruebas" target="_blank" rel="noopener">Repositorio</a></span>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/charts.js"></script>
+</body>
+</html>

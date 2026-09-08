@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KN Store Web · QA — Plan de Pruebas Maestro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .bar-row { margin-bottom: 12px; }
+  .bar-row .br-top { display:flex; justify-content:space-between; font-size:13px; margin-bottom:4px; }
+  .bar-row .br-top b { font-family:var(--font-head); }
+  .bar-track { height: 12px; border-radius: 999px; background: var(--grid); overflow:hidden; }
+  .bar-fill { height:100%; border-radius:999px; }
+</style>
+</head>
+<body data-page="maestro">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-logo">KN</span>
+      <span>
+        <span class="brand-name">KN Store · QA</span><br>
+        <span class="brand-sub">ISO 29119 / IEEE 829</span>
+      </span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Dashboard</a>
+      <a href="maestro.html" class="active">Plan Maestro</a>
+      <a href="unitarias.html">Unitarias</a>
+      <a href="e2e.html">E2E · Cypress</a>
+      <a href="jmeter.html">JMeter</a>
+      <a href="lighthouse.html">Lighthouse</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Cambiar tema"></button>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <span class="eyebrow">Plan de Pruebas Maestro · IEEE 829 / ISO 29119</span>
+    <h1>Plan de Pruebas Maestro<br>KN – Store Web</h1>
+    <p class="lead">Documento que establece el enfoque integral de Aseguramiento de Calidad (QA) para el ecosistema web de KN Store: alcance, estrategia, criterios, riesgos, costos, cronograma y la certificación de salida a producción.</p>
+    <div style="margin:18px 0 8px">
+      <span class="badge badge-go"><span class="dot"></span>APROBADO · GO</span>
+      <span class="badge badge-soft" style="margin-left:8px">MTP-2026-Kn-Store-001</span>
+      <span class="badge badge-soft" style="margin-left:8px">Versión 1.0</span>
+    </div>
+    <div class="hero-meta">
+      <span>Fecha: <b>06/06/2026</b></span>
+      <span>Clasificación: <b>Confidencial / Interno</b></span>
+      <span>Autores: <b>J. Varón · S. Flórez · L. González · N. Gil</b></span>
+    </div>
+  </section>
+
+  <!-- 2. Introducción y alcance -->
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">02 · Introducción y alcance</div>
+      <h2>Identificador y resumen</h2>
+      <p>KN Store es una plataforma de comercio electrónico de calzado que reemplaza la gestión manual de pedidos por WhatsApp, centralizando ventas, inventario y atención al cliente en un sistema digital construido con Spring Boot (backend) y Next.js (frontend).</p>
+    </div>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Alcance funcional (In-Scope)</h3>
+        <div class="card-sub">Validación indirecta de APIs REST a través de flujos E2E</div>
+        <ul class="list">
+          <li><b>Plataforma Web:</b> portal de usuarios, panel de administración (Backoffice) con roles Admin/Manager/Client y diseño responsivo.</li>
+          <li><b>Flujos E2E completos:</b> autenticación, catálogo, carrito, checkout, pagos, envíos y facturación.</li>
+          <li><b>APIs REST (Spring Boot):</b> validación indirecta vía E2E en la interfaz.</li>
+          <li><b>Base de datos MongoDB:</b> verificación de persistencia en escenarios clave.</li>
+          <li><b>Módulos funcionales:</b> RF001–RF069 documentados en la especificación.</li>
+          <li><b>Capas técnicas:</b> PWA en React, backend Spring Boot, APIs REST y MongoDB.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Fuera de alcance (Out-of-Scope)</h3>
+        <div class="card-sub">Lo que el plan no cubre en este ciclo</div>
+        <ul class="list">
+          <li>Pruebas de penetración avanzadas (ethical hacking de caja negra externa).</li>
+          <li>Pruebas de carga e infraestructura en servidores de terceros fuera del control del equipo.</li>
+          <li>Aplicación móvil nativa (iOS / Android): el sistema es exclusivamente PWA accesible desde navegador.</li>
+          <li>Pruebas unitarias aisladas de componentes React o servicios Java individuales (nota: el equipo añadió esta batería como blindaje del núcleo de cobros — ver sección 13.2).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Elementos de prueba -->
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">03 · Elementos de prueba</div>
+      <h2>12 módulos · 69 requisitos funcionales</h2>
+      <p>Elementos sujetos a prueba, agrupados en 12 módulos que cubren los 69 requisitos funcionales del sistema.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Módulo</th><th>Nombre</th><th>Descripción</th><th>RFs cubiertos</th></tr></thead>
+        <tbody>
+          <tr><td><b>M01</b></td><td>Autenticación y Sesión</td><td>Registro, login, logout y verificación automática de JWT</td><td>RF001–RF005</td></tr>
+          <tr><td><b>M02</b></td><td>Gestión de Usuarios</td><td>CRUD de usuarios por parte del Administrador</td><td>RF006–RF010</td></tr>
+          <tr><td><b>M03</b></td><td>Catálogo – Categorías</td><td>Listar, crear, editar y eliminar categorías y subcategorías</td><td>RF011–RF019</td></tr>
+          <tr><td><b>M04</b></td><td>Catálogo – Productos</td><td>Productos con variantes, filtros, búsqueda y paginación</td><td>RF020–RF030</td></tr>
+          <tr><td><b>M05</b></td><td>Perfil de Usuario</td><td>Consulta, edición y eliminación lógica del perfil propio</td><td>RF031–RF033</td></tr>
+          <tr><td><b>M06</b></td><td>Panel Administrativo</td><td>Acceso por rol y operaciones CRUD desde la interfaz</td><td>RF034–RF036</td></tr>
+          <tr><td><b>M07</b></td><td>Direcciones de Envío</td><td>CRUD de direcciones y gestión de dirección predeterminada</td><td>RF037–RF041</td></tr>
+          <tr><td><b>M08</b></td><td>Carrito de Compras</td><td>Agregar, modificar, eliminar ítems y vaciar carrito</td><td>RF042–RF046</td></tr>
+          <tr><td><b>M09</b></td><td>Checkout y Pedidos</td><td>Confirmar pedido, historial, cancelación y detalle</td><td>RF047–RF053</td></tr>
+          <tr><td><b>M10</b></td><td>Pagos</td><td>Iniciar pago, procesar resultado, coherencia y reembolso</td><td>RF054–RF059</td></tr>
+          <tr><td><b>M11</b></td><td>Envíos</td><td>Crear envío, tracking, actualización de estados y devolución</td><td>RF060–RF065</td></tr>
+          <tr><td><b>M12</b></td><td>Facturación</td><td>Generación automática, consulta y listado de facturas</td><td>RF066–RF069</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid cols-2" style="margin-top:16px">
+      <div class="card chart-card">
+        <h3>Requisitos funcionales por módulo</h3>
+        <div class="chart-wrap h-320"><canvas id="chart-modulos"></canvas></div>
+      </div>
+      <div class="card chart-card">
+        <h3>Distribución de RF por grupos</h3>
+        <div class="card-sub">Autenticación y usuarios · panel y carrito · negocio (pedidos, pagos, envíos, facturas)</div>
+        <div class="chart-wrap h-320"><canvas id="chart-rf"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Estrategia -->
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">04 · Enfoque y estrategia</div>
+      <h2>Tipos de pruebas ampliados</h2>
+      <p>Estrategia centrada exclusivamente en pruebas E2E que validan los flujos completos desde la interfaz PWA hasta el backend y la base de datos.</p>
+    </div>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>E2E — Flujo positivo (caja negra)</h3>
+        <div class="card-sub">Técnicas de diseño de casos</div>
+        <ul class="list">
+          <li><b>Particiones de equivalencia:</b> división de entradas en rangos válidos e inválidos para cada formulario (registro, login, crear producto, checkout).</li>
+          <li><b>Análisis de valores límite:</b> ejemplo — contraseña entre 8 y 20 caracteres: 7 (falla) · 8 (pasa) · 20 (pasa) · 21 (falla).</li>
+          <li><b>Transición de estados:</b> flujo de pedido CART → PENDING → CONFIRMED → SHIPPED → IN_TRANSIT → DELIVERED.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>E2E — Flujo negativo</h3>
+        <div class="card-sub">Comportamiento ante entradas inválidas</div>
+        <ul class="list">
+          <li>Correos duplicados, contraseñas incorrectas, stock insuficiente, montos de pago inconsistentes.</li>
+          <li>Control de acceso: usuarios con roles incorrectos en rutas protegidas (401/403).</li>
+          <li>Campos obligatorios vacíos y formatos inválidos en todos los formularios de la PWA.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>E2E — Seguridad y roles</h3>
+        <div class="card-sub">Protección de rutas y sesiones</div>
+        <ul class="list">
+          <li>Ningún usuario no autenticado accede a recursos privados.</li>
+          <li>Admin, Manager y Client solo acceden a sus funcionalidades.</li>
+          <li>Expiración y revocación del token JWT al cerrar sesión.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Flujos de negocio críticos</h3>
+        <div class="card-sub">Recorridos multipaso que cruzan varios módulos</div>
+        <ol class="list">
+          <li><b>Cliente completo:</b> Registro → Login → Catálogo → Carrito → Checkout → Pago → Factura → Consulta de envío.</li>
+          <li><b>Administrativo:</b> Login Admin → Crear producto con variantes → Gestionar categorías → Listar pedidos → Actualizar estado → Reembolso.</li>
+          <li><b>Envío:</b> Login Manager → Crear envío → Asignar tracking → Actualizar estados → Cliente consulta tracking.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Criterios -->
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">05 · Criterios de éxito, suspensión y reanudación</div>
+      <h2>Reglas del juego</h2>
+    </div>
+    <div class="grid cols-3">
+      <div class="card">
+        <h3 style="color:#10b981">Aceptación (Pass/Fail)</h3>
+        <ul class="list" style="font-size:13.5px">
+          <li>100 % de casos bloqueantes o críticos ejecutados con estado exitoso.</li>
+          <li>Tasa de éxito general superior al 95 %.</li>
+          <li>Cero defectos abiertos con severidad Alta o Crítica al cierre.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:#f59e0b">Suspensión</h3>
+        <ul class="list" style="font-size:13.5px">
+          <li>Staging caído o inaccesible por más de 4 horas continuas.</li>
+          <li>HTTP 500 en más del 20 % de las peticiones.</li>
+          <li>Defecto bloqueante que impida más del 30 % de los casos planificados.</li>
+          <li>MongoDB corrupta o sin datos de seed.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:#38bdf8">Reanudación</h3>
+        <p style="font-size:13.5px;color:var(--muted)">Se retoman las pruebas cuando desarrollo entrega un <b>Hotfix documentado</b> que resuelva la causa, y se supera una <b>prueba de humo de 15 minutos</b> sobre M01 (Autenticación), M08 (Carrito) y M09 (Checkout).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6-7. Entregables y stack -->
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">06 · Entregables · 07 · Recursos</div>
+      <h2>Entregables y stack tecnológico</h2>
+    </div>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Entregables de QA</h3>
+        <ol class="list">
+          <li>Documento del Plan de Pruebas firmado (este documento).</li>
+          <li>Matriz de Trazabilidad de Requisitos: Historias de Usuario contra Casos de Prueba.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>Matriz de recursos</h3>
+        <div class="table-wrap" style="margin-top:10px">
+          <table style="min-width:0">
+            <thead><tr><th>Categoría</th><th>Herramienta</th><th>Responsable</th></tr></thead>
+            <tbody>
+              <tr><td>Automatización E2E</td><td>Chrome y Edge</td><td>Todo el equipo</td></tr>
+              <tr><td>Pruebas de APIs</td><td>Postman</td><td>Todo el equipo</td></tr>
+              <tr><td>Pruebas unitarias</td><td>JUnit + Mockito</td><td>Todo el equipo</td></tr>
+              <tr><td>Pruebas de integración</td><td>Selenium</td><td>Todo el equipo</td></tr>
+              <tr><td>Pruebas de rendimiento</td><td>JMeter</td><td>Todo el equipo</td></tr>
+              <tr><td>Pruebas 2N2</td><td>Cypress</td><td>Todo el equipo</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8-10. Riesgos -->
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">08 · 10 · Gestión de riesgos</div>
+      <h2>Riesgos y contingencias</h2>
+    </div>
+    <div class="grid cols-2">
+      <div class="card risk">
+        <h3>Riesgo 1 · Indisponibilidad del ambiente</h3>
+        <p class="r-desc">El ambiente de staging puede presentar caídas temporales o problemas de conectividad que impidan la ejecución normal.</p>
+        <div class="r-conting"><b>Contingencia:</b> coordinar con desarrollo la restauración del servicio y reprogramar las pruebas afectadas una vez estable.</div>
+      </div>
+      <div class="card risk">
+        <h3>Riesgo 2 · Datos de prueba insuficientes</h3>
+        <p class="r-desc">Usuarios, productos, pedidos o información necesaria pueden no estar disponibles o contener datos inconsistentes.</p>
+        <div class="r-conting"><b>Contingencia:</b> mantener un conjunto de datos previamente validado y actualizar la BD de pruebas antes de cada ciclo.</div>
+      </div>
+      <div class="card risk">
+        <h3>Riesgo 3 · Errores en integraciones externas</h3>
+        <p class="r-desc">Los servicios de pagos, envíos o autenticación pueden presentar comportamientos inesperados durante las pruebas.</p>
+        <div class="r-conting"><b>Contingencia:</b> usar entornos de prueba o datos simulados y registrar incidencias para seguimiento.</div>
+      </div>
+      <div class="card risk">
+        <h3>Riesgo 4 · Incompatibilidad entre navegadores</h3>
+        <p class="r-desc">Algunas funcionalidades de la PWA pueden comportarse diferente en Google Chrome y Microsoft Edge.</p>
+        <div class="r-conting"><b>Contingencia:</b> ejecutar pruebas de compatibilidad en ambos navegadores y reportar diferencias.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Costos -->
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">11 · Costos del proyecto</div>
+      <h2>Inversión estimada (COP)</h2>
+    </div>
+    <div class="grid cols-3">
+      <div class="card"><h3>CAPEX</h3><div class="card-sub">Desarrollo inicial</div><div style="font-family:var(--font-head);font-size:28px;font-weight:700;color:#10b981">$19.680.000</div></div>
+      <div class="card"><h3>OPEX anual</h3><div class="card-sub">Operación</div><div style="font-family:var(--font-head);font-size:28px;font-weight:700;color:#f59e0b">$5.490.000</div></div>
+      <div class="card"><h3>Inversión total año 1</h3><div class="card-sub">+ 328 horas de desarrollo</div><div style="font-family:var(--font-head);font-size:28px;font-weight:700;color:#38bdf8">$25.170.000</div></div>
+    </div>
+    <p style="font-size:13.5px;color:var(--muted);margin-top:12px">Acumulado a 3 años: <b>$36.150.000</b> · Acumulado a 5 años: <b>$47.130.000</b>. El OPEX cubre hosting, dominio, mantenimiento correctivo y evolutivo, copias de seguridad, monitoreo y servicios externos.</p>
+  </section>
+
+  <!-- 12. Cronograma -->
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">12 · Cronograma e hitos</div>
+      <h2>10 días de planificación</h2>
+    </div>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Actividades</h3>
+        <div class="timeline" style="margin-top:14px">
+          <div class="tl-item"><div class="tl-day">Día 1</div><p>Análisis de los requisitos funcionales (RF001–RF069) y revisión de la documentación.</p></div>
+          <div class="tl-item"><div class="tl-day">Día 2</div><p>Definición de la estrategia de pruebas y clasificación de los módulos funcionales.</p></div>
+          <div class="tl-item"><div class="tl-day">Día 3 – 4</div><p>Diseño de los casos de prueba para flujos críticos (autenticación, catálogo, carrito, pedidos y pagos).</p></div>
+          <div class="tl-item"><div class="tl-day">Día 5</div><p>Elaboración de la matriz de trazabilidad entre requisitos y casos de prueba.</p></div>
+          <div class="tl-item"><div class="tl-day">Día 6 – 7</div><p>Revisión y validación interna del Plan Maestro; ajustes según observaciones.</p></div>
+          <div class="tl-item"><div class="tl-day">Día 8 – 9</div><p>Consolidación de entregables y revisión final de consistencia, alcance y cobertura.</p></div>
+          <div class="tl-item"><div class="tl-day">Día 10</div><p>Entrega formal de la documentación y cierre de la fase de planificación.</p></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Hitos principales</h3>
+        <div class="mstones" style="margin-top:14px">
+          <span class="mstone"><span class="m-id">H1</span>Finalización del análisis de requisitos</span>
+          <span class="mstone"><span class="m-id">H2</span>Diseño completo de casos de prueba</span>
+          <span class="mstone"><span class="m-id">H3</span>Matriz de trazabilidad finalizada</span>
+          <span class="mstone"><span class="m-id">H4</span>Plan Maestro aprobado</span>
+          <span class="mstone"><span class="m-id">H5</span>Entrega de documentos finales de QA</span>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-top:16px">La fase de planificación se cerró formalmente; la ejecución de las cuatro baterías se realizó entre el <b>15 y el 29 de agosto de 2026</b> sobre el ambiente de pruebas.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 13. Resultados consolidados -->
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">13 · Resultados consolidados y certificación</div>
+      <h2>Cierre formal de la fase de QA</h2>
+      <p>Evidencias de las cuatro baterías ejecutadas entre el 15 y el 29 de agosto de 2026 sobre <b>app.knstore.duckdns.org</b>. Lenguaje pensado para audiencia ejecutiva: directores, clientes e inversionistas.</p>
+    </div>
+
+    <div class="card" style="text-align:center;padding:34px">
+      <div class="eyebrow" style="justify-content:center">Certificado de salida a producción</div>
+      <h2 style="font-size:32px;margin:6px 0 4px">APROBADO <span style="color:var(--muted-2)">|</span> VEREDICTO: <span style="color:#10b981">GO</span></h2>
+      <p style="color:var(--muted);max-width:760px;margin:0 auto">La plataforma fue sometida a cuatro tormentas de evaluación independientes y simultáneas: las matemáticas internas del negocio, los recorridos de compra ejecutados por robots, las avalanchas de cientos de compradores y la calificación de calidad del propio Google. Las cuatro concluyeron por encima de los umbrales del plan (sección 5.1).</p>
+    </div>
+
+    <div class="section-head" style="margin-top:34px">
+      <div class="eyebrow">Tablero de control gerencial</div>
+      <h3 style="font-size:20px">Evidencias consolidadas</h3>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Dimensión evaluada</th><th>Herramienta</th><th>¿Qué se verificó?</th><th>Calificación</th><th>Estado para el negocio</th></tr></thead>
+        <tbody>
+          <tr><td><b>Matemática y Privacidad</b></td><td>JUnit 5 + Mockito</td><td>Cobros exactos y cuentas privadas</td><td>100 % de éxito (361 verificaciones)</td><td><span class="chip ok">Impecable</span></td></tr>
+          <tr><td><b>Recorrido de Compra Real</b></td><td>Cypress E2E</td><td>Navegación de clientes y administradores</td><td>97,7 % limpio (756 pasos)</td><td><span class="chip ok">Fluido y funcional</span></td></tr>
+          <tr><td><b>Ventas Masivas Simultáneas</b></td><td>Apache JMeter</td><td>Estabilidad ante alto tráfico y stock real</td><td>99,92 % de éxito (hasta 547 compradores)</td><td><span class="chip ok">Resistente — sin sobreventa</span></td></tr>
+          <tr><td><b>Visibilidad en Google y Diseño</b></td><td>Lighthouse</td><td>Posicionamiento SEO y facilidad de lectura</td><td>SEO 100/100 · Buenas Prácticas 96/100</td><td><span class="chip warn">Listo / ajuste móvil menor</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-head" style="margin-top:34px">
+      <div class="eyebrow">13.1 · Trazabilidad del capítulo</div>
+      <h3 style="font-size:20px">Cumplimiento de las secciones del plan</h3>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Sección del Plan (documento base)</th><th>Sección de este capítulo</th><th>Estado</th></tr></thead>
+        <tbody>
+          <tr><td>5.1 Criterios de aceptación (éxito &gt; 95 %, cero defectos críticos)</td><td>13.1 y 13.6</td><td><span class="chip ok">Cumplido en las 4 dimensiones</span></td></tr>
+          <tr><td>5.3 Smoke test: M01 Autenticación · M08 Carrito · M09 Checkout</td><td>13.2, 13.3 y 13.4</td><td><span class="chip ok">Verificados y en verde</span></td></tr>
+          <tr><td>M01–M12 (69 requisitos RF001–RF069) — alcance funcional</td><td>13.3 y 13.4</td><td><span class="chip ok">Cubiertos en E2E y por API</span></td></tr>
+          <tr><td>RNF-007 (P95 &lt; 500 ms) y RNF-024 (sin sobreventa)</td><td>13.4</td><td><span class="chip ok">Cumplidos y documentados</span></td></tr>
+          <tr><td>Alcance responsivo (PC y celular) — sección 2.2</td><td>13.5</td><td><span class="chip ok">89 pantallas evaluadas</span></td></tr>
+          <tr><td>Nota del Plan 2.3 «pruebas unitarias aisladas: fuera de alcance»</td><td>13.2</td><td><span class="chip info">Añadida como blindaje: 361 verificaciones en verde</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-head" style="margin-top:34px">
+      <div class="eyebrow">13.2 · Blindaje de negocio</div>
+      <h3 style="font-size:20px">Módulos protegidos (JUnit 5 + Mockito)</h3>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Área del sistema</th><th>Protección validada</th><th>Beneficio para el cliente / negocio</th></tr></thead>
+        <tbody>
+          <tr><td>Carrito y Precios</td><td>Precios inalterables desde el navegador; montos recalculados en el servidor con precisión decimal</td><td>El cliente paga exactamente el precio configurado; el negocio no pierde dinero</td></tr>
+          <tr><td>Cuentas y Direcciones</td><td>Privacidad estricta por usuario (propiedad verificada) en vistas simples y listados</td><td>Ningún comprador ve la información de otro (protección de datos)</td></tr>
+          <tr><td>Registro de Usuarios</td><td>Bloqueo de correos o usuario duplicados, incluso con registros simultáneos</td><td>Evita fraudes, cuentas falsas y suplantación de identidad</td></tr>
+          <tr><td>Dirección Predeterminada</td><td>Cambio atómico: desmarca la anterior, activa la nueva, ignora inactivas</td><td>La dirección de entrega siempre es la intencional, sin mezclas</td></tr>
+          <tr><td>Vaciar Carrito</td><td>Limpieza completa: elimina artículos y deja el subtotal en cero</td><td>No quedan montos residuales que provoquen cobros equivocados</td></tr>
+          <tr><td>Catálogo (categorías, marcas, IVA)</td><td>Altas, bajas, ediciones y actualizaciones parciales sin sobrescribir campos válidos</td><td>La tienda se gestiona sin corrupción de datos</td></tr>
+          <tr><td>Usuarios y Acceso</td><td>Contraseñas cifradas, sesiones con expiración, recuperación en ventana de 1 día</td><td>Cuentas seguras: ni el administrador puede leer una contraseña</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:10px">361 verificaciones matemáticas sobre las reglas internas (150 nuevas en este ciclo), todas en verde: cada cobro da exactamente el precio correcto y la información de cada comprador permanece en un buzón propio.</p>
+
+    <div class="section-head" style="margin-top:34px">
+      <div class="eyebrow">13.3 · Experiencia y flujos reales</div>
+      <h3 style="font-size:20px">Resultados del recorrido (Cypress E2E)</h3>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Rol / Flujo</th><th>Pasos simulados</th><th>Puntos críticos evaluados</th><th>Resultado observado</th></tr></thead>
+        <tbody>
+          <tr><td>Cliente nuevo (registro + primer ingreso)</td><td class="num">25</td><td>Creación de cuenta, activación, redirección e inicio de sesión</td><td><span class="chip ok">Perfecto e inmediato (5/5)</span></td></tr>
+          <tr><td>Cliente recurrente (panel del cliente)</td><td class="num">201</td><td>Edición de perfil (2 rondas), búsqueda, direcciones, cambio de contraseña</td><td><span class="chip ok">Fluido (8/8; 1 observación menor de login)</span></td></tr>
+          <tr><td>Administración — catálogo completo</td><td class="num">376</td><td>Creación consecutiva de 18 registros: documentos, cuentas, categorías, subcategorías, marcas, IVA, productos, precios, inventarios, imágenes, etiquetas, direcciones, pedidos, ítems, pagos, envíos y facturas</td><td><span class="chip ok">100 % operativo, sin bloqueos (18/18)</span></td></tr>
+          <tr><td>Administración — operación y cuenta</td><td class="num">154</td><td>Usuarios con 3 permisos, métricas, salud, configuración, registros, pedidos, envíos, reembolso, API y cuenta personal</td><td><span class="chip ok">100 % operativo (12/12)</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:10px">42/43 puntos correctos. El único punto «con observación» fueron 5 clics repetidos del robot en el botón de ingreso, sin que la sesión fallara. Mejoras menores no bloqueantes: datos de prueba únicos por corrida, persistencia de sesión del cliente, tolerancia de fechas futuras (factura 2030) y política de confirmación de reembolsos.</p>
+
+    <div class="section-head" style="margin-top:34px">
+      <div class="eyebrow">13.4 · Resistencia y ventas masivas</div>
+      <h3 style="font-size:20px">Capacidad de tráfico (Apache JMeter)</h3>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Nivel de tráfico</th><th>Usuarios simultáneos</th><th>Velocidad promedio</th><th>¿Caídas o errores?</th></tr></thead>
+        <tbody>
+          <tr><td><b>Operación normal</b> (ronda 1)</td><td>25 – 30 clientes</td><td>&lt; 0,5 s; catálogo y búsqueda 0,1 – 0,2 s; checkout 0,22 s</td><td><span class="chip ok">0 % errores (1.112 muestras)</span></td></tr>
+          <tr><td><b>Tráfico alto / promoción</b> (ronda 2)</td><td>60 – 80 clientes</td><td>&lt; 0,6 s; P95 bajo el objetivo técnico (0,5 s)</td><td><span class="chip ok">0 % errores (1.480 muestras)</span></td></tr>
+          <tr><td><b>Estrés máximo / ráfaga</b> (ronda 3)</td><td>Hasta 547 compradores (ráfaga de 100 en 2 s y escalada a 150)</td><td>&lt; 0,5 s en el grueso; punto extremo (100 de golpe) llegó a 3,8 s y se autorrecuperó</td><td><span class="chip warn">99,92 % de éxito (7 conexiones cortadas en la maratón; recuperación inmediata)</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:10px"><b>Prueba de no-sobreventa:</b> 60 checkouts simultáneos sobre stock de 15 → 15 ventas, 45 rechazos automáticos, stock final 0. 91/91 casos de la matriz en verde, cumplimiento de RNF-007 (P95 &lt; 500 ms) y RNF-024 (sin sobreventa).</p>
+
+    <div class="section-head" style="margin-top:34px">
+      <div class="eyebrow">13.5 · Calidad visual, SEO y accesibilidad</div>
+      <h3 style="font-size:20px">Termómetro de calidad de Google</h3>
+    </div>
+    <div class="grid cols-2">
+      <div class="card">
+        <div class="bar-row">
+          <div class="br-top"><span>Visibilidad en Google (SEO)</span><b>100 / 100 · Verde</b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:#10b981"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="br-top"><span>Seguridad y estándares</span><b>96 / 100 · Verde</b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:96%;background:#10b981"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="br-top"><span>Facilidad de uso (comp. y cel.)</span><b>88 / 100 · Verde</b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:88%;background:#10b981"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="br-top"><span>Velocidad — computador</span><b>86 / 100 · Verde</b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:86%;background:#10b981"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="br-top"><span>Velocidad — celular</span><b>77 / 100 · Mejorar</b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:77%;background:#f59e0b"></div></div>
+        </div>
+        <p style="font-size:12.5px;color:var(--muted);margin-top:12px">VERDE 90–100 = Excelente · AMARILLO 75–89 = Bueno (mejorar) · ROJO &lt; 75 = Atender (no hay rojos en la tienda).</p>
+      </div>
+      <div class="card">
+        <h3>Promedios reales por panel</h3>
+        <div class="card-sub">Del informe Lighthouse</div>
+        <ul class="list">
+          <li>Cliente · Desktop: <b>86,0</b></li>
+          <li>Admin · Mobile: <b>78,8</b></li>
+          <li>Cliente · Mobile: <b>76,8</b></li>
+          <li>Admin · Desktop: <b>73,8</b></li>
+        </ul>
+        <p style="font-size:13px;color:var(--muted);margin-top:10px">89 pantallas: 29 módulos del panel Admin en computador + 29 en celular + 16 del panel Cliente en Desktop + 15 en Mobile. Los paneles administrativos son densos por naturaleza; la recomendación 1 (comprimir fotos) los llevaría a la franja VERDE.</p>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:34px">
+      <div class="eyebrow">13.6 · Conclusión</div>
+      <h3 style="font-size:20px">Comentario final del Comité de Calidad</h3>
+    </div>
+    <div class="card">
+      <p style="font-size:14.5px">Con el veredicto <b style="color:#10b981">APROBADO / GO</b>, la plataforma queda certificada para salir a producción en el marco del Plan de Pruebas Maestro MTP-2026-Kn-Store-001. El motor de cobros es matemáticamente infalible (361 verificaciones, 0 fallos); la privacidad entre compradores es impenetrable; el recorrido de compra completo funciona sin intervención humana (756 pasos); la tienda resiste avalanchas de hasta 547 compradores sin vender calzado agotado; y Google la considera 100 % visible y 96/100 en seguridad. Se recomienda re-ejecutar la batería automáticamente en cada nueva entrega y el día previo a campañas de tráfico alto.</p>
+    </div>
+    <div class="sig-grid" style="margin-top:16px">
+      <div class="sig"><div class="s-role">Líder QA / Revisión</div><div class="s-name">Joseph Nicolás Varón Vargas</div><div class="s-line"></div><div class="s-date">Agosto 2026</div></div>
+      <div class="sig"><div class="s-role">Diseño y Ejecución de Pruebas</div><div class="s-name">Santiago Flórez Moreno</div><div class="s-line"></div><div class="s-date">Agosto 2026</div></div>
+      <div class="sig"><div class="s-role">Validación y Documentación QA</div><div class="s-name">Laura González Ortiz</div><div class="s-line"></div><div class="s-date">Agosto 2026</div></div>
+      <div class="sig"><div class="s-role">Validación y Consolidación</div><div class="s-name">Nicolás Gil Rodríguez</div><div class="s-line"></div><div class="s-date">Agosto 2026</div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <span>KN Store Web · Plan de Pruebas Maestro — MTP-2026-Kn-Store-001</span>
+    <span>Veredicto: <b style="color:#10b981">APROBADO · GO</b></span>
+    <span>Equipo QA · <a href="https://github.com/joseph12n/pruebas" target="_blank" rel="noopener">Repositorio</a></span>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/charts.js"></script>
+</body>
+</html>
