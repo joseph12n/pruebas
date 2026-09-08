@@ -21,14 +21,13 @@ Repo: `git@github.com:joseph12n/pruebas.git` (origin `https://github.com/joseph1
 - `tools/build_data.py` adaptado a salida modular
 - `README.md` actualizado, `.gitignore` creado
 
+## Estado (sesión 2026-09-07 — COMPLETADO)
+
+1. ✅ Verificación Playwright (script `/tmp/opencode/verify.js`): 6 rutas × 2 viewports (1366×768, 390×844) — status 200, sin errores de consola/página, sin requests fallidos, sin overflow horizontal, todos los charts renderizados. Capturas en `/tmp/opencode/shots/` inspeccionadas por OCR.
+2. ✅ Commit `6f89bc2` + push a `main`
+3. ✅ GitHub Pages en vivo: `https://joseph12n.github.io/pruebas/` — index + 5 páginas + assets modulares responden 200
+4. ✅ `tools/build_data.py` regenera `assets/js/data/*.js` correctamente
+
 ## Pendiente (todo list)
 
-1. Verificar con Playwright: rutas nuevas, consola sin errores, responsive
-   - Usar OCR para inspeccionar capturas, no adjuntar imágenes al chat
-2. Commit (todo lo anterior) y push
-3. Activar/verificar sitio en GitHub Pages en vivo
-
 ## Notas
-
-- Servidor local: `python3 -m http.server` en la raíz del repo
-- Verificar `tools/build_data.py` regenera `assets/js/data/*.js` correctamente
