@@ -4,11 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KN Store Web · QA — Plan de Pruebas Maestro</title>
+<meta name="description" content="Plan de Pruebas Maestro ISO 29119 / IEEE 829 — alcance, 12 módulos (RF001–RF069), estrategia, riesgos, costos, cronograma y certificación del ciclo de QA KN Store Web.">
+<meta name="theme-color" content="#0a0f1e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KN Store Web · QA — Plan de Pruebas Maestro">
+<meta property="og:description" content="Plan de Pruebas Maestro ISO 29119 / IEEE 829 — alcance, 12 módulos (RF001–RF069), estrategia, riesgos, costos, cronograma y certificación.">
+<meta property="og:url" content="https://joseph12n.github.io/pruebas/pages/maestro.html">
+<script>(function(){var t=null;try{t=localStorage.getItem("kn-theme")}catch(e){};if(!t){try{t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}catch(e){t="dark"}}document.documentElement.setAttribute("data-theme",t);})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/layout.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/print.css">
 <style>
   .bar-row { margin-bottom: 12px; }
   .bar-row .br-top { display:flex; justify-content:space-between; font-size:13px; margin-bottom:4px; }
@@ -21,7 +32,7 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <a class="brand" href="index.html">
+    <a class="brand" href="../index.html">
       <span class="brand-logo">KN</span>
       <span>
         <span class="brand-name">KN Store · QA</span><br>
@@ -29,7 +40,7 @@
       </span>
     </a>
     <nav class="nav">
-      <a href="index.html">Dashboard</a>
+      <a href="../index.html">Dashboard</a>
       <a href="maestro.html" class="active">Plan Maestro</a>
       <a href="unitarias.html">Unitarias</a>
       <a href="e2e.html">E2E · Cypress</a>
@@ -487,9 +498,10 @@
   </div>
 </footer>
 
-<script src="assets/js/data.js"></script>
+<script src="../assets/js/data/core.js"></script>
+<script src="../assets/js/data/maestro.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/charts.js"></script>
+<script src="../assets/js/core/theme.js"></script>
+<script src="../assets/js/charts.js"></script>
 </body>
 </html>

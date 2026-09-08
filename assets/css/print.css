@@ -1,0 +1,39 @@
+/* ============================================================
+   KN Store — Aseguramiento de Calidad · Impresión
+   ============================================================ */
+
+@media print {
+  :root {
+    --bg: #ffffff;
+    --card: #ffffff;
+    --card-2: #f6f8fd;
+    --border: rgba(15, 23, 42, 0.15);
+    --border-strong: rgba(15, 23, 42, 0.35);
+    --text: #101a2e;
+    --muted: #4b5563;
+    --muted-2: #6b7280;
+    --shadow: none;
+  }
+
+  body { background: #fff; }
+
+  .site-header { position: static; backdrop-filter: none; }
+  .nav, .theme-toggle { display: none !important; }
+
+  main { padding: 0; }
+  .hero { box-shadow: none; }
+
+  .card, .kpi, .shield, .sig, .mstone, .risk .r-conting {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .section, .card, .kpi { break-inside: avoid; }
+
+  a { color: var(--text); }
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 10px;
+    color: var(--muted);
+  }
+}

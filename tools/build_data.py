@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Extrae los datos de los reportes .md y del PDF de Lighthouse y genera assets/js/data.js"""
+"""Extrae los datos de los reportes .md y del PDF de Lighthouse y genera los módulos de assets/js/data/"""
 import json
 import re
 import subprocess
@@ -17,7 +17,7 @@ def read(path):
 # ---------------------------------------------------------------------------
 import pymupdf
 
-pdf = os.path.join(BASE, "Informe_Pruebas_Kn-store_Lighthouse.pdf")
+pdf = os.path.join(BASE, "docs", "Informe_Pruebas_Kn-store_Lighthouse.pdf")
 doc = pymupdf.open(pdf)
 modules = []
 prev = None
@@ -84,7 +84,7 @@ for m in modules:
 # ---------------------------------------------------------------------------
 # 2. JMETER: matriz de casos + resultados
 # ---------------------------------------------------------------------------
-jm = read(os.path.join(BASE, "plan_jmeter.md"))
+jm = read(os.path.join(BASE, "docs", "plan_jmeter.md"))
 cases = {}
 res_lines = []
 
@@ -282,9 +282,25 @@ data = {
     "lighthouse": modules,
 }
 
-out = "window.KN_DATA = " + json.dumps(data, ensure_ascii=False, indent=2) + ";\n"
-with open(os.path.join(BASE, "assets", "js", "data.js"), "w", encoding="utf-8") as f:
-    f.write(out)
+DATA_MODULES = {
+    "core": ["meta", "kpi", "costs"],
+    "maestro": ["modules12", "timeline", "milestones", "stack", "risks"],
+    "e2e": ["e2e_cases"],
+    "jmeter": ["stress_scenarios", "stress_rounds", "jmeter_cases"],
+    "lighthouse": ["lighthouse"],
+}
+
+out_dir = os.path.join(BASE, "assets", "js", "data")
+os.makedirs(out_dir, exist_ok=True)
+for mod, keys in DATA_MODULES.items():
+    lines = [
+        "/* Datos: %s — generado por tools/build_data.py (no editar a mano) */" % mod,
+        "window.KN_DATA = window.KN_DATA || {};",
+    ]
+    for k in keys:
+        lines.append("window.KN_DATA[%s] = %s;" % (json.dumps(k), json.dumps(data[k], ensure_ascii=False, indent=2)))
+    with open(os.path.join(out_dir, mod + ".js"), "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
 
 print("lighthouse modules:", len(modules))
 print("jmeter cases:", len(jmeter_cases))

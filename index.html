@@ -5,11 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KN Store Web · QA — Dashboard Ejecutivo</title>
 <meta name="description" content="Aseguramiento de Calidad del proyecto KN Store Web — certificado de salida a producción APROBADO / GO.">
+<meta name="theme-color" content="#0a0f1e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KN Store Web · QA — Dashboard Ejecutivo">
+<meta property="og:description" content="Aseguramiento de Calidad del proyecto KN Store Web — certificado de salida a producción APROBADO / GO.">
+<meta property="og:url" content="https://joseph12n.github.io/pruebas/">
+<script>(function(){var t=null;try{t=localStorage.getItem("kn-theme")}catch(e){};if(!t){try{t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}catch(e){t="dark"}}document.documentElement.setAttribute("data-theme",t);})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/print.css">
 </head>
 <body data-page="index">
 
@@ -24,11 +34,11 @@
     </a>
     <nav class="nav">
       <a href="index.html" class="active">Dashboard</a>
-      <a href="maestro.html">Plan Maestro</a>
-      <a href="unitarias.html">Unitarias</a>
-      <a href="e2e.html">E2E · Cypress</a>
-      <a href="jmeter.html">JMeter</a>
-      <a href="lighthouse.html">Lighthouse</a>
+      <a href="pages/maestro.html">Plan Maestro</a>
+      <a href="pages/unitarias.html">Unitarias</a>
+      <a href="pages/e2e.html">E2E · Cypress</a>
+      <a href="pages/jmeter.html">JMeter</a>
+      <a href="pages/lighthouse.html">Lighthouse</a>
     </nav>
     <button class="theme-toggle" aria-label="Cambiar tema"></button>
   </div>
@@ -227,31 +237,31 @@
       <h2>Explorar los informes completos</h2>
     </div>
     <div class="grid cols-3">
-      <a class="card" href="maestro.html" style="text-decoration:none;color:inherit">
+      <a class="card link-card" href="pages/maestro.html">
         <h3>Plan Maestro</h3>
         <div class="card-sub">ISO 29119 / IEEE 829 · MTP-2026-Kn-Store-001</div>
         <p style="font-size:13px;color:var(--muted)">Alcance, 12 módulos (RF001–RF069), estrategia, riesgos, costos, cronograma y certificación con firmas.</p>
         <span class="chip info">12 módulos · 69 RF</span>
       </a>
-      <a class="card" href="unitarias.html" style="text-decoration:none;color:inherit">
+      <a class="card link-card" href="pages/unitarias.html">
         <h3>Pruebas Unitarias</h3>
         <div class="card-sub">JUnit 5 + Mockito · capa de servicios</div>
         <p style="font-size:13px;color:var(--muted)">93 suites, 361 pruebas, 150 nuevas; 100 % de la capa de servicios cubierta.</p>
         <span class="chip ok">361 verificaciones</span>
       </a>
-      <a class="card" href="e2e.html" style="text-decoration:none;color:inherit">
+      <a class="card link-card" href="pages/e2e.html">
         <h3>E2E · Cypress</h3>
         <div class="card-sub">Recorridos de clientes y administradores</div>
         <p style="font-size:13px;color:var(--muted)">4 casos, 756 pasos grabados, 43 puntos de control.</p>
         <span class="chip ok">42/43 correctos</span>
       </a>
-      <a class="card" href="jmeter.html" style="text-decoration:none;color:inherit">
+      <a class="card link-card" href="pages/jmeter.html">
         <h3>Rendimiento · JMeter</h3>
         <div class="card-sub">Matriz 91 casos + estrés</div>
         <p style="font-size:13px;color:var(--muted)">3 rondas de carga creciente, hasta 547 compradores; no-sobreventa demostrada.</p>
         <span class="chip ok">99,92 % de éxito</span>
       </a>
-      <a class="card" href="lighthouse.html" style="text-decoration:none;color:inherit">
+      <a class="card link-card" href="pages/lighthouse.html">
         <h3>Usabilidad · Lighthouse</h3>
         <div class="card-sub">89 pantallas · 4 vistas</div>
         <p style="font-size:13px;color:var(--muted)">SEO 100/100, buenas prácticas 96/100 y mapas de calor por módulo.</p>
@@ -280,9 +290,9 @@
   </div>
 </footer>
 
-<script src="assets/js/data.js"></script>
+<script src="assets/js/data/core.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/core/theme.js"></script>
 <script src="assets/js/charts.js"></script>
 </body>
 </html>
