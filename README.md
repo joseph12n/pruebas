@@ -4,12 +4,22 @@ Sistema de reportes web del ciclo de pruebas del proyecto **KN Store Web** (ISO 
 
 Diseño **KN·QA Observatory**: un centro de control de calidad con rail de instrumentos, paleta ácida, pantalla de arranque, command palette, gauges animados y revelados por scroll (GSAP + Lenis). Temas claro/oscuro y diseño responsivo.
 
+El sitio es **Jekyll** (lo compila GitHub Pages): el shell vive una sola vez en `_layouts/default.html` + `_includes/` y cada página contiene solo su contenido con front matter. Vista local: `docker run --rm -v "$PWD":/srv/jekyll jekyll/jekyll:4 jekyll build` y servir `_site/`.
+
 ## Estructura
 
 ```
 pruebas/
-├── index.html                  # Dashboard ejecutivo (raíz del sitio)
-├── pages/                      # Informes por batería de pruebas
+├── _config.yml                 # Config Jekyll (url, baseurl, exclude)
+├── _layouts/default.html       # Shell único: fondo, boot, rail, drawer, topbar,
+│                               # main, footer (desde front matter), command palette, scripts
+├── _includes/                  # Fragmentos compartidos (se editan UNA vez)
+│   ├── head.html               # <head>: meta/og (desde front matter), fonts, CSS
+│   ├── nav-rail.html           # Nav del rail con iconos (estado activo por nav_key)
+│   ├── nav-drawer.html         # Nav del drawer móvil (01–07)
+│   └── scripts.html            # datos (page.data_files) + vendor + core
+├── index.html                  # Dashboard ejecutivo (solo contenido + front matter)
+├── pages/                      # Informes por batería (solo contenido + front matter)
 │   ├── maestro.html            # Plan Maestro + certificación (firmas)
 │   ├── unitarias.html          # JUnit 5 + Mockito
 │   ├── cobertura.html          # Cobertura de código — JaCoCo + Vitest
@@ -68,38 +78,21 @@ pruebas/
 
 ## Cómo agregar un informe nuevo
 
-1. Crea `pages/<informe>.html` copiando el shell de una página existente (bloque `.bg`, `.boot`, `.rail`, `.drawer`, `.topbar`, `footer`, command palette y scripts). Ajusta `data-page`, `data-root=".."` y las rutas `../`.
-2. Marca cada sección con `id` y `data-nav="Etiqueta"` para que aparezca en el rail y en el command palette:
-   ```html
-   <section class="section" id="mi-seccion" data-nav="Mi sección">
-   ```
+1. Crea `pages/<informe>.html` con su front matter (mirar cualquier página como plantilla): `layout: default`, `title`, `description`, `page_id`, `nav_key`, `root`, `crumb`, `live`, `foot_chip` (+ `foot_chip_class` si no es `ok`), `data_files` (módulos de datos que usa) y `footer_spans`. Debajo va solo el contenido: `<section class="section" id="…" data-nav="…">` por sección.
+2. Registra el informe en la navegación (una sola vez): añade el ítem con su icono en `_includes/nav-rail.html` y su fila numerada en `_includes/nav-drawer.html` (reutiliza el patrón `{% if page.nav_key == '…' %} active{% endif %}`).
 3. Usa las clases del design system: `.section-head` + `.sec-num`, `.card`, `.kpi`, `.table-wrap`, `.meter-row`, `.gauge-card`, `.terminal`…
-4. Si el informe necesita datos propios, agrega la clave en `tools/build_data.py` → `DATA_MODULES` y ejecuta `python3 tools/build_data.py` para regenerar `assets/js/data/<modulo>.js`.
-5. Carga en la página solo los módulos de datos que usa, en el orden:
-
-```html
-<script src="../assets/js/data/core.js"></script>
-<script src="../assets/js/data/<modulo>.js"></script>
-<script src="../assets/vendor/chart.umd.min.js"></script>
-<script src="../assets/vendor/gsap.min.js"></script>
-<script src="../assets/vendor/ScrollTrigger.min.js"></script>
-<script src="../assets/vendor/lenis.min.js"></script>
-<script src="../assets/js/core/theme.js"></script>
-<script src="../assets/js/core/utils.js"></script>
-<script src="../assets/js/core/shell.js"></script>
-<script src="../assets/js/core/views.js"></script>
-<script src="../assets/js/charts.js"></script>
-<script src="../assets/js/core/motion.js"></script>
-```
+4. Si el informe necesita datos propios, agrega la clave en `tools/build_data.py` → `DATA_MODULES`, ejecuta `python3 tools/build_data.py` y lista el módulo en `data_files` del front matter.
+5. Verifica en local: `docker run --rm -v "$PWD":/srv/jekyll jekyll/jekyll:4 jekyll build` y revisa `_site/` (o sirve la raíz con un symlink `pruebas → _site` para respetar el `baseurl`).
 
 ## Verificación local
 
 ```bash
-python3 -m http.server 8765            # desde la raíz del proyecto
-# luego abre http://127.0.0.1:8765/ (index.html y pages/*.html)
+docker run --rm -v "$PWD":/srv/jekyll jekyll/jekyll:4 jekyll build   # genera _site/
+mkdir -p /tmp/serve && ln -sfn "$PWD/_site" /tmp/serve/pruebas
+python3 -m http.server 8765 --directory /tmp/serve                   # abre /pruebas/
 ```
 
-Se valida con Playwright: estado 200, consola sin errores, sin overflow horizontal, charts renderizados, command palette/drawer/tema operativos (desktop y móvil).
+Se valida con Playwright contra `http://127.0.0.1:8765/pruebas/`: estado 200, consola sin errores, sin overflow horizontal, charts renderizados, navegación activa correcta y command palette/drawer/tema operativos (desktop y móvil). Tras cambios de maquetación, comparar capturas a página completa contra `.impeccable/review/` (`magick compare -metric RMSE`) para confirmar identidad visual.
 
 ## Publicación
 

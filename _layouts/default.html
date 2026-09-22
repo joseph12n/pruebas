@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+{% include head.html %}
+</head>
+<body data-page="{{ page.page_id }}" data-root="{{ page.root }}">
+
+<div class="bg" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-orb bg-orb--a"></div>
+  <div class="bg-orb bg-orb--b"></div>
+  <div class="bg-noise"></div>
+</div>
+
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot-box">
+    <div class="boot-brand">KN<span>/QA</span></div>
+    <div class="boot-track"><span></span></div>
+    <div class="boot-status">Inicializando observatorio…</div>
+  </div>
+</div>
+
+<div class="scroll-progress" aria-hidden="true"><span id="scroll-progress"></span></div>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<aside class="rail" aria-label="Navegación principal">
+  <a class="rail-brand" href="{{ site.baseurl }}/index.html">
+    <span class="brand-mark">KN</span>
+    <span class="brand-text"><b>KN Store</b><i>Quality Observatory</i></span>
+  </a>
+  <div class="rail-label">Informes</div>
+  {% include nav-rail.html %}
+  <div class="rail-sections" id="rail-sections"></div>
+  <div class="rail-foot">
+    <span class="rail-ver">v1.0 · MTP-2026</span>
+    <span class="chip {{ page.foot_chip_class | default: 'ok' }}">{{ page.foot_chip }}</span>
+  </div>
+</aside>
+
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<nav class="drawer" id="drawer" aria-label="Menú móvil">
+  <div class="drawer-head">
+    <a class="rail-brand" href="{{ site.baseurl }}/index.html" style="border:0;padding:0">
+      <span class="brand-mark">KN</span>
+      <span class="brand-text"><b>KN Store</b><i>Quality Observatory</i></span>
+    </a>
+    <button class="icon-btn" data-drawer-close aria-label="Cerrar menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="rail-label">Informes</div>
+  {% include nav-drawer.html %}
+  <div class="rail-foot">
+    <span class="rail-ver">v1.0 · MTP-2026</span>
+    <span class="chip {{ page.foot_chip_class | default: 'ok' }}">{{ page.foot_chip }}</span>
+  </div>
+</nav>
+
+<div class="frame">
+  <header class="topbar">
+    <button class="icon-btn menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <div class="topbar-crumb">
+      <span class="tc-up">KN Store · QA</span>
+      <span class="tc-page">{{ page.crumb }}</span>
+    </div>
+    <div class="topbar-actions">
+      <span class="topbar-live"><span class="live-dot"></span>{{ page.live }}</span>
+      <button class="cmd-trigger" id="cmd-trigger" aria-expanded="false" aria-controls="cmd">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="cmd-trigger-label">Buscar</span>
+        <kbd>Ctrl K</kbd>
+      </button>
+      <button class="theme-toggle icon-btn" aria-label="Cambiar tema"></button>
+    </div>
+  </header>
+
+  <main class="page" id="main">
+{{ content }}
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      {% for s in page.footer_spans %}<span>{{ s }}</span>
+      {% endfor %}
+    </div>
+  </footer>
+</div>
+
+<div class="cmd" id="cmd" hidden>
+  <div class="cmd-box" role="dialog" aria-modal="true" aria-label="Buscador de informes">
+    <div class="cmd-input-row">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input class="cmd-input" id="cmd-input" type="text" placeholder="Buscar páginas o secciones…" aria-label="Buscar páginas o secciones" autocomplete="off" spellcheck="false">
+    </div>
+    <ul class="cmd-list" id="cmd-list" role="listbox" aria-label="Resultados"></ul>
+    <div class="cmd-hint"><span>↑↓ navegar</span><span>↵ abrir</span><span>esc cerrar</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<button class="to-top" id="to-top" aria-label="Volver arriba">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+{% include scripts.html %}
+</body>
+</html>

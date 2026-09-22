@@ -271,3 +271,9 @@
     window.addEventListener("load", function () { window.ScrollTrigger.refresh(); });
   });
 })();
+
+/* Ticker marquee: el bucle necesita dos grupos idénticos; el HTML conserva uno
+   solo (sin JS queda legible) y aquí se clona el segundo al vuelo. */
+document.querySelectorAll(".ticker-track").forEach(function (track) {
+  if (track.children.length === 1) track.appendChild(track.children[0].cloneNode(true));
+});

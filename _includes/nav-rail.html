@@ -1,0 +1,30 @@
+<nav class="rail-nav">
+  <a class="rail-link{% if page.nav_key == 'dashboard' %} active{% endif %}" href="{{ site.baseurl }}/index.html"{% if page.nav_key == 'dashboard' %} aria-current="page"{% endif %}>
+    <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg>
+    <span class="rail-name">Dashboard</span>
+  </a>
+  <a class="rail-link{% if page.nav_key == 'maestro' %} active{% endif %}" href="{{ site.baseurl }}/pages/maestro.html"{% if page.nav_key == 'maestro' %} aria-current="page"{% endif %}>
+    <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5"/></svg>
+    <span class="rail-name">Plan Maestro</span>
+  </a>
+  <a class="rail-link{% if page.nav_key == 'unitarias' %} active{% endif %}" href="{{ site.baseurl }}/pages/unitarias.html"{% if page.nav_key == 'unitarias' %} aria-current="page"{% endif %}>
+    <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg>
+    <span class="rail-name">Unitarias</span>
+  </a>
+  <a class="rail-link{% if page.nav_key == 'cobertura' %} active{% endif %}" href="{{ site.baseurl }}/pages/cobertura.html"{% if page.nav_key == 'cobertura' %} aria-current="page"{% endif %}>
+    <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9H12V3z"/><path d="M14.2 3.6A8 8 0 0 1 20.4 9.8h-6.2V3.6z"/></svg>
+    <span class="rail-name">Cobertura</span>
+  </a>
+  <a class="rail-link{% if page.nav_key == 'e2e' %} active{% endif %}" href="{{ site.baseurl }}/pages/e2e.html"{% if page.nav_key == 'e2e' %} aria-current="page"{% endif %}>
+    <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8.2 17.4 15.8 6.6"/></svg>
+    <span class="rail-name">E2E · Cypress</span>
+  </a>
+  <a class="rail-link{% if page.nav_key == 'jmeter' %} active{% endif %}" href="{{ site.baseurl }}/pages/jmeter.html"{% if page.nav_key == 'jmeter' %} aria-current="page"{% endif %}>
+    <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+    <span class="rail-name">JMeter</span>
+  </a>
+  <a class="rail-link{% if page.nav_key == 'lighthouse' %} active{% endif %}" href="{{ site.baseurl }}/pages/lighthouse.html"{% if page.nav_key == 'lighthouse' %} aria-current="page"{% endif %}>
+    <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11l-1 8.5L18.5 10.5H12l1-8.5z"/></svg>
+    <span class="rail-name">Lighthouse</span>
+  </a>
+</nav>

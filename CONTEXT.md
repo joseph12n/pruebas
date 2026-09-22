@@ -8,6 +8,15 @@
 Reportes HTML de pruebas QA del proyecto **KN Store** en `~/Descargas/pruebas`, publicados en GitHub Pages.
 Repo: `git@github.com:joseph12n/pruebas.git` (origin `https://github.com/joseph12n/pruebas.git`)
 
+## 2026-09-22 (tarde) — SonarCloud: Quality Gate y reestructuración Jekyll
+
+El commit del informe de cobertura dejó el **Quality Gate de SonarCloud en rojo** (3/4 checks; el resto —build y deploy de Pages— verdes). Diagnóstico y arreglo:
+
+- **Fiabilidad D → A:** bug CRÍTICO `css:S4657` (`.terminal-body code` tenía `border-color` muerto pisado por el shorthand `border`) + 20 bugs mayores de accesibilidad (`Web:InputWithoutLabelCheck` ×16 en el command palette y las toolbars de filtros → `aria-label`; `Web:S5256` ×4 en las tablas de suites de `unitarias.html` → `thead/th`). Todo arreglado y verificado en DOM (0 controles sin label, 0 tablas sin `th`).
+- **Duplicación 9,7 % → ~0 %:** el análisis automático de SonarCloud (Auto-Scan) **ignora `sonar-project.properties`** (limitación conocida), así que las exclusiones no servían: la duplicación era real — el shell estático (nav, topbar, boot, command palette, footer) copiado en las 7 páginas por el requisito de fallback sin JS. Solución elegida por el usuario: **reestructurar con Jekyll** (lo compila GitHub Pages): shell único en `_layouts/default.html` + `_includes/` (`head`, `nav-rail`, `nav-drawer`, `scripts`), páginas solo con front matter + contenido, nav en 1 archivo (antes 7), chip del rail y footer desde front matter, ticker con 1 grupo en HTML + clon por JS en `motion.js`.
+- **Verificación de la reestructuración:** build con `jekyll/jekyll:4` (Docker), 7 páginas 200 sin errores de consola ni overflow, nav 7+7 con activo correcto, ticker clonado a 2 grupos, charts exactos; **diff de píxel RMSE = 0** contra las capturas pre-Jekyll en 4 de 5 renders (la única diferencia son los 4 `thead` nuevos de `unitarias.html`, ya reflejados en `.impeccable/review/`).
+- Complementos: `sonar-project.properties` queda documentado por si se migra a análisis con scanner, `views.js` con helper `renderVacia()` (eliminó duplicación real del JS), README actualizado (estructura Jekyll + cómo agregar un informe + verificación local con Docker).
+
 ## 2026-09-22 — Informe de Cobertura + pulido y actualización de datos
 
 Solicitud: añadir el informe de cobertura (JaCoCo + Vitest de la corrida del 2026-09-22) al sitio y actualizar el conjunto para que se vea profesional. Publicación autorizada por el usuario (commit + push a `main`).

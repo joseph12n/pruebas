@@ -1,0 +1,10 @@
+# KN·QA Observatory — sitio Jekyll (lo compila GitHub Pages)
+title: KN Store Web · QA — Aseguramiento de Calidad
+description: Aseguramiento de Calidad del proyecto KN Store Web — certificado de salida a producción APROBADO / GO.
+url: "https://joseph12n.github.io"
+baseurl: "/pruebas"
+exclude:
+  - tools
+  - sonar-project.properties
+  - README.md
+  - CONTEXT.md

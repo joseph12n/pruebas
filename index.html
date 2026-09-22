@@ -1,138 +1,24 @@
-<!DOCTYPE html>
-<html lang="es" data-theme="dark">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KN Store Web · QA — Dashboard Ejecutivo</title>
-<meta name="description" content="Aseguramiento de Calidad del proyecto KN Store Web — certificado de salida a producción APROBADO / GO.">
-<meta name="theme-color" content="#06070b">
-<meta property="og:type" content="website">
-<meta property="og:title" content="KN Store Web · QA — Dashboard Ejecutivo">
-<meta property="og:description" content="Aseguramiento de Calidad del proyecto KN Store Web — certificado de salida a producción APROBADO / GO.">
-<meta property="og:url" content="https://joseph12n.github.io/pruebas/">
-<script>(function(){document.documentElement.classList.add("js");var t=null;try{t=localStorage.getItem("kn-theme")}catch(e){};if(!t){try{t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}catch(e){t="dark"}}document.documentElement.setAttribute("data-theme",t);})();</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link rel="stylesheet" href="assets/css/tokens.css">
-<link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/layout.css">
-<link rel="stylesheet" href="assets/css/components.css">
-<link rel="stylesheet" href="assets/css/motion.css">
-<link rel="stylesheet" href="assets/css/print.css">
-</head>
-<body data-page="index" data-root=".">
-
-<div class="bg" aria-hidden="true">
-  <div class="bg-grid"></div>
-  <div class="bg-orb bg-orb--a"></div>
-  <div class="bg-orb bg-orb--b"></div>
-  <div class="bg-noise"></div>
-</div>
-
-<div class="boot" id="boot" aria-hidden="true">
-  <div class="boot-box">
-    <div class="boot-brand">KN<span>/QA</span></div>
-    <div class="boot-track"><span></span></div>
-    <div class="boot-status">Inicializando observatorio…</div>
-  </div>
-</div>
-
-<div class="scroll-progress" aria-hidden="true"><span id="scroll-progress"></span></div>
-<a class="skip-link" href="#main">Saltar al contenido</a>
-
-<aside class="rail" aria-label="Navegación principal">
-  <a class="rail-brand" href="index.html">
-    <span class="brand-mark">KN</span>
-    <span class="brand-text"><b>KN Store</b><i>Quality Observatory</i></span>
-  </a>
-  <div class="rail-label">Informes</div>
-  <nav class="rail-nav">
-    <a class="rail-link active" href="index.html" aria-current="page">
-      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg>
-      <span class="rail-name">Dashboard</span>
-    </a>
-    <a class="rail-link" href="pages/maestro.html">
-      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5"/></svg>
-      <span class="rail-name">Plan Maestro</span>
-    </a>
-    <a class="rail-link" href="pages/unitarias.html">
-      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg>
-      <span class="rail-name">Unitarias</span>
-    </a>
-    <a class="rail-link" href="pages/cobertura.html">
-      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9H12V3z"/><path d="M14.2 3.6A8 8 0 0 1 20.4 9.8h-6.2V3.6z"/></svg>
-      <span class="rail-name">Cobertura</span>
-    </a>
-    <a class="rail-link" href="pages/e2e.html">
-      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8.2 17.4 15.8 6.6"/></svg>
-      <span class="rail-name">E2E · Cypress</span>
-    </a>
-    <a class="rail-link" href="pages/jmeter.html">
-      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
-      <span class="rail-name">JMeter</span>
-    </a>
-    <a class="rail-link" href="pages/lighthouse.html">
-      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11l-1 8.5L18.5 10.5H12l1-8.5z"/></svg>
-      <span class="rail-name">Lighthouse</span>
-    </a>
-  </nav>
-  <div class="rail-sections" id="rail-sections"></div>
-  <div class="rail-foot">
-    <span class="rail-ver">v1.0 · MTP-2026</span>
-    <span class="chip ok">GO</span>
-  </div>
-</aside>
-
-<div class="scrim" id="scrim" aria-hidden="true"></div>
-<nav class="drawer" id="drawer" aria-label="Menú móvil">
-  <div class="drawer-head">
-    <a class="rail-brand" href="index.html" style="border:0;padding:0">
-      <span class="brand-mark">KN</span>
-      <span class="brand-text"><b>KN Store</b><i>Quality Observatory</i></span>
-    </a>
-    <button class="icon-btn" data-drawer-close aria-label="Cerrar menú">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
-    </button>
-  </div>
-  <div class="rail-label">Informes</div>
-  <nav class="rail-nav">
-    <a class="rail-link active" href="index.html"><span class="rail-num">01</span><span class="rail-name">Dashboard</span></a>
-    <a class="rail-link" href="pages/maestro.html"><span class="rail-num">02</span><span class="rail-name">Plan Maestro</span></a>
-    <a class="rail-link" href="pages/unitarias.html"><span class="rail-num">03</span><span class="rail-name">Unitarias</span></a>
-    <a class="rail-link" href="pages/cobertura.html"><span class="rail-num">04</span><span class="rail-name">Cobertura</span></a>
-    <a class="rail-link" href="pages/e2e.html"><span class="rail-num">05</span><span class="rail-name">E2E · Cypress</span></a>
-    <a class="rail-link" href="pages/jmeter.html"><span class="rail-num">06</span><span class="rail-name">JMeter</span></a>
-    <a class="rail-link" href="pages/lighthouse.html"><span class="rail-num">07</span><span class="rail-name">Lighthouse</span></a>
-  </nav>
-  <div class="rail-foot">
-    <span class="rail-ver">v1.0 · MTP-2026</span>
-    <span class="chip ok">GO</span>
-  </div>
-</nav>
-
-<div class="frame">
-  <header class="topbar">
-    <button class="icon-btn menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-    </button>
-    <div class="topbar-crumb">
-      <span class="tc-up">KN Store · QA</span>
-      <span class="tc-page">Dashboard Ejecutivo</span>
-    </div>
-    <div class="topbar-actions">
-      <span class="topbar-live"><span class="live-dot"></span>APROBADO · GO</span>
-      <button class="cmd-trigger" id="cmd-trigger" aria-expanded="false" aria-controls="cmd">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <span class="cmd-trigger-label">Buscar</span>
-        <kbd>Ctrl K</kbd>
-      </button>
-      <button class="theme-toggle icon-btn" aria-label="Cambiar tema"></button>
-    </div>
-  </header>
-
-  <main class="page" id="main">
+---
+layout: default
+title: "KN Store Web · QA — Dashboard Ejecutivo"
+description: "Aseguramiento de Calidad del proyecto KN Store Web — certificado de salida a producción APROBADO / GO."
+page_id: index
+nav_key: dashboard
+root: "."
+crumb: "Dashboard Ejecutivo"
+live: "APROBADO · GO"
+foot_chip: "GO"
+data_files: []
+footer_spans:
+  - >-
+    KN Store Web · Informe de Aseguramiento de Calidad — ciclo agosto 2026 · cobertura actualizada al 22 de septiembre
+  - >-
+    Comité de Calidad: Joseph N. Varón · Santiago Flórez · Laura González · Nicolás Gil
+  - >-
+    Veredicto: <b>APROBADO · GO</b> — Plan MTP-2026-Kn-Store-001
+  - >-
+    Generado por el equipo QA · <a href="https://github.com/joseph12n/pruebas" target="_blank" rel="noopener">Repositorio</a>
+---
 
     <section class="hero">
       <span class="scanline" aria-hidden="true"></span>
@@ -159,18 +45,6 @@
 
     <div class="ticker" aria-hidden="true">
       <div class="ticker-track">
-        <div class="ticker-group">
-          <span class="ticker-item"><b>363</b> pruebas unitarias</span>
-          <span class="ticker-item"><b>70,1%</b> cobertura backend</span>
-          <span class="ticker-item"><b>756</b> pasos E2E</span>
-          <span class="ticker-item"><b>99,92%</b> éxito bajo carga</span>
-          <span class="ticker-item"><b>547</b> compradores simultáneos</span>
-          <span class="ticker-item"><b>0</b> sobreventa</span>
-          <span class="ticker-item"><b>91/91</b> casos JMeter</span>
-          <span class="ticker-item"><b>SEO 100</b> en Google</span>
-          <span class="ticker-item"><b>89</b> pantallas evaluadas</span>
-          <span class="ticker-item"><b>0</b> defectos críticos</span>
-        </div>
         <div class="ticker-group">
           <span class="ticker-item"><b>363</b> pruebas unitarias</span>
           <span class="ticker-item"><b>70,1%</b> cobertura backend</span>
@@ -452,44 +326,3 @@
       </div>
     </section>
 
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-      <span>KN Store Web · Informe de Aseguramiento de Calidad — ciclo agosto 2026 · cobertura actualizada al 22 de septiembre</span>
-      <span>Comité de Calidad: Joseph N. Varón · Santiago Flórez · Laura González · Nicolás Gil</span>
-      <span>Veredicto: <b>APROBADO · GO</b> — Plan MTP-2026-Kn-Store-001</span>
-      <span>Generado por el equipo QA · <a href="https://github.com/joseph12n/pruebas" target="_blank" rel="noopener">Repositorio</a></span>
-    </div>
-  </footer>
-</div>
-
-<div class="cmd" id="cmd" hidden>
-  <div class="cmd-box" role="dialog" aria-modal="true" aria-label="Buscador de informes">
-    <div class="cmd-input-row">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input class="cmd-input" id="cmd-input" type="text" placeholder="Buscar páginas o secciones…" aria-label="Buscar páginas o secciones" autocomplete="off" spellcheck="false">
-    </div>
-    <ul class="cmd-list" id="cmd-list" role="listbox" aria-label="Resultados"></ul>
-    <div class="cmd-hint"><span>↑↓ navegar</span><span>↵ abrir</span><span>esc cerrar</span></div>
-  </div>
-</div>
-
-<div class="cursor" id="cursor" aria-hidden="true"></div>
-<button class="to-top" id="to-top" aria-label="Volver arriba">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
-</button>
-
-<script src="assets/js/data/core.js"></script>
-<script src="assets/vendor/chart.umd.min.js"></script>
-<script src="assets/vendor/gsap.min.js"></script>
-<script src="assets/vendor/ScrollTrigger.min.js"></script>
-<script src="assets/vendor/lenis.min.js"></script>
-<script src="assets/js/core/theme.js"></script>
-<script src="assets/js/core/utils.js"></script>
-<script src="assets/js/core/shell.js"></script>
-<script src="assets/js/core/views.js"></script>
-<script src="assets/js/charts.js"></script>
-<script src="assets/js/core/motion.js"></script>
-</body>
-</html>

@@ -16,3 +16,7 @@ Thumbs.db
 
 # Artefactos de diseño Impeccable (locales)
 .impeccable/
+
+# Jekyll
+_site/
+.jekyll-cache/
