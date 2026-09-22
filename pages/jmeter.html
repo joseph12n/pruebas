@@ -254,9 +254,9 @@
         <p>Corrida completa del 26 de agosto de 2026: 6.800 muestras, 0 errores. Todos los casos en estado <b>PASA</b>.</p>
       </div>
       <div class="toolbar reveal">
-        <input type="text" id="jmeter-search" placeholder="Buscar por ID, nombre o requerimiento…">
-        <select id="jmeter-tipo"><option value="">Todos los tipos</option></select>
-        <select id="jmeter-req"><option value="">Todos los requerimientos</option></select>
+        <input type="text" id="jmeter-search" placeholder="Buscar por ID, nombre o requerimiento…" aria-label="Buscar por ID, nombre o requerimiento">
+        <select id="jmeter-tipo" aria-label="Filtrar por tipo"><option value="">Todos los tipos</option></select>
+        <select id="jmeter-req" aria-label="Filtrar por requerimiento"><option value="">Todos los requerimientos</option></select>
         <span class="chip info" id="jmeter-count">91 / 91 casos</span>
       </div>
       <div class="table-wrap reveal">
@@ -350,7 +350,7 @@ jmeter -n -t docs/jmeter/knstore_stress_plan.jmx -l resultados.jtl -JN_S1=150 -J
   <div class="cmd-box" role="dialog" aria-modal="true" aria-label="Buscador de informes">
     <div class="cmd-input-row">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input class="cmd-input" id="cmd-input" type="text" placeholder="Buscar páginas o secciones…" autocomplete="off" spellcheck="false">
+      <input class="cmd-input" id="cmd-input" type="text" placeholder="Buscar páginas o secciones…" aria-label="Buscar páginas o secciones" autocomplete="off" spellcheck="false">
     </div>
     <ul class="cmd-list" id="cmd-list" role="listbox" aria-label="Resultados"></ul>
     <div class="cmd-hint"><span>↑↓ navegar</span><span>↵ abrir</span><span>esc cerrar</span></div>

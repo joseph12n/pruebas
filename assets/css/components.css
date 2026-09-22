@@ -882,7 +882,6 @@ td.num { text-align: right; font-family: var(--font-mono); font-variant-numeric:
 }
 .terminal-body code {
   background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(255, 255, 255, 0.09);
   color: #e5e7eb;
   padding: 0;
   border: 0;

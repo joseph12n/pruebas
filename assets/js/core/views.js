@@ -129,6 +129,15 @@
     return "<span class='chip danger'>" + pct.toFixed(1) + " %</span>";
   }
 
+  function renderVacia(body, search, limpiar, volver) {
+    var q = (search.value || "").trim();
+    body.innerHTML = "<tr><td colspan='6' class='u-muted' style='text-align:center;padding:24px'>Sin resultados" +
+      (q ? " para «" + esc(q) + "»" : "") +
+      " · <button type='button' class='copy-btn' data-clear>Limpiar filtros</button></td></tr>";
+    var btn = body.querySelector("[data-clear]");
+    if (btn) btn.addEventListener("click", function () { search.value = ""; limpiar(); volver(); });
+  }
+
   window.buildCoberturaPaquetes = function () {
     var body = document.getElementById("cov-pk-tbody");
     if (!body) return;
@@ -173,14 +182,7 @@
         return true;
       });
       count.textContent = rows.length + " / " + rows0.length + " clases";
-      if (!rows.length) {
-        body.innerHTML = "<tr><td colspan='6' class='u-muted' style='text-align:center;padding:24px'>Sin resultados" +
-          (q ? " para «" + esc(search.value.trim()) + "»" : "") +
-          " · <button type='button' class='copy-btn' data-clear>Limpiar filtros</button></td></tr>";
-        var btn = body.querySelector("[data-clear]");
-        if (btn) btn.addEventListener("click", function () { search.value = ""; fPk.value = ""; render(); });
-        return;
-      }
+      if (!rows.length) { renderVacia(body, search, function () { fPk.value = ""; }, render); return; }
       body.innerHTML = rows.map(function (c) {
         var lp = c.lt ? (c.lc / c.lt * 100) : 0;
         var bp = c.bt ? (c.bc / c.bt * 100) : 0;
@@ -221,14 +223,7 @@
         return true;
       });
       count.textContent = rows.length + " / " + rows0.length + " archivos";
-      if (!rows.length) {
-        body.innerHTML = "<tr><td colspan='6' class='u-muted' style='text-align:center;padding:24px'>Sin resultados" +
-          (q ? " para «" + esc(search.value.trim()) + "»" : "") +
-          " · <button type='button' class='copy-btn' data-clear>Limpiar filtros</button></td></tr>";
-        var btn = body.querySelector("[data-clear]");
-        if (btn) btn.addEventListener("click", function () { search.value = ""; fArea.value = ""; render(); });
-        return;
-      }
+      if (!rows.length) { renderVacia(body, search, function () { fArea.value = ""; }, render); return; }
       body.innerHTML = rows.map(function (f) {
         var lp = f.ln ? (f.lnc / f.ln * 100) : 0;
         var sp = f.st ? (f.stc / f.st * 100) : 0;

@@ -255,8 +255,8 @@
         <p>Filtra por panel y vista. El puntaje final es el promedio de los parámetros con resultado numérico (Agentic Browsing incluido cuando fue diligenciado).</p>
       </div>
       <div class="toolbar reveal">
-        <select id="lh-panel"><option value="">Todos los paneles</option></select>
-        <select id="lh-vista"><option value="">Todas las vistas</option></select>
+        <select id="lh-panel" aria-label="Filtrar por panel"><option value="">Todos los paneles</option></select>
+        <select id="lh-vista" aria-label="Filtrar por vista"><option value="">Todas las vistas</option></select>
         <span class="chip info" id="lh-count">89 registros</span>
       </div>
       <div class="table-wrap reveal">
@@ -297,7 +297,7 @@
   <div class="cmd-box" role="dialog" aria-modal="true" aria-label="Buscador de informes">
     <div class="cmd-input-row">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input class="cmd-input" id="cmd-input" type="text" placeholder="Buscar páginas o secciones…" autocomplete="off" spellcheck="false">
+      <input class="cmd-input" id="cmd-input" type="text" placeholder="Buscar páginas o secciones…" aria-label="Buscar páginas o secciones" autocomplete="off" spellcheck="false">
     </div>
     <ul class="cmd-list" id="cmd-list" role="listbox" aria-label="Resultados"></ul>
     <div class="cmd-hint"><span>↑↓ navegar</span><span>↵ abrir</span><span>esc cerrar</span></div>

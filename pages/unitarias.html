@@ -267,6 +267,7 @@
           <h3>3.1 Módulo cliente — Agente 1 (48 pruebas)</h3>
           <div class="table-wrap u-mt-14">
             <table style="min-width:0;font-size:12.5px">
+              <thead><tr><th>Suite · pruebas</th><th>Escenarios clave</th></tr></thead>
               <tbody>
                 <tr><td><b>CarritoServiceImplTest</b> · 12</td><td class="u-muted">Ownership por cuenta en findAll/findOne; vaciar reinicia subtotal y fecha; vaciar sin carrito no guarda</td></tr>
                 <tr><td><b>CuentaServiceImplTest</b> · 12</td><td class="u-muted">Preserva user/tipoDocumento en update; CLIENTE solo ve su cuenta paginada; consultas eager para admin</td></tr>
@@ -280,6 +281,7 @@
           <h3>3.2 Catálogo — Agente 2 (50 pruebas)</h3>
           <div class="table-wrap u-mt-14">
             <table style="min-width:0;font-size:12.5px">
+              <thead><tr><th>Suite · pruebas</th><th>Escenarios clave</th></tr></thead>
               <tbody>
                 <tr><td><b>CategoriaServiceImplTest</b> · 8</td><td class="u-muted">CRUD completo + partialUpdate sin guardado cuando no existe</td></tr>
                 <tr><td><b>CategoriaIVAServiceImplTest</b> · 8</td><td class="u-muted">CRUD completo (findAll en lista)</td></tr>
@@ -295,6 +297,7 @@
           <h3>3.3 Producto y pedidos — Agente 3 (30 pruebas)</h3>
           <div class="table-wrap u-mt-14">
             <table style="min-width:0;font-size:12.5px">
+              <thead><tr><th>Suite · pruebas</th><th>Escenarios clave</th></tr></thead>
               <tbody>
                 <tr><td><b>ProductoImagenServiceImplTest</b> · 8</td><td class="u-muted">CRUD + gallery por producto</td></tr>
                 <tr><td><b>ProductoInventarioServiceImplTest</b> · 9</td><td class="u-muted">CRUD + findAllWhereProductoIsNull (filtra inventarios huérfanos por @DBRef nulo)</td></tr>
@@ -307,6 +310,7 @@
           <h3>3.4 Usuarios — Agente 4 (22 pruebas)</h3>
           <div class="table-wrap u-mt-14">
             <table style="min-width:0;font-size:12.5px">
+              <thead><tr><th>Suite · pruebas</th><th>Escenarios clave</th></tr></thead>
               <tbody>
                 <tr><td><b>UserServiceTest</b> · 22</td><td class="u-muted">Registro (roles, password codificada, usuario desactivado), duplicados activados/inactivados, DuplicateKeyException (login vs email), activación, reset de contraseña (expiración 1 día), cambio de contraseña (contraseña actual incorrecta → InvalidPasswordException), removeNotActivatedUsers, authorities</td></tr>
               </tbody>
@@ -387,7 +391,7 @@
   <div class="cmd-box" role="dialog" aria-modal="true" aria-label="Buscador de informes">
     <div class="cmd-input-row">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input class="cmd-input" id="cmd-input" type="text" placeholder="Buscar páginas o secciones…" autocomplete="off" spellcheck="false">
+      <input class="cmd-input" id="cmd-input" type="text" placeholder="Buscar páginas o secciones…" aria-label="Buscar páginas o secciones" autocomplete="off" spellcheck="false">
     </div>
     <ul class="cmd-list" id="cmd-list" role="listbox" aria-label="Resultados"></ul>
     <div class="cmd-hint"><span>↑↓ navegar</span><span>↵ abrir</span><span>esc cerrar</span></div>

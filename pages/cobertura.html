@@ -363,8 +363,8 @@ java -jar jacococli report target/jacoco-merged.exec --classfiles target/classes
         <p>Busca una clase o filtra por paquete. Los chips marcan la zona: verde ≥ 80 %, azul ≥ 50 %, amarillo ≥ 25 %, rojo por debajo.</p>
       </div>
       <div class="toolbar reveal">
-        <input type="text" id="cov-cl-search" placeholder="Buscar por clase o paquete…">
-        <select id="cov-cl-pk"><option value="">Todos los paquetes</option></select>
+        <input type="text" id="cov-cl-search" placeholder="Buscar por clase o paquete…" aria-label="Buscar por clase o paquete">
+        <select id="cov-cl-pk" aria-label="Filtrar por paquete"><option value="">Todos los paquetes</option></select>
         <span class="chip info" id="cov-cl-count">194 / 194 clases</span>
       </div>
       <div class="table-wrap reveal">
@@ -388,8 +388,8 @@ java -jar jacococli report target/jacoco-merged.exec --classfiles target/classes
         <div class="chart-wrap h-320"><canvas id="chart-cob-front"></canvas></div>
       </div>
       <div class="toolbar reveal u-mt-20">
-        <input type="text" id="cov-fe-search" placeholder="Buscar por archivo o ruta…">
-        <select id="cov-fe-area"><option value="">Todas las áreas</option></select>
+        <input type="text" id="cov-fe-search" placeholder="Buscar por archivo o ruta…" aria-label="Buscar por archivo o ruta">
+        <select id="cov-fe-area" aria-label="Filtrar por área"><option value="">Todas las áreas</option></select>
         <span class="chip info" id="cov-fe-count">78 / 78 archivos</span>
       </div>
       <div class="table-wrap reveal">
@@ -450,7 +450,7 @@ java -jar jacococli report target/jacoco-merged.exec --classfiles target/classes
   <div class="cmd-box" role="dialog" aria-modal="true" aria-label="Buscador de informes">
     <div class="cmd-input-row">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input class="cmd-input" id="cmd-input" type="text" placeholder="Buscar páginas o secciones…" autocomplete="off" spellcheck="false">
+      <input class="cmd-input" id="cmd-input" type="text" placeholder="Buscar páginas o secciones…" aria-label="Buscar páginas o secciones" autocomplete="off" spellcheck="false">
     </div>
     <ul class="cmd-list" id="cmd-list" role="listbox" aria-label="Resultados"></ul>
     <div class="cmd-hint"><span>↑↓ navegar</span><span>↵ abrir</span><span>esc cerrar</span></div>
