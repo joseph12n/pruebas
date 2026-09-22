@@ -1,39 +1,65 @@
 /* ============================================================
-   KN Store — Aseguramiento de Calidad · Impresión
+   KN·QA Observatory — Impresión
    ============================================================ */
 
 @media print {
-  :root {
+  :root,
+  [data-theme="dark"],
+  [data-theme="light"] {
     --bg: #ffffff;
-    --card: #ffffff;
-    --card-2: #f6f8fd;
-    --border: rgba(15, 23, 42, 0.15);
-    --border-strong: rgba(15, 23, 42, 0.35);
-    --text: #101a2e;
-    --muted: #4b5563;
-    --muted-2: #6b7280;
+    --bg-2: #ffffff;
+    --panel: #ffffff;
+    --panel-solid: #ffffff;
+    --panel-2: #f6f6f2;
+    --line: rgba(0, 0, 0, 0.14);
+    --line-2: rgba(0, 0, 0, 0.32);
+    --text: #111111;
+    --muted: #444444;
+    --muted-2: #666666;
+    --chip-bg: #f2f2ee;
+    --accent: #3f5f10;
+    --accent-ink: #f7fee7;
+    --accent-soft: rgba(63, 95, 16, 0.1);
     --shadow: none;
+    --shadow-sm: none;
+    --glow: none;
   }
 
-  body { background: #fff; }
+  body { background: #fff; font-size: 12px; }
+  .bg, .rail, .topbar, .drawer, .scrim, .cmd,
+  .to-top, .cursor, .scroll-progress, .boot,
+  .ticker, .cmd-trigger, .menu-btn, .theme-toggle,
+  .radar, .scanline { display: none !important; }
 
-  .site-header { position: static; backdrop-filter: none; }
-  .nav, .theme-toggle { display: none !important; }
+  .frame { margin-left: 0 !important; }
+  .page { max-width: none; padding: 0; }
 
-  main { padding: 0; }
-  .hero { box-shadow: none; }
-
-  .card, .kpi, .shield, .sig, .mstone, .risk .r-conting {
-    box-shadow: none;
+  .hero,
+  .card,
+  .kpi,
+  .gauge-card,
+  .sig,
+  .mstone,
+  .heat-tile {
+    box-shadow: none !important;
     break-inside: avoid;
+    background: #fff !important;
+    border-color: #bbb !important;
   }
+  .card::before,
+  .card::after { display: none; }
 
-  .section, .card, .kpi { break-inside: avoid; }
+  .section { break-inside: avoid; margin: 26px 0; }
+  .section-head .sec-num { display: none; }
 
-  a { color: var(--text); }
-  a[href]::after {
+  a { color: #111; }
+  a[href^="http"]::after {
     content: " (" attr(href) ")";
-    font-size: 10px;
-    color: var(--muted);
+    font-size: 9px;
+    color: #666;
   }
+  .card.link-card .lc-go { display: none; }
+
+  table { min-width: 0; }
+  thead th { position: static; }
 }

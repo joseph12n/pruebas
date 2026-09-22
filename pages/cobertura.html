@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KN Store Web · QA — Cobertura de Código</title>
+<meta name="description" content="Informe de Cobertura de Código — JaCoCo (unit + IT consolidado) y Vitest: 70,1 % de líneas backend, 50,97 % de líneas frontend y 1.384 pruebas automatizadas en verde.">
+<meta name="theme-color" content="#06070b">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KN Store Web · QA — Cobertura de Código">
+<meta property="og:description" content="Informe de Cobertura de Código — JaCoCo (unit + IT consolidado) y Vitest: 70,1 % de líneas backend, 50,97 % de líneas frontend y 1.384 pruebas automatizadas en verde.">
+<meta property="og:url" content="https://joseph12n.github.io/pruebas/pages/cobertura.html">
+<script>(function(){document.documentElement.classList.add("js");var t=null;try{t=localStorage.getItem("kn-theme")}catch(e){};if(!t){try{t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}catch(e){t="dark"}}document.documentElement.setAttribute("data-theme",t);})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/layout.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/motion.css">
+<link rel="stylesheet" href="../assets/css/print.css">
+</head>
+<body data-page="cobertura" data-root="..">
+
+<div class="bg" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-orb bg-orb--a"></div>
+  <div class="bg-orb bg-orb--b"></div>
+  <div class="bg-noise"></div>
+</div>
+
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot-box">
+    <div class="boot-brand">KN<span>/QA</span></div>
+    <div class="boot-track"><span></span></div>
+    <div class="boot-status">Inicializando observatorio…</div>
+  </div>
+</div>
+
+<div class="scroll-progress" aria-hidden="true"><span id="scroll-progress"></span></div>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<aside class="rail" aria-label="Navegación principal">
+  <a class="rail-brand" href="../index.html">
+    <span class="brand-mark">KN</span>
+    <span class="brand-text"><b>KN Store</b><i>Quality Observatory</i></span>
+  </a>
+  <div class="rail-label">Informes</div>
+  <nav class="rail-nav">
+    <a class="rail-link" href="../index.html">
+      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg>
+      <span class="rail-name">Dashboard</span>
+    </a>
+    <a class="rail-link" href="maestro.html">
+      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5"/></svg>
+      <span class="rail-name">Plan Maestro</span>
+    </a>
+    <a class="rail-link" href="unitarias.html">
+      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg>
+      <span class="rail-name">Unitarias</span>
+    </a>
+    <a class="rail-link active" href="cobertura.html" aria-current="page">
+      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9H12V3z"/><path d="M14.2 3.6A8 8 0 0 1 20.4 9.8h-6.2V3.6z"/></svg>
+      <span class="rail-name">Cobertura</span>
+    </a>
+    <a class="rail-link" href="e2e.html">
+      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8.2 17.4 15.8 6.6"/></svg>
+      <span class="rail-name">E2E · Cypress</span>
+    </a>
+    <a class="rail-link" href="jmeter.html">
+      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+      <span class="rail-name">JMeter</span>
+    </a>
+    <a class="rail-link" href="lighthouse.html">
+      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11l-1 8.5L18.5 10.5H12l1-8.5z"/></svg>
+      <span class="rail-name">Lighthouse</span>
+    </a>
+  </nav>
+  <div class="rail-sections" id="rail-sections"></div>
+  <div class="rail-foot">
+    <span class="rail-ver">v1.0 · MTP-2026</span>
+    <span class="chip ok">VERDE</span>
+  </div>
+</aside>
+
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<nav class="drawer" id="drawer" aria-label="Menú móvil">
+  <div class="drawer-head">
+    <a class="rail-brand" href="../index.html" style="border:0;padding:0">
+      <span class="brand-mark">KN</span>
+      <span class="brand-text"><b>KN Store</b><i>Quality Observatory</i></span>
+    </a>
+    <button class="icon-btn" data-drawer-close aria-label="Cerrar menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="rail-label">Informes</div>
+  <nav class="rail-nav">
+    <a class="rail-link" href="../index.html"><span class="rail-num">01</span><span class="rail-name">Dashboard</span></a>
+    <a class="rail-link" href="maestro.html"><span class="rail-num">02</span><span class="rail-name">Plan Maestro</span></a>
+    <a class="rail-link" href="unitarias.html"><span class="rail-num">03</span><span class="rail-name">Unitarias</span></a>
+    <a class="rail-link active" href="cobertura.html"><span class="rail-num">04</span><span class="rail-name">Cobertura</span></a>
+    <a class="rail-link" href="e2e.html"><span class="rail-num">05</span><span class="rail-name">E2E · Cypress</span></a>
+    <a class="rail-link" href="jmeter.html"><span class="rail-num">06</span><span class="rail-name">JMeter</span></a>
+    <a class="rail-link" href="lighthouse.html"><span class="rail-num">07</span><span class="rail-name">Lighthouse</span></a>
+  </nav>
+  <div class="rail-foot">
+    <span class="rail-ver">v1.0 · MTP-2026</span>
+    <span class="chip ok">VERDE</span>
+  </div>
+</nav>
+
+<div class="frame">
+  <header class="topbar">
+    <button class="icon-btn menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <div class="topbar-crumb">
+      <span class="tc-up">KN Store · QA</span>
+      <span class="tc-page">Cobertura de Código</span>
+    </div>
+    <div class="topbar-actions">
+      <span class="topbar-live"><span class="live-dot"></span>VERDE · UMBRALES CUMPLIDOS</span>
+      <button class="cmd-trigger" id="cmd-trigger" aria-expanded="false" aria-controls="cmd">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="cmd-trigger-label">Buscar</span>
+        <kbd>Ctrl K</kbd>
+      </button>
+      <button class="theme-toggle icon-btn" aria-label="Cambiar tema"></button>
+    </div>
+  </header>
+
+  <main class="page" id="main">
+
+    <section class="hero">
+      <span class="scanline" aria-hidden="true"></span>
+      <div class="radar" aria-hidden="true">
+        <span class="radar-sweep"></span>
+        <span class="radar-blip radar-blip--a"></span>
+        <span class="radar-blip radar-blip--b"></span>
+      </div>
+      <span class="eyebrow">Informe de Calidad · Instrumentación del código</span>
+      <h1>Cobertura de Código<br>JaCoCo + Vitest</h1>
+      <p class="lead">La verificación medida hasta la clase individual. Las 1.384 pruebas del ciclo (unitarias, de integración y de interfaz) se fusionaron en una sola medición de JaCoCo sobre las 194 clases del backend, más la medición de Vitest sobre los 78 archivos propios del frontend. Todo por encima de los umbrales que bloquean regresiones.</p>
+      <div class="hero-badges">
+        <span class="badge badge-go"><span class="dot"></span>Umbrales cumplidos · 0 fallos</span>
+        <span class="badge badge-soft">22 de septiembre de 2026</span>
+        <span class="badge badge-soft">JaCoCo 0.8.14 · Vitest 3</span>
+      </div>
+      <div class="hero-meta">
+        <span>Backend <b>194 clases · unit + IT</b></span>
+        <span>Frontend <b>78 archivos propios</b></span>
+        <span>Umbrales <b>45 / 35 / 40 / 45 — cumplidos</b></span>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <div class="ticker-group">
+          <span class="ticker-item"><b>70,1%</b> líneas backend</span>
+          <span class="ticker-item"><b>41,3%</b> ramas backend</span>
+          <span class="ticker-item"><b>88,6%</b> métodos backend</span>
+          <span class="ticker-item"><b>50,97%</b> líneas frontend</span>
+          <span class="ticker-item"><b>1.384</b> pruebas en verde</span>
+          <span class="ticker-item"><b>194</b> clases medidas</span>
+          <span class="ticker-item"><b>78</b> archivos propios</span>
+          <span class="ticker-item"><b>0</b> fallos</span>
+        </div>
+        <div class="ticker-group">
+          <span class="ticker-item"><b>70,1%</b> líneas backend</span>
+          <span class="ticker-item"><b>41,3%</b> ramas backend</span>
+          <span class="ticker-item"><b>88,6%</b> métodos backend</span>
+          <span class="ticker-item"><b>50,97%</b> líneas frontend</span>
+          <span class="ticker-item"><b>1.384</b> pruebas en verde</span>
+          <span class="ticker-item"><b>194</b> clases medidas</span>
+          <span class="ticker-item"><b>78</b> archivos propios</span>
+          <span class="ticker-item"><b>0</b> fallos</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="resumen" data-nav="Resumen">
+      <div class="section-head reveal">
+        <span class="sec-num">01</span>
+        <div class="sec-kicker">Resumen ejecutivo</div>
+        <h2>La medición</h2>
+        <p>Porcentajes globales de la corrida del 22 de septiembre de 2026, con las tres baterías automatizadas fusionadas.</p>
+      </div>
+      <div class="kpi-grid">
+        <article class="kpi green reveal">
+          <span class="k-bar"></span>
+          <div class="k-label">Líneas backend</div>
+          <div class="k-value"><span data-count="70.1" data-decimals="1">70,1</span><small>%</small></div>
+          <div class="k-sub">7.357 / 10.502 líneas · JaCoCo unit + IT</div>
+        </article>
+        <article class="kpi violet reveal">
+          <span class="k-bar"></span>
+          <div class="k-label">Ramas backend</div>
+          <div class="k-value"><span data-count="41.3" data-decimals="1">41,3</span><small>%</small></div>
+          <div class="k-sub">1.643 / 3.983 decisiones · foco H-05</div>
+        </article>
+        <article class="kpi blue reveal">
+          <span class="k-bar"></span>
+          <div class="k-label">Líneas frontend</div>
+          <div class="k-value"><span data-count="50.97" data-decimals="2">50,97</span><small>%</small></div>
+          <div class="k-sub">894 / 1.754 líneas · código propio</div>
+        </article>
+        <article class="kpi amber reveal">
+          <span class="k-bar"></span>
+          <div class="k-label">Pruebas automatizadas</div>
+          <div class="k-value"><span data-count="1384">1.384</span></div>
+          <div class="k-sub">363 unit · 487 IT · 534 front — 0 fallos</div>
+        </article>
+      </div>
+
+      <div class="gauges u-mt-20">
+        <article class="gauge-card reveal" data-tone="green" data-gauge="70.1" data-decimals="1">
+          <div class="gauge-wrap">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="g-track" cx="60" cy="60" r="54" pathLength="100"/>
+              <circle class="g-val" cx="60" cy="60" r="54" pathLength="100"/>
+            </svg>
+            <div class="g-center"><div><b>70,1</b><span>% líneas</span></div></div>
+          </div>
+          <div class="s-name">Backend · líneas</div>
+          <div class="s-desc">7.357 de 10.502 líneas del backend ejecutadas al menos una vez.</div>
+        </article>
+        <article class="gauge-card reveal" data-tone="violet" data-gauge="41.3" data-decimals="1">
+          <div class="gauge-wrap">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="g-track" cx="60" cy="60" r="54" pathLength="100"/>
+              <circle class="g-val" cx="60" cy="60" r="54" pathLength="100"/>
+            </svg>
+            <div class="g-center"><div><b>41,3</b><span>% ramas</span></div></div>
+          </div>
+          <div class="s-name">Backend · ramas</div>
+          <div class="s-desc">1.643 de 3.983 bifurcaciones probadas en ambos caminos.</div>
+        </article>
+        <article class="gauge-card reveal" data-tone="blue" data-gauge="50.97" data-decimals="2">
+          <div class="gauge-wrap">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="g-track" cx="60" cy="60" r="54" pathLength="100"/>
+              <circle class="g-val" cx="60" cy="60" r="54" pathLength="100"/>
+            </svg>
+            <div class="g-center"><div><b>50,97</b><span>% líneas</span></div></div>
+          </div>
+          <div class="s-name">Frontend · líneas</div>
+          <div class="s-desc">894 de 1.754 líneas del código propio ejecutadas.</div>
+        </article>
+        <article class="gauge-card reveal" data-tone="amber" data-gauge="88.6" data-decimals="1">
+          <div class="gauge-wrap">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="g-track" cx="60" cy="60" r="54" pathLength="100"/>
+              <circle class="g-val" cx="60" cy="60" r="54" pathLength="100"/>
+            </svg>
+            <div class="g-center"><div><b>88,6</b><span>% métodos</span></div></div>
+          </div>
+          <div class="s-name">Backend · métodos</div>
+          <div class="s-desc">2.144 de 2.420 métodos invocados por alguna prueba.</div>
+        </article>
+      </div>
+
+      <div class="grid cols-2 u-mt-20">
+        <div class="card chart-card reveal">
+          <h3>Distribución de las 1.384 pruebas</h3>
+          <div class="card-sub">Unitarias JUnit · integración Testcontainers · interfaz Vitest</div>
+          <div class="chart-wrap h-280"><canvas id="chart-cob-pruebas"></canvas></div>
+        </div>
+        <div class="card reveal">
+          <h3>Umbrales del pipeline</h3>
+          <div class="card-sub">Vitest bloquea la build si el código propio cae por debajo</div>
+          <div class="meter-row">
+            <div class="meter-top"><span>Sentencias — real 50,74 %</span><b>umbral 45 · Verde</b></div>
+            <div class="meter-track"><div class="meter-fill" data-value="50.74" style="--m:var(--ok);width:50.74%"></div></div>
+          </div>
+          <div class="meter-row">
+            <div class="meter-top"><span>Ramas — real 40,21 %</span><b>umbral 35 · Verde</b></div>
+            <div class="meter-track"><div class="meter-fill" data-value="40.21" style="--m:var(--ok);width:40.21%"></div></div>
+          </div>
+          <div class="meter-row">
+            <div class="meter-top"><span>Funciones — real 47,06 %</span><b>umbral 40 · Verde</b></div>
+            <div class="meter-track"><div class="meter-fill" data-value="47.06" style="--m:var(--ok);width:47.06%"></div></div>
+          </div>
+          <div class="meter-row">
+            <div class="meter-top"><span>Líneas — real 50,97 %</span><b>umbral 45 · Verde</b></div>
+            <div class="meter-track"><div class="meter-fill" data-value="50.97" style="--m:var(--ok);width:50.97%"></div></div>
+          </div>
+          <p class="u-mt-14 u-muted" style="font-size:13px">Los umbrales viven en <b>coverage.thresholds</b> del proyecto frontend: cualquier regresión que baje un punto de estos límites detiene el pipeline.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="metodologia" data-nav="Metodología">
+      <div class="section-head reveal">
+        <span class="sec-num">02</span>
+        <div class="sec-kicker">Metodología</div>
+        <h2>Cómo se midió</h2>
+        <p>Una sola medición consolidada por plataforma, reproducible con dos comandos.</p>
+      </div>
+      <div class="grid cols-2">
+        <article class="card reveal">
+          <h3>Backend · JaCoCo consolidado</h3>
+          <p>Se ejecutó la regresión completa (<b>./mvnw verify</b>) con el agente de JaCoCo 0.8.14: primero las 363 unitarias y luego las 487 de integración sobre MongoDB en replica set con Testcontainers. Los dos archivos de ejecución se fusionaron con el CLI oficial y se analizaron las 194 clases compiladas: así, una línea solo cuenta como cubierta si alguna prueba —unitaria o de integración— la ejecutó.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Frontend · Vitest sobre código propio</h3>
+          <p>Las 534 pruebas de React/TypeScript corren con el proveedor v8 de cobertura (formato istanbul). La medición incluye únicamente el código propio (<b>landing/</b> y <b>dashboard/</b>); los módulos generados por JHipster (<b>entities/</b>, <b>modules/</b>, <b>shared/</b>) quedan fuera para que el porcentaje mida lo que el equipo escribe y testea.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Qué mide cada métrica</h3>
+          <ul class="list">
+            <li><b>Líneas:</b> código que alguna prueba ejecutó al menos una vez.</li>
+            <li><b>Ramas:</b> bifurcaciones (if/ternarios) probadas en sus dos caminos — la métrica más exigente.</li>
+            <li><b>Métodos / funciones:</b> invocados al menos una vez.</li>
+            <li><b>Sentencias:</b> instrucciones ejecutadas (base del umbral del frontend).</li>
+          </ul>
+        </article>
+        <article class="card reveal">
+          <h3>Doble comprobación</h3>
+          <p>La misma suite se ejecutó en IntelliJ con su agente de cobertura como control independiente: <b>853 total, 853 passed</b> en 41,77 s. Los conteos varían levemente respecto a Maven (contenedores dinámicos de JUnit 5), pero el veredicto coincide: cero fallos.</p>
+        </article>
+      </div>
+      <div class="terminal reveal u-mt-20">
+        <div class="terminal-head">
+          <i></i><i></i><i></i>
+          <span>reproducción · jacoco + vitest</span>
+          <button class="copy-btn" type="button">Copiar</button>
+        </div>
+        <div class="terminal-body">./mvnw -Dskip.npm=true -Dspotless.check.skip=true -Dcheckstyle.skip=true verify
+java -jar jacococli merge target/jacoco.exec target/jacoco-it.exec --destfile target/jacoco-merged.exec
+java -jar jacococli report target/jacoco-merged.exec --classfiles target/classes --sourcefiles src/main/java --csv jacoco.csv
+./npmw run vitest-run   # 534 pruebas + coverage-final.json</div>
+      </div>
+    </section>
+
+    <section class="section" id="backend" data-nav="Backend por paquete">
+      <div class="section-head reveal">
+        <span class="sec-num">03</span>
+        <div class="sec-kicker">Backend · 19 paquetes</div>
+        <h2>Cobertura por paquete</h2>
+        <p>El dominio, los DTO y los servicios de negocio concentran la cobertura alta; el terreno generado y las migraciones de seed explican el resto.</p>
+      </div>
+      <div class="card chart-card reveal">
+        <h3>Líneas y ramas por paquete</h3>
+        <div class="card-sub">Porcentaje de cobertura sobre las líneas y bifurcaciones de cada paquete</div>
+        <div class="chart-wrap h-360"><canvas id="chart-cob-paquetes"></canvas></div>
+      </div>
+      <div class="table-wrap reveal u-mt-20">
+        <table>
+          <thead><tr><th>Paquete</th><th class="num">Clases</th><th class="num">Líneas (cub / tot)</th><th>Cobertura</th><th class="num">Ramas (cub / tot)</th><th class="num">% ramas</th><th class="num">% métodos</th></tr></thead>
+          <tbody id="cov-pk-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="clases" data-nav="Detalle por clase">
+      <div class="section-head reveal">
+        <span class="sec-num">04</span>
+        <div class="sec-kicker">Backend · 194 clases</div>
+        <h2>Auditar hasta la clase individual</h2>
+        <p>Busca una clase o filtra por paquete. Los chips marcan la zona: verde ≥ 80 %, azul ≥ 50 %, amarillo ≥ 25 %, rojo por debajo.</p>
+      </div>
+      <div class="toolbar reveal">
+        <input type="text" id="cov-cl-search" placeholder="Buscar por clase o paquete…">
+        <select id="cov-cl-pk"><option value="">Todos los paquetes</option></select>
+        <span class="chip info" id="cov-cl-count">194 / 194 clases</span>
+      </div>
+      <div class="table-wrap reveal">
+        <table>
+          <thead><tr><th>Clase</th><th>Paquete</th><th class="num">Líneas (cub / tot)</th><th>Cobertura</th><th class="num">% ramas</th><th class="num">% métodos</th></tr></thead>
+          <tbody id="cov-cl-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="frontend" data-nav="Frontend por archivo">
+      <div class="section-head reveal">
+        <span class="sec-num">05</span>
+        <div class="sec-kicker">Frontend · 78 archivos propios</div>
+        <h2>Interfaz: el catálogo y el checkout mandan</h2>
+        <p>534 pruebas de Vitest en 56 archivos. Las pantallas del catálogo, la búsqueda y el checkout están sólidas; las páginas del panel del cliente quedan como foco del próximo ciclo.</p>
+      </div>
+      <div class="card chart-card reveal">
+        <h3>Cobertura de líneas por área</h3>
+        <div class="card-sub">Código propio de app/ — porcentaje de líneas ejecutadas por alguna prueba</div>
+        <div class="chart-wrap h-320"><canvas id="chart-cob-front"></canvas></div>
+      </div>
+      <div class="toolbar reveal u-mt-20">
+        <input type="text" id="cov-fe-search" placeholder="Buscar por archivo o ruta…">
+        <select id="cov-fe-area"><option value="">Todas las áreas</option></select>
+        <span class="chip info" id="cov-fe-count">78 / 78 archivos</span>
+      </div>
+      <div class="table-wrap reveal">
+        <table>
+          <thead><tr><th>Archivo</th><th>Área</th><th>Cobertura de líneas</th><th class="num">% sentencias</th><th class="num">% ramas</th><th class="num">% funciones</th></tr></thead>
+          <tbody id="cov-fe-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="focos" data-nav="Focos de mejora">
+      <div class="section-head reveal">
+        <span class="sec-num">06</span>
+        <div class="sec-kicker">Cierre</div>
+        <h2>Focos de mejora priorizados</h2>
+        <p>Dónde rinde el próximo esfuerzo de pruebas y qué material no requiere acción.</p>
+      </div>
+      <div class="grid cols-2">
+        <article class="card reveal">
+          <h3>1 · Ramas backend: 41,3 % → 60 %</h3>
+          <p>Las bifurcaciones son la deuda real. El plan H-05 apunta a casos negativos —validaciones rechazadas, ownership negado, stock insuficiente, montos incoherentes— sobre todo en <b>service/impl</b> y <b>web.rest</b>, donde las líneas ya superan el 86 %.</p>
+        </article>
+        <article class="card reveal">
+          <h3>2 · Panel del cliente sin specs</h3>
+          <p><b>ProfilePage, AddressesPage, PaymentsPage, InvoicesPage, ShipmentsPage</b> y <b>StoreHome</b> están a 0 %: su lógica se valida hoy por E2E. Un spec por página (render, estados vacíos y errores) cerraría la brecha más visible del frontend.</p>
+        </article>
+        <article class="card reveal">
+          <h3>3 · Material sin acción</h3>
+          <p>Tres zonas bajas son esperables y no se priorizan: los mappers <b>MapStruct</b> generados (38,3 %, código de máquina), las migraciones de seed del catálogo (solo corren en arranque de desarrollo) y el aspecto de logging (0 %: se activa solo con el perfil de debug).</p>
+        </article>
+        <article class="card reveal">
+          <h3>4 · Lo que está sólido</h3>
+          <p><b>service.impl 91,8 %</b>, <b>web.rest 86,1 %</b>, <b>domain 96,8 %</b> y <b>service.payment 100 %</b>: el núcleo del negocio —checkout, pagos, ownership y facturación— está cubierto por pruebas de integración con transacciones reales sobre MongoDB.</p>
+        </article>
+      </div>
+      <div class="terminal reveal u-mt-20">
+        <div class="terminal-head">
+          <i></i><i></i><i></i>
+          <span>regresión completa · un solo comando</span>
+          <button class="copy-btn" type="button">Copiar</button>
+        </div>
+        <div class="terminal-body">./mvnw -Dskip.npm=true -Dspotless.check.skip=true -Dcheckstyle.skip=true verify && ./npmw test</div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>KN-Store · Informe de Cobertura de Código — 22 de septiembre de 2026</span>
+      <span>Resultado: <b>VERDE · 70,1 % backend · 50,97 % frontend</b></span>
+      <span>Equipo de Pruebas · <a href="https://github.com/joseph12n/pruebas" target="_blank" rel="noopener">Repositorio</a></span>
+    </div>
+  </footer>
+</div>
+
+<div class="cmd" id="cmd" hidden>
+  <div class="cmd-box" role="dialog" aria-modal="true" aria-label="Buscador de informes">
+    <div class="cmd-input-row">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input class="cmd-input" id="cmd-input" type="text" placeholder="Buscar páginas o secciones…" autocomplete="off" spellcheck="false">
+    </div>
+    <ul class="cmd-list" id="cmd-list" role="listbox" aria-label="Resultados"></ul>
+    <div class="cmd-hint"><span>↑↓ navegar</span><span>↵ abrir</span><span>esc cerrar</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<button class="to-top" id="to-top" aria-label="Volver arriba">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
+
+<script src="../assets/js/data/core.js"></script>
+<script src="../assets/js/data/cobertura.js"></script>
+<script src="../assets/vendor/chart.umd.min.js"></script>
+<script src="../assets/vendor/gsap.min.js"></script>
+<script src="../assets/vendor/ScrollTrigger.min.js"></script>
+<script src="../assets/vendor/lenis.min.js"></script>
+<script src="../assets/js/core/theme.js"></script>
+<script src="../assets/js/core/utils.js"></script>
+<script src="../assets/js/core/shell.js"></script>
+<script src="../assets/js/core/views.js"></script>
+<script src="../assets/js/charts.js"></script>
+<script src="../assets/js/core/motion.js"></script>
+</body>
+</html>

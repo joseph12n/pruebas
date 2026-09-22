@@ -1,13 +1,17 @@
-/* KN Store QA — tema claro/oscuro (con preferencia del sistema) */
+/* KN·QA Observatory — tema claro/oscuro */
 (function () {
   "use strict";
 
   var KEY = "kn-theme";
 
+  function currentMeta(t) {
+    return t === "dark" ? "#06070b" : "#f1f1ea";
+  }
+
   function applyTheme(t) {
     document.documentElement.setAttribute("data-theme", t);
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", t === "dark" ? "#0a0f1e" : "#f3f5fa");
+    if (meta) meta.setAttribute("content", currentMeta(t));
     try { localStorage.setItem(KEY, t); } catch (e) {}
     document.querySelectorAll(".theme-toggle").forEach(function (btn) {
       btn.setAttribute("aria-label", t === "dark" ? "Cambiar a tema claro" : "Cambiar a tema oscuro");
@@ -32,4 +36,6 @@
     var cur = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
     applyTheme(cur);
   });
+
+  window.KN_THEME = { apply: applyTheme };
 })();

@@ -13,3 +13,6 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+
+# Artefactos de diseño Impeccable (locales)
+.impeccable/

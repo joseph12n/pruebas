@@ -19,9 +19,17 @@ window.KN_DATA["meta"] = {
 };
 window.KN_DATA["kpi"] = {
   "unit_suites": 93,
-  "unit_tests": 361,
+  "unit_tests": 363,
   "unit_new": 150,
   "unit_fail": 0,
+  "it_suites": 35,
+  "it_tests": 487,
+  "front_suites": 56,
+  "front_tests": 534,
+  "total_tests": 1384,
+  "cobertura_back_lineas": 70.1,
+  "cobertura_back_ramas": 41.3,
+  "cobertura_front_lineas": 50.97,
   "e2e_cases": 4,
   "e2e_steps": 756,
   "e2e_checkpoints": 43,

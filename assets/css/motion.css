@@ -1,0 +1,64 @@
+/* ============================================================
+   KN·QA Observatory — Movimiento
+   Estados de revelado, glow de puntero y micro-animaciones.
+   Solo se activan cuando JS + GSAP cargaron (.gsap en <html>).
+   ============================================================ */
+
+/* Estados iniciales (solo con mejoras activas) */
+.gsap .reveal { opacity: 0; }
+.gsap .reveal[data-reveal="left"] { transform: translateX(-34px); }
+.gsap .reveal[data-reveal="right"] { transform: translateX(34px); }
+.gsap .reveal[data-reveal="scale"] { transform: scale(0.94); }
+.gsap .reveal[data-reveal="up"] { transform: translateY(30px); }
+
+/* Título partido por palabras */
+.hero h1 .w { display: inline-block; overflow: hidden; vertical-align: bottom; }
+.hero h1 .wi { display: inline-block; will-change: transform; }
+.gsap .hero h1 .wi { transform: translateY(112%); }
+
+/* Glow que sigue al puntero */
+.card,
+.kpi,
+.gauge-card {
+  --mx: 50%;
+  --my: -40%;
+}
+@media (hover: hover) and (pointer: fine) {
+  .card,
+  .kpi,
+  .gauge-card {
+    background-image: radial-gradient(
+      340px circle at var(--mx) var(--my),
+      var(--accent-soft),
+      transparent 62%
+    );
+  }
+}
+
+/* Aparición escalonada de filas de tabla */
+.gsap tbody tr { will-change: opacity, transform; }
+
+/* GSAP controla el ancho de los medidores: sin transición CSS */
+.gsap .meter-fill { transition: none; }
+
+/* Punto de escaneo dentro del hero */
+.hero .scanline {
+  position: absolute;
+  left: 0; right: 0;
+  height: 120px;
+  top: -140px;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--accent) 7%, transparent), transparent);
+  animation: scan 7s linear infinite;
+  pointer-events: none;
+}
+@keyframes scan {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(720px); }
+}
+
+/* Marquesina: pausa global accesible */
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+  .radar-sweep { animation: none; }
+  .hero .scanline { display: none; }
+}

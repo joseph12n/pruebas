@@ -131,7 +131,68 @@ for p in res_lines:
 jmeter_cases = [cases[k] for k in sorted(cases, key=lambda x: int(x.split("-")[1]))]
 
 # ---------------------------------------------------------------------------
-# 3. SALIDA data.js
+# 3. COBERTURA: JaCoCo (unit+IT consolidado) + Vitest (código propio)
+# ---------------------------------------------------------------------------
+import csv
+
+cov_backend = {"clases": 0}
+paquetes_map = {}
+clases = []
+with open(os.path.join(BASE, "docs", "cobertura", "jacoco.csv"), encoding="utf-8") as fh:
+    for row in csv.DictReader(fh):
+        def g(k, r=row):
+            return int(r[k])
+        rec = {
+            "n": row["CLASS"],
+            "p": row["PACKAGE"].replace("com.mycompany.knstore", "").lstrip(".") or "(raíz)",
+            "lc": g("LINE_COVERED"), "lt": g("LINE_COVERED") + g("LINE_MISSED"),
+            "bc": g("BRANCH_COVERED"), "bt": g("BRANCH_COVERED") + g("BRANCH_MISSED"),
+            "mc": g("METHOD_COVERED"), "mt": g("METHOD_COVERED") + g("METHOD_MISSED"),
+            "ic": g("INSTRUCTION_COVERED"), "it": g("INSTRUCTION_COVERED") + g("INSTRUCTION_MISSED"),
+        }
+        clases.append(rec)
+        pk = paquetes_map.setdefault(rec["p"], {"n": rec["p"], "lc": 0, "lt": 0, "bc": 0, "bt": 0, "mc": 0, "mt": 0, "ic": 0, "it": 0, "clases": 0})
+        for k in ("lc", "lt", "bc", "bt", "mc", "mt", "ic", "it"):
+            pk[k] += rec[k]
+        pk["clases"] += 1
+        cov_backend["clases"] += 1
+
+def totales(rs):
+    t = {}
+    for k in ("lc", "lt", "bc", "bt", "mc", "mt", "ic", "it"):
+        t[k] = sum(r[k] for r in rs)
+    return t
+
+cov_backend.update(totales(clases))
+cov_backend["paquetes"] = sorted(paquetes_map.values(), key=lambda p: p["lc"] / p["lt"] if p["lt"] else 0)
+cov_backend["por_clase"] = sorted(clases, key=lambda c: (c["p"], c["n"]))
+
+with open(os.path.join(BASE, "docs", "cobertura", "vitest-resumen.json"), encoding="utf-8") as fh:
+    cov_front = json.load(fh)
+
+pruebas = {
+    "unit": 363, "unit_suites": 93,
+    "it": 487, "it_suites": 35,
+    "front": 534, "front_files": 56,
+    "total": 363 + 487 + 534,
+    "ide": 853, "ide_nota": "corrida IntelliJ del 2026-09-22 con agente de cobertura: 853 total, 853 passed (41,77 s)",
+}
+
+data_cov = {
+    "fecha": "22 de septiembre de 2026",
+    "pruebas": pruebas,
+    "backend": cov_backend,
+    "frontend": cov_front,
+    "metodo": {
+        "backend": "JaCoCo 0.8.14 — jacoco.exec (unit) + jacoco-it.exec (IT Testcontainers) fusionados con el CLI de JaCoCo sobre las 194 clases de target/classes",
+        "frontend": "Vitest 3 con provider v8 (JSON istanbul) sobre código propio de app/; excluye entities/, modules/ y shared/ generados por JHipster",
+        "umbrales": "coverage.thresholds de Vitest: 45 sentencias / 35 ramas / 40 funciones / 45 líneas — bloquean regresiones",
+    },
+}
+
+
+# ---------------------------------------------------------------------------
+# 4. SALIDA data.js
 # ---------------------------------------------------------------------------
 authors = [
     "Joseph Nicolás Varón Vargas",
@@ -263,7 +324,12 @@ data = {
         "autores": authors,
     },
     "kpi": {
-        "unit_suites": 93, "unit_tests": 361, "unit_new": 150, "unit_fail": 0,
+        "unit_suites": 93, "unit_tests": 363, "unit_new": 150, "unit_fail": 0,
+        "it_suites": 35, "it_tests": 487,
+        "front_suites": 56, "front_tests": 534,
+        "total_tests": 1384,
+        "cobertura_back_lineas": 70.1, "cobertura_back_ramas": 41.3,
+        "cobertura_front_lineas": 50.97,
         "e2e_cases": 4, "e2e_steps": 756, "e2e_checkpoints": 43, "e2e_correct": 42,
         "jmeter_cases": 91, "jmeter_samples": 6800, "jmeter_success": 99.92,
         "lighthouse_screens": 89, "lighthouse_seo": 100, "lighthouse_bp": 96,
@@ -282,12 +348,15 @@ data = {
     "lighthouse": modules,
 }
 
+data["cobertura"] = data_cov
+
 DATA_MODULES = {
     "core": ["meta", "kpi", "costs"],
     "maestro": ["modules12", "timeline", "milestones", "stack", "risks"],
     "e2e": ["e2e_cases"],
     "jmeter": ["stress_scenarios", "stress_rounds", "jmeter_cases"],
     "lighthouse": ["lighthouse"],
+    "cobertura": ["cobertura"],
 }
 
 out_dir = os.path.join(BASE, "assets", "js", "data")

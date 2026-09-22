@@ -1,6 +1,11 @@
-/* KN Store QA — vistas interactivas (tablas y heatmap) */
+/* KN·QA Observatory — vistas interactivas (tablas y heatmap) */
 (function () {
   "use strict";
+
+  function cssVar(name, fallback) {
+    var v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return v || fallback;
+  }
 
   /* ---------- Tabla filtrable de casos JMeter ---------- */
   window.buildJmeterTable = function () {
@@ -116,6 +121,132 @@
     render();
   };
 
+  /* ---------- Cobertura: paquetes backend + detalle por clase + archivos frontend ---------- */
+  function covChip(pct) {
+    if (pct >= 80) return "<span class='chip ok'>" + pct.toFixed(1) + " %</span>";
+    if (pct >= 50) return "<span class='chip info'>" + pct.toFixed(1) + " %</span>";
+    if (pct >= 25) return "<span class='chip warn'>" + pct.toFixed(1) + " %</span>";
+    return "<span class='chip danger'>" + pct.toFixed(1) + " %</span>";
+  }
+
+  window.buildCoberturaPaquetes = function () {
+    var body = document.getElementById("cov-pk-tbody");
+    if (!body) return;
+    var pks = window.KN_DATA.cobertura.backend.paquetes.slice().reverse();
+    body.innerHTML = pks.map(function (p) {
+      var lp = p.lt ? (p.lc / p.lt * 100) : 0;
+      var bp = p.bt ? (p.bc / p.bt * 100) : 0;
+      return "<tr>" +
+        "<td><b>" + (p.n === "(raíz)" ? "com.mycompany.knstore <span class='u-muted'>(raíz)</span>" : "com.mycompany.knstore." + esc(p.n)) + "</b></td>" +
+        "<td class='num'>" + p.clases + "</td>" +
+        "<td class='num'>" + fmtInt(p.lc) + " / " + fmtInt(p.lt) + "</td>" +
+        "<td>" + covChip(lp) + "</td>" +
+        "<td class='num'>" + (p.bt ? fmtInt(p.bc) + " / " + fmtInt(p.bt) : "—") + "</td>" +
+        "<td class='num'>" + (p.bt ? bp.toFixed(1) + " %" : "—") + "</td>" +
+        "<td class='num'>" + (p.mt ? (p.mc / p.mt * 100).toFixed(1) + " %" : "—") + "</td>" +
+        "</tr>";
+    }).join("");
+  };
+
+  window.buildCoberturaClases = function () {
+    var body = document.getElementById("cov-cl-tbody");
+    var search = document.getElementById("cov-cl-search");
+    var fPk = document.getElementById("cov-cl-pk");
+    var count = document.getElementById("cov-cl-count");
+    if (!body) return;
+
+    var rows0 = window.KN_DATA.cobertura.backend.por_clase;
+    var pks = {};
+    rows0.forEach(function (c) { pks[c.p] = true; });
+    Object.keys(pks).sort().forEach(function (t) {
+      var o = document.createElement("option");
+      o.value = t; o.textContent = t;
+      fPk.appendChild(o);
+    });
+
+    function render() {
+      var q = (search.value || "").toLowerCase().trim();
+      var fp = fPk.value;
+      var rows = rows0.filter(function (c) {
+        if (fp && c.p !== fp) return false;
+        if (q && !(c.n + " " + c.p).toLowerCase().includes(q)) return false;
+        return true;
+      });
+      count.textContent = rows.length + " / " + rows0.length + " clases";
+      if (!rows.length) {
+        body.innerHTML = "<tr><td colspan='6' class='u-muted' style='text-align:center;padding:24px'>Sin resultados" +
+          (q ? " para «" + esc(search.value.trim()) + "»" : "") +
+          " · <button type='button' class='copy-btn' data-clear>Limpiar filtros</button></td></tr>";
+        var btn = body.querySelector("[data-clear]");
+        if (btn) btn.addEventListener("click", function () { search.value = ""; fPk.value = ""; render(); });
+        return;
+      }
+      body.innerHTML = rows.map(function (c) {
+        var lp = c.lt ? (c.lc / c.lt * 100) : 0;
+        var bp = c.bt ? (c.bc / c.bt * 100) : 0;
+        return "<tr>" +
+          "<td><b>" + esc(c.n) + "</b></td>" +
+          "<td class='u-muted'>" + esc(c.p) + "</td>" +
+          "<td class='num'>" + fmtInt(c.lc) + " / " + fmtInt(c.lt) + "</td>" +
+          "<td>" + covChip(lp) + "</td>" +
+          "<td class='num'>" + (c.bt ? bp.toFixed(1) + " %" : "—") + "</td>" +
+          "<td class='num'>" + (c.mt ? (c.mc / c.mt * 100).toFixed(1) + " %" : "—") + "</td>" +
+          "</tr>";
+      }).join("");
+    }
+    [search, fPk].forEach(function (el) { el.addEventListener("input", render); });
+    render();
+  };
+
+  window.buildCoberturaFront = function () {
+    var body = document.getElementById("cov-fe-tbody");
+    var search = document.getElementById("cov-fe-search");
+    var fArea = document.getElementById("cov-fe-area");
+    var count = document.getElementById("cov-fe-count");
+    if (!body) return;
+
+    var rows0 = window.KN_DATA.cobertura.frontend.archivos;
+    window.KN_DATA.cobertura.frontend.areas.forEach(function (a) {
+      var o = document.createElement("option");
+      o.value = a.n; o.textContent = a.n + " (" + a.arch + ")";
+      fArea.appendChild(o);
+    });
+
+    function render() {
+      var q = (search.value || "").toLowerCase().trim();
+      var fa = fArea.value;
+      var rows = rows0.filter(function (f) {
+        if (fa && f.a !== fa) return false;
+        if (q && !(f.ruta + " " + f.a).toLowerCase().includes(q)) return false;
+        return true;
+      });
+      count.textContent = rows.length + " / " + rows0.length + " archivos";
+      if (!rows.length) {
+        body.innerHTML = "<tr><td colspan='6' class='u-muted' style='text-align:center;padding:24px'>Sin resultados" +
+          (q ? " para «" + esc(search.value.trim()) + "»" : "") +
+          " · <button type='button' class='copy-btn' data-clear>Limpiar filtros</button></td></tr>";
+        var btn = body.querySelector("[data-clear]");
+        if (btn) btn.addEventListener("click", function () { search.value = ""; fArea.value = ""; render(); });
+        return;
+      }
+      body.innerHTML = rows.map(function (f) {
+        var lp = f.ln ? (f.lnc / f.ln * 100) : 0;
+        var sp = f.st ? (f.stc / f.st * 100) : 0;
+        var bp = f.bt ? (f.b / f.bt * 100) : 0;
+        return "<tr>" +
+          "<td><b>" + esc(f.n) + "</b></td>" +
+          "<td class='u-muted'>" + esc(f.a) + "</td>" +
+          "<td>" + covChip(lp) + "</td>" +
+          "<td class='num'>" + sp.toFixed(1) + " %</td>" +
+          "<td class='num'>" + (f.bt ? bp.toFixed(1) + " %" : "—") + "</td>" +
+          "<td class='num'>" + (f.fn ? (f.fnc / f.fn * 100).toFixed(1) + " %" : "—") + "</td>" +
+          "</tr>";
+      }).join("");
+    }
+    [search, fArea].forEach(function (el) { el.addEventListener("input", render); });
+    render();
+  };
+
   /* ---------- Heatmap Lighthouse ---------- */
   window.buildLighthouseHeatmap = function () {
     var wrap = document.getElementById("lh-heat");
@@ -126,11 +257,16 @@
       if (m.agentic != null) vals.push(m.agentic);
       return vals.reduce(function (a, b) { return a + b; }, 0) / vals.length;
     }
+    var tones = {
+      ok: cssVar("--ok", "#10b981"),
+      warn: cssVar("--warn", "#f59e0b"),
+      danger: cssVar("--danger", "#f43f5e")
+    };
     function color(s) {
-      if (s >= 90) return "#10b981";
-      if (s >= 75) return "#f59e0b";
+      if (s >= 90) return tones.ok;
+      if (s >= 75) return tones.warn;
       if (s >= 50) return "#f97316";
-      return "#f43f5e";
+      return tones.danger;
     }
     wrap.innerHTML = mods.map(function (m) {
       var s = score(m);

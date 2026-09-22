@@ -4,225 +4,411 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KN Store Web · QA — Pruebas Unitarias (JUnit 5)</title>
-<meta name="description" content="Informe de Pruebas Unitarias JUnit 5 + Mockito — 93 suites, 361 pruebas (150 nuevas), 100 % de la capa de servicios cubierta.">
-<meta name="theme-color" content="#0a0f1e">
+<meta name="description" content="Informe de Pruebas Unitarias JUnit 5 + Mockito — 93 suites, 363 pruebas (152 nuevas), 100 % de la capa de servicios cubierta.">
+<meta name="theme-color" content="#06070b">
 <meta property="og:type" content="website">
 <meta property="og:title" content="KN Store Web · QA — Pruebas Unitarias (JUnit 5)">
-<meta property="og:description" content="Informe de Pruebas Unitarias JUnit 5 + Mockito — 93 suites, 361 pruebas (150 nuevas), 100 % de la capa de servicios cubierta.">
+<meta property="og:description" content="Informe de Pruebas Unitarias JUnit 5 + Mockito — 93 suites, 363 pruebas (152 nuevas), 100 % de la capa de servicios cubierta.">
 <meta property="og:url" content="https://joseph12n.github.io/pruebas/pages/unitarias.html">
-<script>(function(){var t=null;try{t=localStorage.getItem("kn-theme")}catch(e){};if(!t){try{t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}catch(e){t="dark"}}document.documentElement.setAttribute("data-theme",t);})();</script>
+<script>(function(){document.documentElement.classList.add("js");var t=null;try{t=localStorage.getItem("kn-theme")}catch(e){};if(!t){try{t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}catch(e){t="dark"}}document.documentElement.setAttribute("data-theme",t);})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <link rel="stylesheet" href="../assets/css/base.css">
 <link rel="stylesheet" href="../assets/css/layout.css">
 <link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/motion.css">
 <link rel="stylesheet" href="../assets/css/print.css">
 </head>
-<body data-page="unitarias">
+<body data-page="unitarias" data-root="..">
 
-<header class="site-header">
-  <div class="header-inner">
-    <a class="brand" href="../index.html">
-      <span class="brand-logo">KN</span>
-      <span>
-        <span class="brand-name">KN Store · QA</span><br>
-        <span class="brand-sub">ISO 29119 / IEEE 829</span>
-      </span>
+<div class="bg" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-orb bg-orb--a"></div>
+  <div class="bg-orb bg-orb--b"></div>
+  <div class="bg-noise"></div>
+</div>
+
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot-box">
+    <div class="boot-brand">KN<span>/QA</span></div>
+    <div class="boot-track"><span></span></div>
+    <div class="boot-status">Inicializando observatorio…</div>
+  </div>
+</div>
+
+<div class="scroll-progress" aria-hidden="true"><span id="scroll-progress"></span></div>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<aside class="rail" aria-label="Navegación principal">
+  <a class="rail-brand" href="../index.html">
+    <span class="brand-mark">KN</span>
+    <span class="brand-text"><b>KN Store</b><i>Quality Observatory</i></span>
+  </a>
+  <div class="rail-label">Informes</div>
+  <nav class="rail-nav">
+    <a class="rail-link" href="../index.html">
+      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg>
+      <span class="rail-name">Dashboard</span>
     </a>
-    <nav class="nav">
-      <a href="../index.html">Dashboard</a>
-      <a href="maestro.html">Plan Maestro</a>
-      <a href="unitarias.html" class="active">Unitarias</a>
-      <a href="e2e.html">E2E · Cypress</a>
-      <a href="jmeter.html">JMeter</a>
-      <a href="lighthouse.html">Lighthouse</a>
-    </nav>
-    <button class="theme-toggle" aria-label="Cambiar tema"></button>
+    <a class="rail-link" href="maestro.html">
+      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5"/></svg>
+      <span class="rail-name">Plan Maestro</span>
+    </a>
+    <a class="rail-link active" href="unitarias.html" aria-current="page">
+      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg>
+      <span class="rail-name">Unitarias</span>
+    </a>
+    <a class="rail-link" href="cobertura.html">
+      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9H12V3z"/><path d="M14.2 3.6A8 8 0 0 1 20.4 9.8h-6.2V3.6z"/></svg>
+      <span class="rail-name">Cobertura</span>
+    </a>
+    <a class="rail-link" href="e2e.html">
+      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8.2 17.4 15.8 6.6"/></svg>
+      <span class="rail-name">E2E · Cypress</span>
+    </a>
+    <a class="rail-link" href="jmeter.html">
+      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+      <span class="rail-name">JMeter</span>
+    </a>
+    <a class="rail-link" href="lighthouse.html">
+      <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11l-1 8.5L18.5 10.5H12l1-8.5z"/></svg>
+      <span class="rail-name">Lighthouse</span>
+    </a>
+  </nav>
+  <div class="rail-sections" id="rail-sections"></div>
+  <div class="rail-foot">
+    <span class="rail-ver">v1.0 · MTP-2026</span>
+    <span class="chip ok">VERDE</span>
   </div>
-</header>
+</aside>
 
-<main class="container">
-
-  <section class="hero">
-    <span class="eyebrow">Informe de Calidad · Documento de entrega</span>
-    <h1>Informe de Pruebas Unitarias<br>Backend · Capa de servicios</h1>
-    <p class="lead">Se ejecutó la suite completa de pruebas unitarias del backend de KN-Store con JUnit 5 y Mockito, cubriendo el 100 % de la capa de servicios de negocio. Antes de esta sesión, 14 clases de servicio no contaban con pruebas unitarias; se escribieron 14 suites nuevas sin modificar ningún archivo de producción.</p>
-    <div style="margin:18px 0 8px">
-      <span class="badge badge-go"><span class="dot"></span>RESULTADO: VERDE</span>
-      <span class="badge badge-soft" style="margin-left:8px">29 de agosto de 2026</span>
-      <span class="badge badge-soft" style="margin-left:8px">JUnit 5 · Mockito 5 · AssertJ</span>
-    </div>
-    <div class="hero-meta">
-      <span>Alcance: <b>service/impl, service, service/util</b></span>
-      <span>Mappers: <b>MapStruct reales</b></span>
-      <span>Backlog: <b>ItemCarritoResourceIT (preexistente)</b></span>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-head">
-      <div class="eyebrow">Resumen ejecutivo</div>
-      <h2>Los números</h2>
-    </div>
-    <div class="kpi-grid">
-      <div class="kpi green"><span class="k-bar"></span><div class="k-label">Suites ejecutadas</div><div class="k-value">93</div><div class="k-sub">14 nuevas · 79 preexistentes</div></div>
-      <div class="kpi blue"><span class="k-bar"></span><div class="k-label">Pruebas totales</div><div class="k-value">361</div><div class="k-sub">100 % de la capa de servicios</div></div>
-      <div class="kpi amber"><span class="k-bar" style="background:linear-gradient(180deg,#f59e0b,#38bdf8)"></span><div class="k-label">Pruebas nuevas</div><div class="k-value">150</div><div class="k-sub">14 suites escritas en esta sesión</div></div>
-      <div class="kpi rose"><span class="k-bar" style="background:linear-gradient(180deg,#f43f5e,#f59e0b)"></span><div class="k-label">Fallos / Errores / Omitidas</div><div class="k-value">0 <small>/ 0 / 0</small></div><div class="k-sub">Cero fallos, cero errores</div></div>
-    </div>
-    <div class="grid cols-2">
-      <div class="card chart-card">
-        <h3>Distribución de la suite</h3>
-        <div class="card-sub">211 preexistentes + 150 nuevas</div>
-        <div class="chart-wrap h-320"><canvas id="chart-unit-nuevas"></canvas></div>
-      </div>
-      <div class="card chart-card">
-        <h3>Pruebas nuevas por agente</h3>
-        <div class="card-sub">Cliente 48 · Catálogo 50 · Producto y pedidos 30 · Usuarios 22</div>
-        <div class="chart-wrap h-320"><canvas id="chart-unit-agentes"></canvas></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-head">
-      <div class="eyebrow">Estrategia</div>
-      <h2>Cómo se diseñaron las pruebas</h2>
-    </div>
-    <div class="grid cols-2">
-      <div class="card">
-        <h3>Unitarias puras</h3>
-        <p style="font-size:13.5px;color:var(--muted)">Sin Spring y sin base de datos: cada servicio se instancia por constructor con repositorios <b>@Mock</b> (Mockito) y mappers MapStruct reales, siguiendo el estilo de PedidoServiceImplTest.</p>
-      </div>
-      <div class="card">
-        <h3>Seguridad simulada</h3>
-        <p style="font-size:13.5px;color:var(--muted)">Para los métodos que filtran por rol CLIENTE se usó <b>Mockito.mockStatic(SecurityUtils.class)</b> en try-with-resources; en UserService se inyectó UsernamePasswordAuthenticationToken en SecurityContextHolder (limpiado en @AfterEach).</p>
-      </div>
-      <div class="card">
-        <h3>Mockito estricto</h3>
-        <p style="font-size:13.5px;color:var(--muted)">Sin stubs innecesarios (fallarían con UnnecessaryStubbingException); ArgumentCaptor para verificar la entidad persistida; thenAnswer para propagar save.</p>
-      </div>
-      <div class="card">
-        <h3>Casos de negocio, no solo CRUD</h3>
-        <p style="font-size:13.5px;color:var(--muted)">Ownership (un CLIENTE solo ve sus propios carritos, cuentas, direcciones e ítems), dirección predeterminada atómica, vaciar carrito, duplicados de registro (incluida DuplicateKeyException), partialUpdate con NullValuePropertyMappingStrategy.IGNORE y el quirk de MongoIdUtils.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-head">
-      <div class="eyebrow">3 · Suites nuevas</div>
-      <h2>14 archivos · 150 pruebas</h2>
-      <p>Escenarios clave por agente de trabajo.</p>
-    </div>
-    <div class="grid cols-2">
-      <div class="card">
-        <h3>3.1 Módulo cliente — Agente 1 (48 pruebas)</h3>
-        <div class="table-wrap"><table style="margin-top:10px;font-size:12.5px">
-          <tbody>
-            <tr><td><b>CarritoServiceImplTest</b> · 12</td><td style="color:var(--muted)">Ownership por cuenta en findAll/findOne; vaciar reinicia subtotal y fecha; vaciar sin carrito no guarda</td></tr>
-            <tr><td><b>CuentaServiceImplTest</b> · 12</td><td style="color:var(--muted)">Preserva user/tipoDocumento en update; CLIENTE solo ve su cuenta paginada; consultas eager para admin</td></tr>
-            <tr><td><b>DireccionServiceImplTest</b> · 16</td><td style="color:var(--muted)">Predeterminada atómica (cliente y admin); 3 excepciones de ownership/existencia; asignación de cuenta</td></tr>
-            <tr><td><b>MongoIdUtilsTest</b> · 8</td><td style="color:var(--muted)">Hex válido/inválido/vacío/null; colecciones con elementos inválidos</td></tr>
-          </tbody>
-        </table></div>
-      </div>
-      <div class="card">
-        <h3>3.2 Catálogo — Agente 2 (50 pruebas)</h3>
-        <div class="table-wrap"><table style="margin-top:10px;font-size:12.5px">
-          <tbody>
-            <tr><td><b>CategoriaServiceImplTest</b> · 8</td><td style="color:var(--muted)">CRUD completo + partialUpdate sin guardado cuando no existe</td></tr>
-            <tr><td><b>CategoriaIVAServiceImplTest</b> · 8</td><td style="color:var(--muted)">CRUD completo (findAll en lista)</td></tr>
-            <tr><td><b>SubcategoriaServiceImplTest</b> · 9</td><td style="color:var(--muted)">Consultas eager (categoriaNombre anidado)</td></tr>
-            <tr><td><b>MarcaServiceImplTest</b> · 8</td><td style="color:var(--muted)">CRUD completo</td></tr>
-            <tr><td><b>TipoDocumentoServiceImplTest</b> · 8</td><td style="color:var(--muted)">CRUD completo</td></tr>
-            <tr><td><b>EtiquetaProductoServiceImplTest</b> · 9</td><td style="color:var(--muted)">Consultas eager (productoNombre anidado)</td></tr>
-          </tbody>
-        </table></div>
-      </div>
-      <div class="card">
-        <h3>3.3 Producto y pedidos — Agente 3 (30 pruebas)</h3>
-        <div class="table-wrap"><table style="margin-top:10px;font-size:12.5px">
-          <tbody>
-            <tr><td><b>ProductoImagenServiceImplTest</b> · 8</td><td style="color:var(--muted)">CRUD + gallery por producto</td></tr>
-            <tr><td><b>ProductoInventarioServiceImplTest</b> · 9</td><td style="color:var(--muted)">CRUD + findAllWhereProductoIsNull (filtra inventarios huérfanos por @DBRef nulo)</td></tr>
-            <tr><td><b>ItemPedidoServiceImplTest</b> · 13</td><td style="color:var(--muted)">Ownership: CLIENTE solo ve ítems de SUS pedidos (JwtAuthenticationToken); eager para admin</td></tr>
-          </tbody>
-        </table></div>
-      </div>
-      <div class="card">
-        <h3>3.4 Usuarios — Agente 4 (22 pruebas)</h3>
-        <div class="table-wrap"><table style="margin-top:10px;font-size:12.5px">
-          <tbody>
-            <tr><td><b>UserServiceTest</b> · 22</td><td style="color:var(--muted)">Registro (roles, password codificada, usuario desactivado), duplicados activados/inactivados, DuplicateKeyException (login vs email), activación, reset de contraseña (expiración 1 día), cambio de contraseña (contraseña actual incorrecta → InvalidPasswordException), removeNotActivatedUsers, authorities</td></tr>
-          </tbody>
-        </table></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-head">
-      <div class="eyebrow">4 · Suites preexistentes</div>
-      <h2>79 suites verificadas (sin cambios)</h2>
-      <p>Continúan en verde, entre ellas las del núcleo de cobros y facturación.</p>
-    </div>
-    <div class="card">
-      <div class="grid cols-2" style="font-size:13px;color:var(--muted)">
-        <ul class="list">
-          <li>SecuenciaServiceImplTest (5) · PedidoServiceImplTest (7) · PagoServiceImplTest (14) · FacturaServiceImplTest (3)</li>
-          <li>EnvioServiceImplTest (7) · ItemCarritoServiceImplTest (4) · HistorialEstadoServiceImplTest (2) · ProductoServiceImplTest (4)</li>
-        </ul>
-        <ul class="list">
-          <li>ProductoPrecioServiceImplTest (3) · ResourceAccessServiceTest (23) · SecurityUtilsUnitTest (9) · SimulatedPaymentGatewayTest (5)</li>
-          <li>FacturaPdfServiceTest (3) · MoneyUtilsTest (4) · mappers (21×1 + UserMapper 10) · DTOs (21×1) · dominios (52) · config/Cucumber (18) · SecurityMetersServiceTests (2)</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-head">
-      <div class="eyebrow">5 · Conclusiones y recomendaciones</div>
-      <h2>Cierre</h2>
-    </div>
-    <div class="grid cols-2">
-      <div class="card">
-        <h3>1 · Cobertura</h3>
-        <p style="font-size:13.5px;color:var(--muted)">La capa de servicio (service/impl + service) queda <b>100 % cubierta</b> con pruebas unitarias; no quedan clases de negocio sin suite.</p>
-      </div>
-      <div class="card">
-        <h3>2 · Calidad</h3>
-        <p style="font-size:13.5px;color:var(--muted)">Mockito estricto evita stubs muertos; los tests verifican interacciones relevantes (verificaciones de guardado con captor, no solo el valor retornado).</p>
-      </div>
-      <div class="card">
-        <h3>3 · Backlog conocido (preexistente)</h3>
-        <p style="font-size:13.5px;color:var(--muted)">ItemCarritoResourceIT (4 tests de integración) sigue fallando por el blindaje de precios server-side; requiere reescritura con productos reales.</p>
-      </div>
-      <div class="card">
-        <h3>4 · Siguiente paso sugerido</h3>
-        <p style="font-size:13.5px;color:var(--muted)">Activar JaCoCo en CI para medir % de cobertura de líneas y priorizar CheckoutService (hoy solo tiene IT).</p>
-      </div>
-    </div>
-    <div class="alert-note" style="margin-top:14px"><b>Comando de ejecución:</b> <code>./mvnw -q -Dskip.npm=true -Dspotless.check.skip=true -Dcheckstyle.skip=true -Djacoco.skip=true test</code> — informe generado a partir del reporte de Maven Surefire (93 suites · 361 pruebas).</div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <div class="container">
-    <span>KN-Store · Informe de Pruebas Unitarias — 29 de agosto de 2026</span>
-    <span>Resultado: <b style="color:#10b981">VERDE · 361/361</b></span>
-    <span>Equipo de Pruebas · <a href="https://github.com/joseph12n/pruebas" target="_blank" rel="noopener">Repositorio</a></span>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<nav class="drawer" id="drawer" aria-label="Menú móvil">
+  <div class="drawer-head">
+    <a class="rail-brand" href="../index.html" style="border:0;padding:0">
+      <span class="brand-mark">KN</span>
+      <span class="brand-text"><b>KN Store</b><i>Quality Observatory</i></span>
+    </a>
+    <button class="icon-btn" data-drawer-close aria-label="Cerrar menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
   </div>
-</footer>
+  <div class="rail-label">Informes</div>
+  <nav class="rail-nav">
+    <a class="rail-link" href="../index.html"><span class="rail-num">01</span><span class="rail-name">Dashboard</span></a>
+    <a class="rail-link" href="maestro.html"><span class="rail-num">02</span><span class="rail-name">Plan Maestro</span></a>
+    <a class="rail-link active" href="unitarias.html"><span class="rail-num">03</span><span class="rail-name">Unitarias</span></a>
+    <a class="rail-link" href="cobertura.html"><span class="rail-num">04</span><span class="rail-name">Cobertura</span></a>
+    <a class="rail-link" href="e2e.html"><span class="rail-num">05</span><span class="rail-name">E2E · Cypress</span></a>
+    <a class="rail-link" href="jmeter.html"><span class="rail-num">06</span><span class="rail-name">JMeter</span></a>
+    <a class="rail-link" href="lighthouse.html"><span class="rail-num">07</span><span class="rail-name">Lighthouse</span></a>
+  </nav>
+  <div class="rail-foot">
+    <span class="rail-ver">v1.0 · MTP-2026</span>
+    <span class="chip ok">VERDE</span>
+  </div>
+</nav>
+
+<div class="frame">
+  <header class="topbar">
+    <button class="icon-btn menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <div class="topbar-crumb">
+      <span class="tc-up">KN Store · QA</span>
+      <span class="tc-page">Pruebas Unitarias</span>
+    </div>
+    <div class="topbar-actions">
+      <span class="topbar-live"><span class="live-dot"></span>363 / 363 VERDE</span>
+      <button class="cmd-trigger" id="cmd-trigger" aria-expanded="false" aria-controls="cmd">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="cmd-trigger-label">Buscar</span>
+        <kbd>Ctrl K</kbd>
+      </button>
+      <button class="theme-toggle icon-btn" aria-label="Cambiar tema"></button>
+    </div>
+  </header>
+
+  <main class="page" id="main">
+
+    <section class="hero">
+      <span class="scanline" aria-hidden="true"></span>
+      <div class="radar" aria-hidden="true">
+        <span class="radar-sweep"></span>
+        <span class="radar-blip radar-blip--a"></span>
+        <span class="radar-blip radar-blip--b"></span>
+      </div>
+      <span class="eyebrow">Informe de Calidad · Documento de entrega</span>
+      <h1>Informe de Pruebas Unitarias<br>Backend · Capa de servicios</h1>
+      <p class="lead">Se ejecutó la suite completa de pruebas unitarias del backend de KN-Store con JUnit 5 y Mockito, cubriendo el 100 % de la capa de servicios de negocio. Antes de esta sesión, 14 clases de servicio no contaban con pruebas unitarias; se escribieron 14 suites nuevas sin modificar ningún archivo de producción.</p>
+      <div class="hero-badges">
+        <span class="badge badge-go"><span class="dot"></span>Resultado: Verde</span>
+        <span class="badge badge-soft">29 de agosto de 2026</span>
+        <span class="badge badge-soft">JUnit 5 · Mockito 5 · AssertJ</span>
+      </div>
+      <div class="hero-meta">
+        <span>Alcance <b>service/impl, service, service/util</b></span>
+        <span>Mappers <b>MapStruct reales</b></span>
+        <span>Regresión <b>22-sep · +2 pruebas RF-072</b></span>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <div class="ticker-group">
+          <span class="ticker-item"><b>93</b> suites ejecutadas</span>
+          <span class="ticker-item"><b>363</b> pruebas totales</span>
+          <span class="ticker-item"><b>150</b> pruebas nuevas</span>
+          <span class="ticker-item"><b>0</b> fallos</span>
+          <span class="ticker-item"><b>0</b> errores</span>
+          <span class="ticker-item"><b>0</b> omitidas</span>
+          <span class="ticker-item"><b>100%</b> capa de servicios</span>
+          <span class="ticker-item"><b>14</b> suites nuevas</span>
+          <span class="ticker-item"><b>4</b> agentes de trabajo</span>
+        </div>
+        <div class="ticker-group">
+          <span class="ticker-item"><b>93</b> suites ejecutadas</span>
+          <span class="ticker-item"><b>363</b> pruebas totales</span>
+          <span class="ticker-item"><b>150</b> pruebas nuevas</span>
+          <span class="ticker-item"><b>0</b> fallos</span>
+          <span class="ticker-item"><b>0</b> errores</span>
+          <span class="ticker-item"><b>0</b> omitidas</span>
+          <span class="ticker-item"><b>100%</b> capa de servicios</span>
+          <span class="ticker-item"><b>14</b> suites nuevas</span>
+          <span class="ticker-item"><b>4</b> agentes de trabajo</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="resumen" data-nav="Resumen">
+      <div class="section-head reveal">
+        <span class="sec-num">01</span>
+        <div class="sec-kicker">Resumen ejecutivo</div>
+        <h2>Los números</h2>
+      </div>
+      <div class="kpi-grid">
+        <article class="kpi green reveal">
+          <span class="k-bar"></span>
+          <div class="k-label">Suites ejecutadas</div>
+          <div class="k-value"><span data-count="93">93</span></div>
+          <div class="k-sub">14 nuevas · 79 preexistentes</div>
+        </article>
+        <article class="kpi blue reveal">
+          <span class="k-bar"></span>
+          <div class="k-label">Pruebas totales</div>
+          <div class="k-value"><span data-count="363">363</span></div>
+          <div class="k-sub">100 % de la capa de servicios</div>
+        </article>
+        <article class="kpi amber reveal">
+          <span class="k-bar"></span>
+          <div class="k-label">Pruebas nuevas</div>
+          <div class="k-value"><span data-count="150">150</span></div>
+          <div class="k-sub">14 suites escritas en esta sesión</div>
+        </article>
+        <article class="kpi rose reveal">
+          <span class="k-bar"></span>
+          <div class="k-label">Fallos / Errores / Omitidas</div>
+          <div class="k-value"><span data-count="0">0</span><small>/ 0 / 0</small></div>
+          <div class="k-sub">Cero fallos, cero errores</div>
+        </article>
+      </div>
+      <div class="grid cols-2">
+        <div class="card chart-card reveal">
+          <h3>Distribución de la suite</h3>
+          <div class="card-sub">211 preexistentes + 150 nuevas + 2 de regresión (RF-072)</div>
+          <div class="chart-wrap h-320"><canvas id="chart-unit-nuevas"></canvas></div>
+        </div>
+        <div class="card chart-card reveal">
+          <h3>Pruebas nuevas por agente</h3>
+          <div class="card-sub">Cliente 48 · Catálogo 50 · Producto y pedidos 30 · Usuarios 22</div>
+          <div class="chart-wrap h-320"><canvas id="chart-unit-agentes"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="estrategia" data-nav="Estrategia">
+      <div class="section-head reveal">
+        <span class="sec-num">02</span>
+        <div class="sec-kicker">Estrategia</div>
+        <h2>Cómo se diseñaron las pruebas</h2>
+      </div>
+      <div class="grid cols-2">
+        <article class="card reveal">
+          <h3>Unitarias puras</h3>
+          <p>Sin Spring y sin base de datos: cada servicio se instancia por constructor con repositorios <b>@Mock</b> (Mockito) y mappers MapStruct reales, siguiendo el estilo de PedidoServiceImplTest.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Seguridad simulada</h3>
+          <p>Para los métodos que filtran por rol CLIENTE se usó <b>Mockito.mockStatic(SecurityUtils.class)</b> en try-with-resources; en UserService se inyectó UsernamePasswordAuthenticationToken en SecurityContextHolder (limpiado en @AfterEach).</p>
+        </article>
+        <article class="card reveal">
+          <h3>Mockito estricto</h3>
+          <p>Sin stubs innecesarios (fallarían con UnnecessaryStubbingException); ArgumentCaptor para verificar la entidad persistida; thenAnswer para propagar save.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Casos de negocio, no solo CRUD</h3>
+          <p>Ownership (un CLIENTE solo ve sus propios carritos, cuentas, direcciones e ítems), dirección predeterminada atómica, vaciar carrito, duplicados de registro (incluida DuplicateKeyException), partialUpdate con NullValuePropertyMappingStrategy.IGNORE y el quirk de MongoIdUtils.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="suites" data-nav="Suites nuevas">
+      <div class="section-head reveal">
+        <span class="sec-num">03</span>
+        <div class="sec-kicker">Suites nuevas</div>
+        <h2>14 archivos · 150 pruebas</h2>
+        <p>Escenarios clave por agente de trabajo.</p>
+      </div>
+      <div class="grid cols-2">
+        <article class="card reveal">
+          <h3>3.1 Módulo cliente — Agente 1 (48 pruebas)</h3>
+          <div class="table-wrap u-mt-14">
+            <table style="min-width:0;font-size:12.5px">
+              <tbody>
+                <tr><td><b>CarritoServiceImplTest</b> · 12</td><td class="u-muted">Ownership por cuenta en findAll/findOne; vaciar reinicia subtotal y fecha; vaciar sin carrito no guarda</td></tr>
+                <tr><td><b>CuentaServiceImplTest</b> · 12</td><td class="u-muted">Preserva user/tipoDocumento en update; CLIENTE solo ve su cuenta paginada; consultas eager para admin</td></tr>
+                <tr><td><b>DireccionServiceImplTest</b> · 16</td><td class="u-muted">Predeterminada atómica (cliente y admin); 3 excepciones de ownership/existencia; asignación de cuenta</td></tr>
+                <tr><td><b>MongoIdUtilsTest</b> · 8</td><td class="u-muted">Hex válido/inválido/vacío/null; colecciones con elementos inválidos</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+        <article class="card reveal">
+          <h3>3.2 Catálogo — Agente 2 (50 pruebas)</h3>
+          <div class="table-wrap u-mt-14">
+            <table style="min-width:0;font-size:12.5px">
+              <tbody>
+                <tr><td><b>CategoriaServiceImplTest</b> · 8</td><td class="u-muted">CRUD completo + partialUpdate sin guardado cuando no existe</td></tr>
+                <tr><td><b>CategoriaIVAServiceImplTest</b> · 8</td><td class="u-muted">CRUD completo (findAll en lista)</td></tr>
+                <tr><td><b>SubcategoriaServiceImplTest</b> · 9</td><td class="u-muted">Consultas eager (categoriaNombre anidado)</td></tr>
+                <tr><td><b>MarcaServiceImplTest</b> · 8</td><td class="u-muted">CRUD completo</td></tr>
+                <tr><td><b>TipoDocumentoServiceImplTest</b> · 8</td><td class="u-muted">CRUD completo</td></tr>
+                <tr><td><b>EtiquetaProductoServiceImplTest</b> · 9</td><td class="u-muted">Consultas eager (productoNombre anidado)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+        <article class="card reveal">
+          <h3>3.3 Producto y pedidos — Agente 3 (30 pruebas)</h3>
+          <div class="table-wrap u-mt-14">
+            <table style="min-width:0;font-size:12.5px">
+              <tbody>
+                <tr><td><b>ProductoImagenServiceImplTest</b> · 8</td><td class="u-muted">CRUD + gallery por producto</td></tr>
+                <tr><td><b>ProductoInventarioServiceImplTest</b> · 9</td><td class="u-muted">CRUD + findAllWhereProductoIsNull (filtra inventarios huérfanos por @DBRef nulo)</td></tr>
+                <tr><td><b>ItemPedidoServiceImplTest</b> · 13</td><td class="u-muted">Ownership: CLIENTE solo ve ítems de SUS pedidos (JwtAuthenticationToken); eager para admin</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+        <article class="card reveal">
+          <h3>3.4 Usuarios — Agente 4 (22 pruebas)</h3>
+          <div class="table-wrap u-mt-14">
+            <table style="min-width:0;font-size:12.5px">
+              <tbody>
+                <tr><td><b>UserServiceTest</b> · 22</td><td class="u-muted">Registro (roles, password codificada, usuario desactivado), duplicados activados/inactivados, DuplicateKeyException (login vs email), activación, reset de contraseña (expiración 1 día), cambio de contraseña (contraseña actual incorrecta → InvalidPasswordException), removeNotActivatedUsers, authorities</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="preexistentes" data-nav="Preexistentes">
+      <div class="section-head reveal">
+        <span class="sec-num">04</span>
+        <div class="sec-kicker">Suites preexistentes</div>
+        <h2>79 suites verificadas (sin cambios)</h2>
+        <p>Continúan en verde, entre ellas las del núcleo de cobros y facturación.</p>
+      </div>
+      <article class="card reveal">
+        <div class="grid cols-2">
+          <ul class="list u-muted" style="font-size:13px">
+            <li>SecuenciaServiceImplTest (5) · PedidoServiceImplTest (7) · PagoServiceImplTest (14) · FacturaServiceImplTest (3)</li>
+            <li>EnvioServiceImplTest (7) · ItemCarritoServiceImplTest (4) · HistorialEstadoServiceImplTest (2) · ProductoServiceImplTest (4)</li>
+          </ul>
+          <ul class="list u-muted" style="font-size:13px">
+            <li>ProductoPrecioServiceImplTest (3) · ResourceAccessServiceTest (23) · SecurityUtilsUnitTest (9) · SimulatedPaymentGatewayTest (5)</li>
+            <li>FacturaPdfServiceTest (3) · MoneyUtilsTest (4) · mappers (21×1 + UserMapper 10) · DTOs (21×1) · dominios (52) · config/Cucumber (18) · SecurityMetersServiceTests (2)</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="conclusiones" data-nav="Conclusiones">
+      <div class="section-head reveal">
+        <span class="sec-num">05</span>
+        <div class="sec-kicker">Conclusiones y recomendaciones</div>
+        <h2>Cierre</h2>
+      </div>
+      <div class="grid cols-2">
+        <article class="card reveal">
+          <h3>1 · Cobertura</h3>
+          <p>La capa de servicio (service/impl + service) queda <b>100 % cubierta</b> con pruebas unitarias; no quedan clases de negocio sin suite.</p>
+        </article>
+        <article class="card reveal">
+          <h3>2 · Calidad</h3>
+          <p>Mockito estricto evita stubs muertos; los tests verifican interacciones relevantes (verificaciones de guardado con captor, no solo el valor retornado).</p>
+        </article>
+        <article class="card reveal">
+          <h3>3 · Backlog cerrado</h3>
+          <p>ItemCarritoResourceIT —el único hueco conocido del ciclo— quedó reescrito con productos reales: hoy <b>17/17 en verde</b> y la suite de integración completa (487 pruebas) sin fallos.</p>
+        </article>
+        <article class="card reveal">
+          <h3>4 · JaCoCo ya está midiendo</h3>
+          <p>El paso propuesto en agosto quedó hecho: la cobertura consolidada unit + IT es de <b>70,1 % de líneas</b> (88,6 % de métodos) y el pipeline bloquea regresiones con umbrales. Todo el detalle está en el <a href="cobertura.html">informe de Cobertura</a>.</p>
+        </article>
+      </div>
+      <div class="terminal reveal u-mt-20">
+        <div class="terminal-head">
+          <i></i><i></i><i></i>
+          <span>maven · surefire</span>
+          <button class="copy-btn" type="button">Copiar</button>
+        </div>
+        <div class="terminal-body">./mvnw -q -Dskip.npm=true -Dspotless.check.skip=true -Dcheckstyle.skip=true -Djacoco.skip=true test</div>
+      </div>
+      <p class="reveal u-muted" style="font-size:13px">Informe generado a partir del reporte de Maven Surefire (93 suites · 363 pruebas · regresión del 22/09/2026).</p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>KN-Store · Informe de Pruebas Unitarias — 29 de agosto de 2026</span>
+      <span>Resultado: <b>VERDE · 363/363</b></span>
+      <span>Equipo de Pruebas · <a href="https://github.com/joseph12n/pruebas" target="_blank" rel="noopener">Repositorio</a></span>
+    </div>
+  </footer>
+</div>
+
+<div class="cmd" id="cmd" hidden>
+  <div class="cmd-box" role="dialog" aria-modal="true" aria-label="Buscador de informes">
+    <div class="cmd-input-row">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input class="cmd-input" id="cmd-input" type="text" placeholder="Buscar páginas o secciones…" autocomplete="off" spellcheck="false">
+    </div>
+    <ul class="cmd-list" id="cmd-list" role="listbox" aria-label="Resultados"></ul>
+    <div class="cmd-hint"><span>↑↓ navegar</span><span>↵ abrir</span><span>esc cerrar</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<button class="to-top" id="to-top" aria-label="Volver arriba">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
 
 <script src="../assets/js/data/core.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="../assets/vendor/chart.umd.min.js"></script>
+<script src="../assets/vendor/gsap.min.js"></script>
+<script src="../assets/vendor/ScrollTrigger.min.js"></script>
+<script src="../assets/vendor/lenis.min.js"></script>
 <script src="../assets/js/core/theme.js"></script>
+<script src="../assets/js/core/utils.js"></script>
+<script src="../assets/js/core/shell.js"></script>
+<script src="../assets/js/core/views.js"></script>
 <script src="../assets/js/charts.js"></script>
+<script src="../assets/js/core/motion.js"></script>
 </body>
 </html>

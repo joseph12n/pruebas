@@ -1,53 +1,106 @@
 /* ============================================================
-   KN Store — Aseguramiento de Calidad · Design Tokens
+   KN·QA Observatory — Design Tokens
+   Concepto: centro de control de calidad (HUD / instrumentos)
    ============================================================ */
 
 :root {
-  --font-head: "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Unbounded", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --accent: #10b981;
-  --accent-2: #38bdf8;
-  --amber: #f59e0b;
-  --rose: #f43f5e;
-
-  --radius: 16px;
-  --radius-sm: 10px;
+  --railw: 264px;
   --maxw: 1200px;
+  --r: 18px;
+  --r-sm: 10px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* ---------- Tema oscuro: laboratorio nocturno ---------- */
 [data-theme="dark"] {
-  --bg: #0a0f1e;
-  --bg-2: #0d1529;
-  --card: #111b31;
-  --card-2: #16223d;
-  --border: rgba(148, 163, 199, 0.14);
-  --border-strong: rgba(148, 163, 199, 0.25);
-  --text: #e7edf9;
-  --muted: #94a3bd;
-  --muted-2: #64748b;
-  --shadow: 0 18px 45px rgba(2, 8, 23, 0.55);
-  --grid: rgba(148, 163, 199, 0.08);
-  --chart-grid: rgba(148, 163, 199, 0.14);
-  --chip-bg: rgba(148, 163, 199, 0.10);
-  --header-bg: rgba(10, 15, 30, 0.82);
-  --theme-color: #0a0f1e;
+  --accent: #c6f542;
+  --accent-soft: rgba(198, 245, 66, 0.14);
+  --accent-ink: #0b1002;
+  --accent-2: #3fe0d0;
+  --accent-2-soft: rgba(63, 224, 208, 0.13);
+  --accent-3: #b18cff;
+
+  --ok: #7ee787;
+  --ok-soft: rgba(126, 231, 135, 0.13);
+  --warn: #ffb020;
+  --warn-soft: rgba(255, 176, 32, 0.13);
+  --danger: #ff5470;
+  --danger-soft: rgba(255, 84, 112, 0.13);
+  --info: #54c8ff;
+  --info-soft: rgba(84, 200, 255, 0.13);
+  --violet: #b18cff;
+  --violet-soft: rgba(177, 140, 255, 0.13);
+
+  --bg: #06070b;
+  --bg-2: #0a0d14;
+  --panel: rgba(13, 17, 25, 0.78);
+  --panel-solid: #0d1119;
+  --panel-2: #131a29;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.2);
+  --text: #eef3ea;
+  --muted: #9aa4b2;
+  --muted-2: #5f6979;
+  --chip-bg: rgba(255, 255, 255, 0.06);
+  --shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --glow: 0 0 46px rgba(198, 245, 66, 0.16);
+  --grid-line: rgba(255, 255, 255, 0.04);
+  --chart-grid: rgba(255, 255, 255, 0.09);
+  --header-bg: rgba(6, 7, 11, 0.72);
+  --theme-color: #06070b;
+  --grain: 0.05;
+  --hero-glow-a: rgba(198, 245, 66, 0.22);
+  --hero-glow-b: rgba(63, 224, 208, 0.18);
+  color-scheme: dark;
 }
 
+/* ---------- Tema claro: blueprint de papel ---------- */
 [data-theme="light"] {
-  --bg: #f3f5fa;
-  --bg-2: #eef1f8;
-  --card: #ffffff;
-  --card-2: #f6f8fd;
-  --border: rgba(15, 23, 42, 0.08);
-  --border-strong: rgba(15, 23, 42, 0.16);
-  --text: #101a2e;
-  --muted: #5b6b85;
-  --muted-2: #8a97ad;
-  --shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
-  --grid: rgba(15, 23, 42, 0.05);
-  --chart-grid: rgba(15, 23, 42, 0.10);
-  --chip-bg: rgba(15, 23, 42, 0.05);
-  --header-bg: rgba(243, 245, 250, 0.85);
-  --theme-color: #f3f5fa;
+  --accent: #4d7c0f;
+  --accent-soft: rgba(77, 124, 15, 0.12);
+  --accent-ink: #f7fee7;
+  --accent-2: #0f766e;
+  --accent-2-soft: rgba(15, 118, 110, 0.12);
+  --accent-3: #6d28d9;
+
+  --ok: #2e7d32;
+  --ok-soft: rgba(46, 125, 50, 0.12);
+  --warn: #b45309;
+  --warn-soft: rgba(180, 83, 9, 0.12);
+  --danger: #dc2626;
+  --danger-soft: rgba(220, 38, 38, 0.11);
+  --info: #0369a1;
+  --info-soft: rgba(3, 105, 161, 0.11);
+  --violet: #6d28d9;
+  --violet-soft: rgba(109, 40, 217, 0.11);
+
+  --bg: #f1f1ea;
+  --bg-2: #e7e7de;
+  --panel: rgba(255, 255, 255, 0.84);
+  --panel-solid: #ffffff;
+  --panel-2: #f5f5ee;
+  --line: rgba(12, 16, 22, 0.1);
+  --line-2: rgba(12, 16, 22, 0.24);
+  --text: #0b0e14;
+  --muted: #525c6b;
+  --muted-2: #8b93a1;
+  --chip-bg: rgba(12, 16, 22, 0.05);
+  --shadow: 0 26px 60px rgba(24, 28, 18, 0.12);
+  --shadow-sm: 0 10px 26px rgba(24, 28, 18, 0.08);
+  --glow: 0 0 40px rgba(77, 124, 15, 0.13);
+  --grid-line: rgba(12, 16, 22, 0.05);
+  --chart-grid: rgba(12, 16, 22, 0.08);
+  --header-bg: rgba(241, 241, 234, 0.78);
+  --theme-color: #f1f1ea;
+  --grain: 0.04;
+  --hero-glow-a: rgba(77, 124, 15, 0.16);
+  --hero-glow-b: rgba(15, 118, 110, 0.14);
+  color-scheme: light;
 }
